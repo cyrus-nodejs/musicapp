@@ -1,0 +1,502 @@
+
+
+/* @import "@radix-ui/colors/black-alpha.css";
+/* @import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/violet.css"; */
+/* ::root{
+  --contexify-menu-minWidth: 120px;
+   --main: rgba(20, 20, 20, 0.987);
+  --submain:  rgba(0,0,0,0.8435749299719888) 72%;
+   --contextmain: rgb(14, 9, 9); 
+  --progressmain:  rgba(7, 87, 50, 0.475); 
+  box-sizing: border-box;
+  --contexify-menu-minWidth: 120px;
+    --progressmain:  rgba(7, 87, 50, 0.475); 
+    max-height: fit-content;
+  color: azure;
+  
+}  */
+
+*{
+  box-sizing: border-box;
+
+    max-height: fit-content;
+  color: azure;
+  /* background-color:rgba(0,0,0,0.8435749299719888) 72%; */
+  background: rgb(6,6,6);
+background: -moz-linear-gradient(0deg, rgba(6,6,6,1) 50%, rgba(5,1,1,0.700717787114846) 100%);
+background: -webkit-linear-gradient(0deg, rgba(6,6,6,1) 50%, rgba(5,1,1,0.700717787114846) 100%);
+background: linear-gradient(0deg, rgba(6,6,6,1) 50%, rgba(5,1,1,0.700717787114846) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#060606",endColorstr="#050101",GradientType=1);
+} */
+
+
+
+
+
+
+.maincolor{
+  background-color: var(--submain) ;
+}
+
+
+.menu{
+  width: 15px;
+}
+
+body{
+  background-color: var(--submain) ;
+color:azure;
+height: 100vh; 
+}
+
+.bgcolor{
+  background-color:var(--submain) 
+}
+.card-header{
+  background-color:var(--submain)  
+}
+
+.card-body{
+  background-color:var(--submain) ;
+  color:azure; 
+}
+.table{
+  background-color:red   
+}
+.audioplayer {
+  background-color:var(--main); 
+  height:70px; 
+}
+
+.smContainer {
+  overflow-y:auto;
+  height:100vh;
+  overflow: hidden;
+}
+
+ .smcenter{
+  overflow-y:auto;
+  height:100vh;
+  overflow: hidden;
+} 
+.Navbar{
+  background-color:var(--main) ;
+  height:70px; 
+}
+
+.logindiv {
+  background: var(--submain);
+  
+}
+.homeleft{
+  background: var(--submain);
+  height: 100vh; 
+  text-align: justify;
+}
+
+.homeCenter{
+  background:var(--submain);
+  height: 100vh; 
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: justify;
+}
+.mainCenter{
+  background: var(--submain);
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+}
+
+/* .homeRight{
+  background:var(--submain);
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+  height: 100vh; 
+} */
+/* .smallHomeRight{
+  background:var(--submain);
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+  height: 100vh; 
+} */
+.scroll{
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100vh; 
+}
+.facebook{
+  width: 100%;
+  height:45px;
+
+}
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+.pricingbg{
+  background: var(--submain);
+}
+
+
+.--range-progress{
+background-color: black ;
+color: black;
+}
+input::placeholder {
+  color: white;
+  opacity: 0.5;
+  border:none
+}
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  /* color: rgba(0, 128, 23, 0.607);; */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: rgba(0, 128, 23, 0.607);;
+}
+
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+  color: rgba(0, 128, 23, 0.607);;
+}
+.tooltip{
+   background-color:var(--submain) ; 
+}
+.navform {
+  background-color:var(--submain) ;
+}
+.artistbg{
+  background: rgb(0,36,13);
+  background: linear-gradient(180deg, rgba(0,36,13,0.9192051820728291) 36%, rgba(0,0,0,0.8435749299719888) 72%);
+  }
+  .paymentdiv{
+    margin: 50px, 50px;
+    padding: 4px;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+  }
+.figure .imgdiv{
+  width: 135px;
+}
+.contexify{
+  width:  var(--contexify-menu-minWidth);
+}
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+  width: 148px;
+  
+
+}
+.containerAll {
+  position: relative;
+  text-align: center;
+  color: white;
+  width: 120px;
+  
+
+}
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 80px;
+  right: 25px;
+  background: transparent;
+}
+
+.table{
+  background-color: #19E6DF;
+}
+
+.facebookButton{
+height: 3rem;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(104, 99, 99); 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(60, 60, 61, 0.638); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background:  rgba(49, 49, 53, 0.638); ; 
+}
+
+.menu{
+  width: 120;
+}
+
+
+
+
+
+input[type="range"] {
+  --range-progress: 0;
+  /* ... */
+  width: 100%;
+  
+  
+}
+
+/* =========================
+Custom Input range 
+=============================*/
+
+/* Input range - chrome and safari */
+input[type='range'] {
+  --range-progress: 0;
+
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  background: #ccc;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/* Input range - firefox */
+input[type='range']::-moz-range-track {
+  position: relative;
+  background: #ccc;
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+/* played progress length - Chrome & safari*/
+input[type='range']::before {
+  content: '';
+  height: 2px;
+  background: var(--progressmain);
+  width: var(--range-progress);
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* played progress length - firefox */
+input[type='range']::-moz-range-progress {
+  background: var(--progressmain);
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+  height: 2px;
+}
+
+/* slider thumb - chrome and safari */
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.volumn::-webkit-slider-thumb {
+  background-color: var(--progressmain);
+}
+
+/* dragging thumb - chrome and safari */
+input[type='range']:active::-webkit-slider-thumb {
+  transform: scale(1.2);
+  background-color: var(--progressmain);
+}
+
+/* slider thumb - firefox */
+input[type='range']::-moz-range-thumb {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background: var(--progressmain);
+  cursor: pointer;
+  border: transparent;
+  position: relative;
+}
+/* dragging thumb - firefox */
+input[type='range']:active::-moz-range-thumb {
+  transform: scale(1.2);
+  background-color: var(--progressmain);
+}
+
+/* 
+.ContextMenuTrigger {
+	display: block;
+	border: 2px white dashed;
+	color: white;
+	border-radius: 4px;
+	font-size: 15px;
+	user-select: none;
+	padding: 45px 0;
+	width: 300px;
+	text-align: center;
+} */
+
+.ContextMenuContent,
+.ContextMenuSubContent {
+	min-width: 150px;
+	background-color: var(--contextmain)  ;
+
+	border-radius: 6px;
+	overflow: hidden;
+	padding: 5px;
+	box-shadow:
+		0px 10px 38px -10px rgba(22, 23, 24, 0.35),
+		0px 10px 20px -15px rgba(22, 23, 24, 0.2);
+}
+
+.ContextMenuItem,
+.ContextMenuCheckboxItem,
+.ContextMenuRadioItem,
+.ContextMenuSubTrigger {
+	font-size: 13px;
+	line-height: 1;
+	color: var(--violet-11);
+	border-radius: 3px;
+	display: flex;
+	align-items: center;
+	height: 25px;
+	padding: 0 5px;
+	position: relative;
+	padding-left: 5px;
+	user-select: none;
+	outline: none;
+}
+.ContextMenuSubTrigger[data-state="open"] {
+	background-color: var(--violet-4);
+	color: var(--violet-11);
+}
+.ContextMenuItem[data-disabled],
+.ContextMenuCheckboxItem[data-disabled],
+.ContextMenuRadioItem[data-disabled],
+.ContextMenuSubTrigger[data-disabled] {
+	color: var(--mauve-8);
+	pointer-events: "none";
+}
+.ContextMenuItem[data-highlighted],
+.ContextMenuCheckboxItem[data-highlighted],
+.ContextMenuRadioItem[data-highlighted],
+.ContextMenuSubTrigger[data-highlighted] {
+	background-color: var(--violet-9);
+	color: var(--violet-1);
+}
+.ContextMenuTrigger{
+  width: 1000px;
+}
+
+.ContextMenuLabel {
+	padding-left: 25px;
+	font-size: 12px;
+	line-height: 25px;
+	color: var(--mauve-11);
+}
+
+.ContextMenuSeparator {
+	height: 1px;
+	background-color: var(--violet-6);
+	margin: 5px;
+}
+
+.ContextMenuItemIndicator {
+	position: absolute;
+	left: 0;
+	width: 25px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.RightSlot {
+	margin-left: auto;
+	padding-left: 20px;
+	color: var(--mauve-11);
+}
+[data-highlighted] > .RightSlot {
+	color: white;
+}
+[data-disabled] .RightSlot {
+	color: var(--mauve-8);
+}
+
+.volume {
+  
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;  
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #04AA6D;
+  cursor: pointer;
+}
+
+.volume::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #04AA6D;
+  cursor: pointer;
+}
+
+
+@media only screen and (min-width: 992px) {
+
+  .homeRight{
+    background:var(--submain);
+    margin: 4px, 4px;
+    padding: 4px;
+    height: 800px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .homeRight{
+    background:var(--submain);
+    margin: 4px, 4px;
+    padding: 4px;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+  }
+}
