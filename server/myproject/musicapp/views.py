@@ -15,7 +15,6 @@ from .serializers import  UserSerializer,   AlbumSerializer, ArtistSerializer, P
 from django.conf import settings
 from rest_framework.permissions import IsAuthenticated
 from django.views.decorators.csrf import csrf_exempt
-from .utils import encode_jwt
 from django.db.models import F
 from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.authentication import JWTAuthentication
@@ -39,9 +38,9 @@ logger = logging.getLogger(__name__)
 
 logger.debug(f'Stripe API Key: {stripe.api_key}')
 
-# import secrets
-# secret_key = secrets.token_bytes(32)  # You can adjust the length
-# print(secret_key)
+import secrets
+secret_key = secrets.token_bytes(32)  # You can adjust the length
+print(secret_key)
 
 
 def Index(request):
@@ -57,29 +56,7 @@ class RegisterUserView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     
-class CustomLoginView(APIView):
-    serializer_class = UserSerializer
 
-    def post(self, request, *args, **kwargs):
-        username = request.data.get('username')
-        password = request.data.get('password')
-        try:
-            user = User.objects.get(username=username)
-        except User.DoesNotExist:
-            return Response({"detail": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
-        
-
-        
-        if user.check_password(password):
-            refresh = RefreshToken.for_user(user)
-            
-            return Response({
-                'refresh': str(refresh),
-                'access': str(refresh.access_token),
-                'user':str(user),
-                'message':"Login Successfull!"
-            })
-        return Response({"detail": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
      
 class LogoutView(APIView):
      permission_classes = [AllowAny]
