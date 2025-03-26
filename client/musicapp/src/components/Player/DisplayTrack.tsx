@@ -3,18 +3,18 @@
 
 import { Row, Col } from 'react-bootstrap'
 import { AudioPlayerContext } from '../../context/audioPlayer'
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import {useAppSelector} from "../../redux/app/hook"
 import { getCurrentTrack } from '../../redux/features/audio/audioSlice'
 import { handleNext } from '../../redux/features/audio/audioSlice'
 import { useAppDispatch } from '../../redux/app/hook'
 import { fetchAddRecentlyPlayed,  } from '../../redux/features/playlist/playlistSlice'
-import { fetchAsyncUser , getAuthUser} from '../../redux/features/auth/authSlice'
+// import { fetchAsyncUser , getAuthUser} from '../../redux/features/auth/authSlice'
 import { fetchAddTimesPlayed } from '../../redux/features/audio/audioSlice'
 const DisplayTrack = () => {
   const dispatch = useAppDispatch()
   const currentTrack = useAppSelector(getCurrentTrack)
-  const authUser = useAppSelector(getAuthUser)
+  // const authUser = useAppSelector(getAuthUser)
     
   const { audioRef, progressBarRef,   setDuration } = useContext(AudioPlayerContext)
    // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -24,11 +24,11 @@ const DisplayTrack = () => {
    // eslint-disable-next-line @typescript-eslint/no-unused-vars
    let data2;
   
-        useEffect(() => {
+      //   useEffect(() => {
           
-          dispatch(fetchAsyncUser());
+      //     dispatch(fetchAsyncUser());
       
-      }, [dispatch])
+      // }, [dispatch])
    const onLoadedMetadata = () => {
     const seconds = audioRef.current.duration;
     setDuration(seconds)
@@ -42,7 +42,7 @@ const DisplayTrack = () => {
        src={`${import.meta.env.VITE_APP_CLOUD_URL}/${currentTrack?.audio_file}`}
        ref={audioRef}
        onLoadedMetadata={onLoadedMetadata}
-       onEnded={() =>{ dispatch(handleNext()); dispatch(fetchAddRecentlyPlayed(data2={currentTrack, authUser})); dispatch(fetchAddTimesPlayed(data={currentTrack, num_times})); }}
+       onEnded={() =>{ dispatch(handleNext()); dispatch(fetchAddRecentlyPlayed(data2={currentTrack})); dispatch(fetchAddTimesPlayed(data={currentTrack, num_times})); }}
        >
        </audio>
        

@@ -5,7 +5,8 @@ import "../../index.css"
 import * as ContextMenu from "@radix-ui/react-context-menu";
 import { Link } from "react-router-dom";
 import {  useEffect } from "react";
-import { Image, Row,  Table, Container } from 'react-bootstrap';
+import { Image, Row, OverlayTrigger, Table, Container } from 'react-bootstrap';
+import { PlayAllTooltip } from "../../components/Player/Control/Overlay";
 import { useParams } from 'react-router-dom';
 import { capitalizeFirstLetter } from "../../utils/helpers/utilities";
 import HomeLeft from "../Home/HomeLeft";
@@ -72,13 +73,19 @@ let data;
      
       <div className="flex-grow-1 ms-3">
       <div className="d-flex flex-column mb-3">
-      <div className="p-2 text-start fs-4">My Playlist () ({capitalizeFirstLetter(currentPlaylist?.title)}) </div>
+      <div className="p-2 text-start fs-4">My Playlist ({capitalizeFirstLetter(currentPlaylist?.title)}) </div>
       <div className="p-2">SoundPlanet {currentPlaylist?.tracks?.length} songs </div>
     </div>
     </div>
     </div>
     <div className="d-flex mb-3 ">
-      <div className="p-2"><i onClick={() => dispatch(playAllTracks(currentPlaylist?.tracks))} className='bx bx-play text-success border border-success  bx-border-circle bx-lg' ></i></div>
+      <div className="p-2"><OverlayTrigger
+            placement="top"
+            delay={{ show: 250, hide: 400 }}
+            overlay={PlayAllTooltip}
+          ><i onClick={() => dispatch(playAllTracks(currentPlaylist?.tracks))} className='bx bx-play text-success border border-success  bx-border-circle bx-lg' ></i>
+          </OverlayTrigger>
+          </div>
       <div className="p-2"><i className='bx bx-plus mt-3 border text-success border-success bx-border-circle bx-sm'></i></div>
       <div className="ms-auto p-2"><i className='bx bx-menu mt-3 border text-success border-success'></i></div>
     </div>

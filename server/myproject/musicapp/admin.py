@@ -8,7 +8,7 @@ from django.contrib import admin
 
 from django.contrib import admin
 
-from .models import Album, Artist, Track, Genre, Pricing, Playlist
+from .models import Album, Artist, Track, Genre, Pricing, Playlist, Order, Subscription
 
 # @admin.register(Artist)
 # class ArtistAdmin(admin.ModelAdmin):
@@ -21,4 +21,7 @@ admin.site.register(Genre)
 admin.site.register(Track)
 admin.site.register(Pricing)
 admin.site.register(Playlist)
+admin.site.register(Order)
+admin.site.register(Subscription)
+
 

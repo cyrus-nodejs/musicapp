@@ -66,3 +66,18 @@ export const ShuffleTooltip = (props: JSX.IntrinsicAttributes & TooltipProps & R
       Vol High
     </Tooltip>
   );
+
+
+  
+  export const PlayAllTooltip = (props: JSX.IntrinsicAttributes & TooltipProps & RefAttributes<HTMLDivElement>) => (
+    <Tooltip id="button-tooltip" {...props}>
+      Play All
+    </Tooltip>
+  );
+
+
+  export const RightClickTooltip = (props: JSX.IntrinsicAttributes & TooltipProps & RefAttributes<HTMLDivElement>) => (
+    <Tooltip id="button-tooltip " {...props}>
+     Right Click
+    </Tooltip>
+  );

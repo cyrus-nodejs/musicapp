@@ -2,6 +2,7 @@
 
 
 import { OverlayTrigger,  Button,  Form,  TooltipProps } from "react-bootstrap";
+import { RightClickTooltip } from "../../components/Player/Control/Overlay";
 import "../../index.css"
 import { Link } from "react-router-dom";
 import { PLAYLIST } from "../../utils/@types";
@@ -12,7 +13,7 @@ import { useAppSelector, useAppDispatch } from "../../redux/app/hook";
 import { JSX } from "react/jsx-runtime";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-
+import { capitalizeFirstLetter } from "../../utils/helpers/utilities";
 import * as ContextMenu from "@radix-ui/react-context-menu";
 
 const HomeLeft = () => {
@@ -59,7 +60,7 @@ useEffect(() => {
 
 const renderTooltip1 = (props: JSX.IntrinsicAttributes & TooltipProps & RefAttributes<HTMLDivElement>) => (
   <div id="button-tooltip  " {...props}>
-    Login to Create Playlist
+    Login 
   </div>
 );
 
@@ -176,7 +177,9 @@ const formik = useFormik({
   { authUser && isauthenticated  ? (
   
     <div  className="">
-        {Playlist  ? ( <div>
+        {Playlist  ? ( 
+            
+          <div>
           <div className="text-start mb-3">My Playlist(s)</div>
 {Playlist?.map((playlist:PLAYLIST, id:number) =>{
           return (
@@ -189,11 +192,16 @@ const formik = useFormik({
             <i className='bx bx-music bg-secondary bx-border bx-sm '></i>
             </div>
             <div className="flex-grow-1 rounded ms-3">
+                  <OverlayTrigger
+                          placement="top"
+                          delay={{ show: 250, hide: 400 }}
+                          overlay={RightClickTooltip}
+                        >
       <div key={id} className="d-flex flex-column ">
-            <div className="">{playlist?.title}  </div>
-            <div className=" text-light">Playlist. {authUser?.first_name.toUpperCase() } </div>
+            <div className="">{capitalizeFirstLetter(playlist?.title)}  </div>
+            <div className=" text-light">Playlist. {capitalizeFirstLetter(authUser?.first_name)} </div>
             </div>
-       
+       </OverlayTrigger>
        </div>
      
           </div>
@@ -251,6 +259,7 @@ const formik = useFormik({
        })}
 
 </div>
+
 ) : (<div className=" rounded-3  flex-column mb-3">
   <h6 className="mt-2 fs-6 text-light  d-inline-flex">Create Your First Playlist</h6>
    <p className="p-2 d-inline-flex">It's is easy we will help you </p> 
@@ -284,11 +293,11 @@ const formik = useFormik({
   <div className="p-2 d-inline-flex">It's is easy we will help you </div>
   <div  className="ms-auto  p-2  rounded-5" >
     <OverlayTrigger
-      placement="bottom"
+      placement="right"
       delay={{ show: 250, hide: 400 }}
       overlay={renderTooltip1}
     >
-       <div  className="p-2 text-light bg-success rounded-3 d-inline-flex">Create Playlist</div>
+       <Button  variant="success"  className=" text-light  rounded-3  gap-2 mb-2">Create</Button>
     </OverlayTrigger>
           
         </div>

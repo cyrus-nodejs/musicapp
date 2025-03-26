@@ -28,24 +28,25 @@ const  NavSearchResults = () => {
     
         <div  className="     text-light ">
             {searchResult?.length > 0 ? (
-          <div>
-           <div className="d-flex mb-3">
+          <div className=''>
+           
 
            <div className="d-inline-flex my-3 fs-4 border-info  border-bottom">Search Results</div>
-    {/* <div className="ms-auto p-2"><Link to="/newtracks" className="text-decoration-none text-light">Show all</Link>  </div> */}
-  </div>
+  
+  
         
-            <div className="row   ">
+            <div className="row  ">
        {searchResult?.slice(0, 20).map((track:TRACK) =>{
           return (
         
           
-  <div className="position-relative m-2" style={{width:"180px", height:"150px"}} >
-                
-                <Image src={track.image.url} width="180" height="150"   rounded />
+  <figure className="position-relative m-4" style={{width:"130px", height:"120px"}} >
+                     <div className="container ">
+                <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${track?.cover_image}`} width="130" height="120"   rounded />
+                </div>
                 <i onClick={() => dispatch(playTrack(track))} className='bx bx-play-circle top-left position-absolute bottom-0 end-0  text-light bx-lg' ></i>
-                 <div className="figure-caption text-light  ">{track.title}</div> 
-              </div>
+                 <figcaption className="figure-caption text-light  ">{track?.title}</figcaption> 
+              </figure>
               )
        })}
 

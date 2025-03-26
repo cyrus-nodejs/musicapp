@@ -2,7 +2,7 @@
 // import { Form } from 'react-bootstrap'
 
 import { useAppDispatch, useAppSelector } from '../../../redux/app/hook'
-import { fetchSearchResult, handleSearchterm, getSearchTerm } from '../../../redux/features/audio/audioSlice'
+import { fetchSearchResult, handleSearchterm,  getSearchTerm } from '../../../redux/features/audio/audioSlice'
 import { useEffect } from 'react'
 const NavSearch = () => {
   const searchterm = useAppSelector(getSearchTerm)
@@ -25,7 +25,7 @@ useEffect(() =>{
     
  <input onChange = {(e) => dispatch(handleSearchterm(e.target.value))}  type="text" className="text-light navform form-control form-control-lg  w-100  border rounded-4 border-light shadow-none d-none d-lg-block" placeholder="What do you want to play?" /> 
  {/* <Form.Control onChange = {(e) => dispatch(handleSearchterm(e.target.value))} placeholder="Enter search" type="text"  className="d-lg-none form-control bg-dark navform shadow-none" />  */}
-  <p className='fs-5 d-lg-none text-light'>Stream on large device!</p>
+  <span className='fs-6 d-lg-none text-light'>Stream on large device!</span>
 </div> 
 
 

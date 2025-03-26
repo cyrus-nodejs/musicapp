@@ -2,6 +2,8 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
 from .models import Track, Artist, Album, Genre, Playlist, Pricing, Played, Order, Subscription, User
 from django.contrib.auth.models import AnonymousUser
+import django_filters
+from django.contrib.auth.password_validation import validate_password
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -45,15 +47,6 @@ class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
 
-    
-  
-class GenreSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Genre
-        fields = ['id', 'title', 'cover_image', ]
-
- 
 
 
 class ArtistSerializer(serializers.ModelSerializer):
@@ -61,7 +54,11 @@ class ArtistSerializer(serializers.ModelSerializer):
         model = Artist
         fields = ['id', 'name', 'bio', 'cover_image',  'bio', 'followers']
  
+class GenreSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = Genre
+        fields = ['id', 'title', 'cover_image', ]
    
 
 class AlbumSerializer(serializers.ModelSerializer):
@@ -81,21 +78,32 @@ class TrackSerializer(serializers.ModelSerializer):
         model = Track
         fields = ['id', 'title', 'artist', 'genre','album', 'duration', 'date_added', 'likes',  'release_year','cover_image','audio_file','times_played', 'last_played']
 
+class TrackFilter(django_filters.FilterSet):
+    title = django_filters.CharFilter(lookup_expr='icontains', label='Title')
+    artist = django_filters.CharFilter(lookup_expr='icontains', label='Artist')
+    album = django_filters.CharFilter(lookup_expr='icontains', label='Album')
+    release_year = django_filters.DateFilter(lookup_expr='exact', label='Release Year')
+    genre = django_filters.CharFilter(lookup_expr='icontains', label='Genre')
 
+
+
+    class Meta:
+        model = Track
+        fields = ['title', 'artist', 'album', 'genre', 'release_year']
 
 class PricingSerializer(serializers.ModelSerializer):
      
     class Meta:
         model = Pricing
-        fields = ['id', 'plans', 'price',  'duration', 'subscribers']
+        fields = ['id', 'plans', 'price', 'status', 'duration', 'subscribers']
 
 
 class PlaylistSerializer(serializers.ModelSerializer):
     tracks = TrackSerializer(many=True)
+    user = UserSerializer()
 
     class Meta:
         model = Playlist
-        # fields = '__all__'
         fields = ['id', 'title', 'user', 'tracks','created_on']
 
  
@@ -113,11 +121,11 @@ class PlayedSerializer(serializers.ModelSerializer):
 
 
 class OrderSerializer(serializers.ModelSerializer):
-
-
-    class Meta:
+     pricing = PricingSerializer()
+     owner = UserSerializer()
+     class Meta:
         model = Order
-        fields = ['id', 'owner', 'plans', 'payment', 'paymentid', 'bill', 'order_date']
+        fields = ['id', 'owner', 'pricing', 'payment', 'paymentid', 'bill', 'order_date']
 
 
 
@@ -125,8 +133,11 @@ class OrderSerializer(serializers.ModelSerializer):
 
 
 class SubscriptionSerializer(serializers.ModelSerializer):
-
-
+    user = UserSerializer()
+    pricing = PricingSerializer()
     class Meta:
         model = Subscription
-        fields = ['id', 'user', 'plans', 'payment', 'start_date', 'end_date', 'status', 'bill', 'payment_status']
+        fields = ['id', 'user', 'pricing', 'payment', 'start_date', 'end_date', 'status', 'bill', 'payment_status']
+
+
+

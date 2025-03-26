@@ -132,7 +132,7 @@ export const fetchAllTracks = createAsyncThunk(
                       export const fetchSearchTerm = createAsyncThunk(
                        
                         'audio/fetchSearchTerm',  async (data) => {
-                            const response= await axios.post(`${BASEURL}/searchterm`, {data},{ withCredentials: true })
+                            const response= await axios.post(`${BASEURL}/searc`, {data},{ withCredentials: true })
                             console.log(response.data)
                           
                             return response.data
@@ -140,8 +140,9 @@ export const fetchAllTracks = createAsyncThunk(
     
                       export const fetchSearchResult = createAsyncThunk(
                         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        'audio/fetchSearchResult',  async (searchQuery:any) => {
-                            const response= await axios.get(`${BASEURL}/search?q=${searchQuery}`,{ withCredentials: true })
+                        'audio/fetchSearchResult',  async (searchTerm:any) => {
+                          console.log(searchTerm)
+                            const response= await axios.get(`${BASEURL}/api/search/?search=${searchTerm}`,{ withCredentials: true })
                             console.log(response.data)
                             return response.data
                           });
@@ -214,8 +215,11 @@ export const audioSlice = createSlice({
 
      playAllTracks: (state, action) => {
       state.tracks = action.payload
+     
       state.currentTrack = state.tracks[state.trackIndex]
       state.isplaying = !state.isplaying
+      state.nextTrack = state.tracks[state.trackIndex += 1]
+    
      },
 
      handleShuffle : (state) => {
@@ -240,6 +244,7 @@ export const audioSlice = createSlice({
         state.tracks= action.payload
         state.currentArtist=action.payload[state.trackIndex].artist
          state.currentTrack=action.payload[state.trackIndex]
+        
        
 
         
@@ -332,7 +337,7 @@ export const audioSlice = createSlice({
                 })
                 .addCase(fetchSearchResult.fulfilled, (state, action) => {
                   state.status = 'succeeded'
-                  state.searchResult= action.payload.searchresults
+                  state.searchResult= action.payload
                 
                  
                 })

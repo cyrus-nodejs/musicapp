@@ -13,16 +13,6 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
-
-
-
-
-
-
-
-
-
-
 class Artist(models.Model):
     name =  models.CharField(max_length=100)
     cover_image =  CloudinaryField('image', blank=True, null=True )  # Cloudinary image field
@@ -139,10 +129,10 @@ class Played(models.Model):
 
 
 class Pricing(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     plans = models.CharField(max_length=10, choices=[('basic', 'Basic'), ('medium', 'Medium'), ('premium', 'Premium')],)
     price = models.IntegerField() 
     duration= models.IntegerField(default=30) 
+    status = models.CharField(max_length=10, choices=[('active', 'Active'), ('paused', 'Paused'), ('cancelled', 'Cancelled')], default='active')
     subscribers= models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
 
@@ -156,33 +146,32 @@ class Pricing(models.Model):
 
 
 class Order(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    plans = models.ForeignKey(Pricing, on_delete=models.CASCADE)
+    pricing = models.ForeignKey(Pricing, related_name='pricing_order', on_delete=models.CASCADE)
     payment =  models.BooleanField(default=False)
     paymentid = models.CharField(max_length=100)
     bill = models.IntegerField()
-    order_date = models.DateField(auto_now=True)
+    order_date = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.order_id
+        return self.pricing.plans
 
 
 
 class Subscription(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_subscriptions')
-    plans = models.ForeignKey(Pricing, on_delete=models.CASCADE)
+    pricing = models.ForeignKey(Pricing, related_name='pricing_subscription', on_delete=models.CASCADE)
+    paymentid = models.CharField(max_length=100, null=True)
     payment =  models.BooleanField(default=False)
-    start_date = models.DateTimeField(auto_now_add=True)
-    end_date = models.DateTimeField(auto_now=True)
+    start_date = models.DateField(auto_now_add=True)
+    end_date = models.DateField(null=True)
     status = models.CharField(max_length=10, choices=[('active', 'Active'), ('paused', 'Paused'), ('cancelled', 'Cancelled')], default='active')
     bill = models.DecimalField(max_digits=10, decimal_places=2)
-    payment_status = models.CharField(max_length=10,choices=[('pending', 'Pending'), ('paid', 'Paid'), ('failed', 'Failed')],default='pending')
+    payment_status = models.CharField(max_length=10, choices=[('pending', 'Pending'), ('paid', 'Paid'), ('failed', 'Failed')], default='pending')
     
 
     def __str__(self):
-        return f"{self.user.username} - {self.plan} Subscription"
+        return f"{self.user.username} - {self.pricing} Subscription"
 
     def is_active(self):
         """Check if the subscription is currently active"""

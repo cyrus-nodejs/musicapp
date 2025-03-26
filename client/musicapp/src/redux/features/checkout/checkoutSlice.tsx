@@ -5,11 +5,11 @@ import axios from 'axios'
 
 
 export interface CheckoutState {
-  stripePromise:string | null | undefined | unknown ,
+  stripePromise:string  ,
   clientSecret:string,
   currentOrder:ORDER | null | undefined | void
   currentSub:SUB | null | undefined | void
-  packages:[] | null | undefined | void
+  prices:[] | null | undefined | void
   status:  'idle' | 'pending' | 'succeeded' | 'failed'
   message:string
   error:string | null | undefined
@@ -21,7 +21,7 @@ const initialState: CheckoutState = {
     clientSecret:'',
     currentOrder:null,
     currentSub:null,
-    packages:null,
+    prices:null,
     status:  'idle',
     message:'',
     error: null ,
@@ -32,26 +32,26 @@ const initialState: CheckoutState = {
 const BASEURL = import.meta.env.VITE_APP_BASE_URL
 
 
-// export const fetchConfig = createAsyncThunk(
-//     'checkout/fetchConfig', async () => {
-//         const response= await axios.get(`${BASEURL}/config`,{ withCredentials: true })
-//         console.log(response.data.publishableKey)
-//         return response.data.publishableKey
-//       });
+export const fetchConfig = createAsyncThunk(
+    'checkout/fetchConfig', async () => {  
+        const response= await axios.get(`${BASEURL}/api/fetch-config/`, { withCredentials: true })
+        console.log(response.data)
+        return response.data
+      });
 
   export const fetchCreatePayment = createAsyncThunk(
     'checkout/fetchPayment',  async (item:PRICE) => {
         const bill = item.price
             const plan= item.plans
             console.log(bill, plan)
-        const response= await axios.post(`${BASEURL}/api/create-payment/`,{bill, plan},{ withCredentials: true })
+        const response= await axios.post(`${BASEURL}/api/create-payment/`, {bill, plan},{ withCredentials: true })
         console.log(response.data)
         return response.data
       });
         
       export const fetchConfirmPayment = createAsyncThunk(
         'checkout/fetchConfirmPayment',  async (paymentIntent) => {
-        const response= await axios.post(`${BASEURL}/confirmpayment`, {paymentIntent},{ withCredentials: true })
+        const response= await axios.post(`${BASEURL}/api/confirm-payment/`, {paymentIntent},{ withCredentials: true })
         console.log(response.data)
         return response.data
         });
@@ -59,22 +59,25 @@ const BASEURL = import.meta.env.VITE_APP_BASE_URL
         export const fetchRetrievePayment = createAsyncThunk(
          'checkout/fetchRetrievePayment',  async (data:{orderId:string}) => {
         const {orderId} = data
-        const response= await axios.post(`${BASEURL}/retrievepayment`, {orderId},{ withCredentials: true })
+        const response= await axios.post(`${BASEURL}/retrieve-payment/`, {orderId},{ withCredentials: true })
         console.log(response.data)
         return response.data
         });               
                     
         
-      export const fetchOrder = createAsyncThunk(
-        'checkout/fetchOrder',  async () => {
-            const response= await axios.get(`${BASEURL}/api/order/`,{ withCredentials: true })
+      export const fetchCurrentOrder = createAsyncThunk(
+      
+        'checkout/fetchCurrentOrder',  async () => {
+          
+            const response= await axios.get(`${BASEURL}/api/current-order/`,{ withCredentials: true })
             console.log(response.data)
             return response.data
           });
 
-          export const fetchSub = createAsyncThunk(
+          export const fetchCurrentSub = createAsyncThunk(
             'checkout/fetchSub',  async () => {
-                const response= await axios.get(`${BASEURL}/api/subscription/`,{ withCredentials: true })
+          
+                const response= await axios.get(`${BASEURL}/api/current-sub/`, { withCredentials: true })
                 console.log(response.data)
                 return response.data
               });
@@ -102,32 +105,43 @@ export const checkoutSlice = createSlice({
     builder.addCase(fetchCreatePayment.pending, (state) => {state.status = 'pending'})
       .addCase(fetchCreatePayment.fulfilled, (state, action) => {
         state.status = 'succeeded'
-        state.clientSecret= action.payload
+        state.clientSecret= action.payload.client_secret
       })
       .addCase(fetchCreatePayment.rejected, (state, action) => {
         state.status = 'failed'
         state.error = action.error.message;
       })
-      
-      .addCase(fetchOrder.pending, (state) => {
+      .addCase(fetchConfig.pending, (state) => {
         state.status = 'pending'
-        })
-        .addCase(fetchOrder.fulfilled, (state, action) => {
+      })
+      .addCase(fetchConfig.fulfilled, (state, action) => {
           state.status = 'succeeded'
-          state.currentOrder= action.payload
+          state.stripePromise = action.payload
+  
         })
-        .addCase(fetchOrder.rejected, (state, action) => {
+        .addCase(fetchConfig.rejected, (state, action) => {
           state.status = 'failed'
           state.error = action.error.message;
         })
-        .addCase(fetchSub.pending, (state) => {
+      .addCase(fetchCurrentOrder.pending, (state) => {
+        state.status = 'pending'
+        })
+        .addCase(fetchCurrentOrder.fulfilled, (state, action) => {
+          state.status = 'succeeded'
+          state.currentOrder= action.payload
+        })
+        .addCase(fetchCurrentOrder.rejected, (state, action) => {
+          state.status = 'failed'
+          state.error = action.error.message;
+        })
+        .addCase(fetchCurrentSub.pending, (state) => {
             state.status = 'pending'
             })
-            .addCase(fetchSub.fulfilled, (state, action) => {
+            .addCase(fetchCurrentSub.fulfilled, (state, action) => {
               state.status = 'succeeded'
               state.currentSub= action.payload
             })
-            .addCase(fetchSub.rejected, (state, action) => {
+            .addCase(fetchCurrentSub.rejected, (state, action) => {
               state.status = 'failed'
               state.error = action.error.message;
             })
@@ -136,7 +150,7 @@ export const checkoutSlice = createSlice({
               })
               .addCase(fetchPrice.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                state.packages= action.payload
+                state.prices= action.payload
               })
               .addCase(fetchPrice.rejected, (state, action) => {
                 state.status = 'failed'
@@ -159,7 +173,6 @@ export const checkoutSlice = createSlice({
               })
               .addCase(fetchConfirmPayment.fulfilled, (state, action) => {
                 state.status = 'succeeded'
-                
                  state.message = action.payload.message
               })
               .addCase(fetchConfirmPayment.rejected, (state, action) => {
@@ -174,9 +187,10 @@ export const getStripePromise = (state:RootState) => state.checkout.stripePromis
 export const getClientSecret = (state:RootState) => state.checkout.clientSecret
 export const getCurrentOrder = (state:RootState) => state.checkout.currentOrder
 export const getCurrentSub= (state:RootState) => state.checkout.currentSub
-export const getPackageList = (state:RootState) => state.checkout.packages
+export const getPriceList = (state:RootState) => state.checkout.prices
 export const getCheckoutror = (state:RootState) => state.checkout.error
 export const getCheckoutStatus = (state:RootState) => state.checkout.status
+export const getCheckoutSMessage  = (state:RootState) => state.checkout.message
 
 
 

@@ -6,10 +6,9 @@ import {useEffect, useState} from 'react';
 
 import {  Button, Container } from 'react-bootstrap';
 
-
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { useAppDispatch } from '../../redux/app/hook';
+
 
 import { loadStripe } from '@stripe/stripe-js';
 function Completion() {
@@ -19,11 +18,10 @@ function Completion() {
   const [ message, setMessage ] = useState(null);
   const BASEURL = import.meta.env.VITE_APP_BASE_URL
  const [paymentIntent, setPaymentIntent] = useState("")
- const dispatch = useAppDispatch()
- const stripePromise  = loadStripe(import.meta.env.VITE_APP_STRIPE_PUBLISHABLE_KEY)
- useEffect(() =>{
-  dispatch(fetchConfig())
-    }, [dispatch])
+ 
+ const stripe = 'pk_test_51Mps4OAtt6kY2KD5Fk11TyCnr8MKgtAiFawUiZ8pktDZ87ZoMLp1ywccXje9k3QKwYppvh3UDf28XdeQnKMnOvar00r7UZq2FI'
+const stripePromise = loadStripe(stripe)
+
 
  useEffect(() => {
   if (!stripePromise) return;
@@ -44,7 +42,7 @@ console.log(stripePromise)
   const confirmPayment = async () => {
     try {
       const { data } = await axios.post(
-        `${BASEURL }/confirmpayment`,
+        `${BASEURL }/api/confirm-payment/`,
         {
        paymentIntent,
         },
@@ -79,10 +77,10 @@ console.log(stripePromise)
       <div className="">
         
       {paymentIntent ? ( <div className="mx-5 px-5 col-6">
-        <p className=' fs-1'>Payment Successful!</p>
+        <p className=' fs-1'>Payment Successful! hk</p>
         
         <Button variant="dark" className="shadow-none  rounded-1" size="lg" type="submit" onClick={confirmPayment} >
-         <Link to="/currentorder"  className="text-decoration-none text-light">
+         <Link to="http://localhost:5173/currentorder"  className="text-decoration-none text-light">
           Next
           </Link>
          </Button>
@@ -93,9 +91,9 @@ console.log(stripePromise)
          </div>  
       ) : (
         <div className="mx-5 px-5 col-6">
-        <p className='p-3 fs-1'>Payment Failed! try again!</p>
+        <p className='p-3 fs-1'>Payment Failed! try again! hl</p>
     <Button variant="dark" className="shadow-none p-3 col-3 mb-2 rounded-1" size="lg" type="submit"  >
-      <Link to="/payment"  className="text-decoration-none text-light">
+      <Link to="http://localhost:5173/payment"  className="text-decoration-none text-light">
       TRY AGAIN!
        </Link>
       </Button></div >)}

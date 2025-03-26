@@ -1,5 +1,6 @@
 
-export const capitalizeFirstLetter = (word:string) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const capitalizeFirstLetter = (word:any) => {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
 
@@ -14,6 +15,15 @@ export const capitalizeFirstLetter = (word:string) => {
     // return the result
     return `${minutes}:${formattedSeconds} `
   }
+
+
+  
+  export const dateConverter =(date:string ) => {
+    const myDate = new Date(date).toLocaleDateString()
+    
+    return myDate.toString()
+  }
+
 
 
   

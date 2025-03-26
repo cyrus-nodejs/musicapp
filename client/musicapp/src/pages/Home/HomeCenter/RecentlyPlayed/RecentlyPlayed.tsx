@@ -1,6 +1,7 @@
 
 import { TRACK, PLAYLIST } from "../../../../utils/@types";
-import { Col,   Image,  Overlay, Tooltip  } from "react-bootstrap"
+import { Col,   Image,  Overlay, OverlayTrigger, Tooltip  } from "react-bootstrap"
+import { RightClickTooltip, PlayTooltip } from "../../../../components/Player/Control/Overlay";
 import { useState,  useRef } from "react";
 import {  fetchAddToPlaylist,  getPlaylists} from "../../../../redux/features/playlist/playlistSlice";
 import { getCurrentSub } from "../../../../redux/features/checkout/checkoutSlice";
@@ -61,15 +62,27 @@ const HandleSelect = (e:Event) =>{
         <figure  className="figure  position-relative  ">
           <ContextMenu.Root>
 			<ContextMenu.Trigger className="ContextMenuTrigger">
+            <OverlayTrigger
+                    placement="top"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={RightClickTooltip}
+                  >
       <div className="container ">
                 <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${track?.cover_image}`} className=" rounded-3" width="120" height="130"  />
                 </div>
+                </OverlayTrigger>
                 <div className="">
-                {hidden && (<i onClick={() => dispatch(playTrack(track))} className='bx bx-play-circle top-left   text-light bx-lg' ></i>)}
+                {hidden && (<OverlayTrigger
+                    placement="top"
+                    delay={{ show: 250, hide: 400 }}
+                    overlay={PlayTooltip}
+                  ><i onClick={() => dispatch(playTrack(track))} className='bx bx-play-circle top-left   text-light bx-lg' ></i></OverlayTrigger>)}
                 {/* {currentplaying ? <i onClick={() => PlayTrack(track)} className='bx bx-play-circle top-left   text-light bx-lg' ></i>:<i className='bx bx-play-circle control-icon top-left  bx-lg' ></i> } */}
                 
   </div> 
+
                  <figcaption className="figure-caption text-light  ">{track?.title}</figcaption> 
+                
 			</ContextMenu.Trigger>
 			<ContextMenu.Portal>
 				<ContextMenu.Content

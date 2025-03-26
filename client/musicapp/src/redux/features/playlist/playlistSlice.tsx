@@ -1,5 +1,5 @@
 import { createSlice,  createAsyncThunk , PayloadAction } from '@reduxjs/toolkit'
-import {  PLAYLIST, TRACK, USER} from '../../../utils/@types'
+import {  PLAYLIST, TRACK} from '../../../utils/@types'
 import { RootState } from '../../app/store'
 import axios from 'axios'
 
@@ -115,7 +115,7 @@ export const fetchRemoveFromPlaylist = createAsyncThunk(
               });
 
               export const fetchAddRecentlyPlayed = createAsyncThunk(
-                'playlist/fetchAddRecentlyPlayed',  async (data2:{file:TRACK,authUser:USER}) => {
+                'playlist/fetchAddRecentlyPlayed',  async (data2:{file:TRACK}) => {
                     const {file } = data2
                     const trackId = file.id
                     const response= await axios.post(`${BASEURL}/api/played/`,{trackId},{ withCredentials: true })

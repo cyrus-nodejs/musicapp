@@ -28,13 +28,14 @@ export interface IMAGE {
     price:string;
     plans:string;
     duration:string;
+    status:string;
     active:boolean
 
   }
  
   export interface SUB {
     user:USER;
-    plans:PRICE
+    pricing:PRICE
     bill:number;
     start_date:string,
     end_date:string,
@@ -49,13 +50,13 @@ export interface IMAGE {
 
 
   export interface ORDER {
-    _id:string
+    id:string
     owner:string;
     bill:number;
     paymentid:string;
     payment:boolean;
-    package:string
-    orderid:string
+    pricing:PRICE
+    order_date:string
   }
   
 
@@ -64,6 +65,7 @@ export interface IMAGE {
 
 
   export interface USER {
+    id:string
     first_name:string;
     last_name:AVATAR;
     email:string

@@ -17,7 +17,7 @@ useEffect(() =>{
     <div className='row'>
                <div className="d-flex ">
 
-<div className="d-inline-flex my-3 fs-4 border-info  border-bottom">Recently Played by Others</div>
+<div className="d-inline-flex my-3 fs-4 border-info  border-bottom">Recently Played </div>
 
 </div>
 

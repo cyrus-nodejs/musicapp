@@ -1,13 +1,14 @@
 
 
-import { OverlayTrigger, Container,  Tooltip,  TooltipProps } from "react-bootstrap";
+import { OverlayTrigger, Button, Container,  Tooltip,  TooltipProps } from "react-bootstrap";
 import NavIndex from "../../components/NavBar/NavIndex"
 import { RefAttributes, useEffect } from "react"
 import NavSearchResults from "../../components/NavBar/NavSearch/NavSearchResults"
 import { PRICE} from "../../utils/@types"
+import { dateConverter } from "../../utils/helpers/utilities";
 import { Link } from "react-router-dom"
 import { getIsAuthenticated, getAuthUser } from "../../redux/features/auth/authSlice"
-import {fetchSub, fetchCreatePayment, fetchPrice, getPackageList, getCurrentSub } from "../../redux/features/checkout/checkoutSlice"
+import {fetchCurrentSub, fetchCreatePayment, fetchPrice, getPriceList, getCurrentSub } from "../../redux/features/checkout/checkoutSlice"
 import { useAppDispatch, useAppSelector } from "../../redux/app/hook"
 import { getSearchTerm } from "../../redux/features/audio/audioSlice"
 const Pricing = () => {
@@ -15,10 +16,10 @@ const Pricing = () => {
 
 
   const currentSub = useAppSelector(getCurrentSub)
-  const packages = useAppSelector(getPackageList)
+  const priceList = useAppSelector(getPriceList)
   const searchterm = useAppSelector(getSearchTerm)
   const isauthenticated = useAppSelector(getIsAuthenticated)
-  const user = useAppSelector(getAuthUser)
+  const authUser = useAppSelector(getAuthUser)
   
   useEffect(() => {
      
@@ -27,9 +28,9 @@ const Pricing = () => {
   }, [dispatch])
 
   useEffect(() => {
-    dispatch(fetchSub())
-    
-    }, [dispatch]);
+    dispatch(fetchCurrentSub())
+
+    }, [authUser, dispatch]);
      
     const renderTooltip = (props: JSX.IntrinsicAttributes & TooltipProps & RefAttributes<HTMLDivElement>) => (
       <Tooltip id="button-tooltip" className="tooltip badge text-bg-success bg-succes" {...props}>
@@ -37,7 +38,7 @@ const Pricing = () => {
       </Tooltip>
     );
     
- console.log(packages)
+ console.log(priceList)
 
 console.log(currentSub)
   return (
@@ -48,16 +49,16 @@ console.log(currentSub)
    
        <Container className="mt-5 pt-5 mainCenter" fluid>
   {searchterm ? (<NavSearchResults />) : (  <div>
-    {currentSub?.status ? (
+    {currentSub?.status == 'active'  ? (
       <div className="">
            <div className="d-flex justify-content-center ms-auto">
             <div className="flex-col ">
   <div className=" d-flex  fs-4">
-  <div className="me-1 text-success ">Subscription: {currentSub?.plans?.active ? ("Active") : ('Free')}</div>
+  <div className="me-1 text-success ">Subscription: {currentSub?.status == 'active' ? ("Active") : ('Free')}</div>
   <div className=" "><i className='bx text-success  bx-check bx-md'></i></div>
     </div>
     <div className=" d-flex fs-4">
-  <div className="me-1 text-success ">Package Plan: {currentSub?.plans?.plans}</div>
+  <div className="me-1 text-success ">Package Plan: {currentSub?.pricing?.plans}</div>
   <div className="me-auto "><i className='bx text-success bx-check bx-md'></i></div>
     </div>
         <div className=" d-flex fs-4">
@@ -65,7 +66,7 @@ console.log(currentSub)
   <div className="me-auto "><i className='bx  text-success bx-check bx-md'></i></div>
     </div>
     <div className=" d-flex  fs-4">
-  <div className="me-1 text-success "> Expires: {currentSub?.end_date} </div>
+  <div className="me-1 text-success "> Expires: {dateConverter(currentSub?.end_date)} </div>
   <div className="me-auto "><i className='bx text-success  bx-check bx-md'></i></div>
     </div>
   
@@ -73,7 +74,7 @@ console.log(currentSub)
 </div>
 </div>
         <div className="row  row-cols-1 row-cols-md-3 mb-3 text-center">
-    {packages?.map((item:PRICE) =>{
+    {priceList?.map((item:PRICE) =>{
           return (
             <div  className="col ">
             <div className="card mb-4  rounded-3 shadow-sm" >
@@ -88,7 +89,12 @@ console.log(currentSub)
                   <li>Email support</li>
                   <li>Help center access</li>
                 </ul>
-              <button disabled onClick={() => {dispatch(fetchCreatePayment(item))  }}  type="button" className="w-100 btn btn-lg btn-outline-light">Pay Now</button>
+                {item.plans == currentSub?.pricing.plans ? ( <Button disabled     className="w-100 btn btn-lg btn-outline-light"><Link to="/payment" className="text-decoration-none text-success">Active</Link></Button>) 
+                    :
+                     ( <Button disabled variant='success'     className="w-100 btn btn-lg btn-outline-light"><Link to="/payment" className="text-decoration-none text-light">Pay Now</Link></Button>)
+                     }
+                 
+              {/* <button disabled onClick={() => {dispatch(fetchCreatePayment(item))  }}  type="button" className="w-100 btn btn-lg btn-outline-light">Pay Now</button> */}
               {/* onClick={() =>{addViewedItem(item); addRelatedItem(item) }} */}
               </div>
             </div>
@@ -97,7 +103,7 @@ console.log(currentSub)
       
       </div>
 
-    <h2 className="display-6 text-center mb-4">Compare plans</h2>
+    <h2 className="display-6 text-center mb-4">Compare pricing</h2>
 
     <div className="table-responsive">
       <table className="table table-hover table-secondary text-center">
@@ -155,7 +161,7 @@ console.log(currentSub)
   </div>  ) : ( 
     <div>
     <div className="row  row-cols-1 row-cols-md-3 mb-3 text-center">
-    {packages?.map((item:PRICE) =>{
+    {priceList?.map((item:PRICE) =>{
           return (
             <div  className="col ">
             <div className="card mb-4  rounded-3 shadow-sm">
@@ -170,7 +176,7 @@ console.log(currentSub)
                   <li>Email support</li>
                   <li>Help center access</li>
                 </ul>
-                {isauthenticated && user ? (
+                {isauthenticated && <a href=""></a> ? (
                   <div>
                     {item?.plans === 'basic' ? ( <button disabled onClick={() => dispatch(fetchCreatePayment(item))  }   type="button" className="w-100 btn btn-lg btn-outline-light"><Link to="/payment" className="text-decoration-none text-success">Pay Now</Link></button>) 
                     :
@@ -196,7 +202,7 @@ console.log(currentSub)
       
       </div>
 
-    <h2 className="display-6 text-center mb-4">Compare plans</h2>
+    <h2 className="display-6 text-center mb-4">Compare pricing</h2>
 
     <div className="table-responsive ">
       <table className="table  table-hover table-secondary text-light text-center">

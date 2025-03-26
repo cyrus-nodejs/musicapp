@@ -85,7 +85,7 @@ console.log(currentTrack)
   },
 
   {
-    path: `/reset-password/:token/:uid`,
+    path: `/reset-password/:uid/:token`,
     element: <ResetPassword   />,
     errorElement: <ErrorPage />
   },

@@ -1,5 +1,6 @@
 
-import { Image, Row,Tooltip, Overlay,  Table, Container } from 'react-bootstrap';
+import { Image, Row,Tooltip, Overlay, OverlayTrigger, Table, Container } from 'react-bootstrap';
+import { PlayAllTooltip } from '../../../../components/Player/Control/Overlay';
 import { PLAYLIST, TRACK } from '../../../../utils/@types';
 import { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -76,7 +77,14 @@ const Genredetails = () => {
 </div>
 </div>
 <div className="d-flex mb-3">
-  <div className="p-2"><i onClick={() => dispatch(playAllTracks(genreTrack))} className='bx bx-play text-success border border-success  bx-border-circle bx-md' ></i></div>
+  <div className="p-2">
+    <OverlayTrigger
+                placement="top"
+                delay={{ show: 250, hide: 400 }}
+                overlay={PlayAllTooltip}
+              >
+    <i onClick={() => dispatch(playAllTracks(genreTrack))} className='bx bx-play text-success border border-success  bx-border-circle bx-md' ></i>
+    </OverlayTrigger></div>
   <div className="p-2"><i className='bx bx-plus mt-2 border text-success border-success bx-border-circle bx-sm'></i></div>
   <div className="ms-auto p-2"><i className='bx bx-menu mt-3 border text-success border-success'></i></div>
 </div>

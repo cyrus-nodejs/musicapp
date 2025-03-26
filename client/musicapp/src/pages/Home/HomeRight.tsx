@@ -6,7 +6,7 @@ import {  Row , Image} from "react-bootstrap";
 import { useAppSelector } from "../../redux/app/hook";
 import {  getCurrentTrack, getNextTrack } from "../../redux/features/audio/audioSlice";
 
-
+import { timeConverter } from "../../utils/helpers/utilities";
 
 const HomeRight = () => {
 
@@ -39,24 +39,33 @@ console.log(nextTrack)
   <div className="d-flex ">
   <figure className="figure col ">
                 <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${currentTrack?.cover_image}`}  className=" rounded-3" fluid  rounded/>
-                <figcaption className="figure-caption fw-bold f5-4 text-light  ">{currentTrack?.title}</figcaption> 
+                <figcaption className="figure-caption  f5-4 text-light  ">{currentTrack?.title}</figcaption> 
                  <figcaption className="figure-caption text-light  ">{currentTrack?.artist.name}, {currentTrack?.album.title}</figcaption>  
                 </figure>
     
 </div>
     
-<div className="p-2">Next: From Chill Mix</div>
+
 
 <div className=" ">
-    <figure className="figure col "> 
-        
-
-       
+  {nextTrack ? ( <figure className="figure col pb-5 "> 
+    <div className="p-2">Next: From Chill Mix</div>
+                 <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${nextTrack?.cover_image}`}  className=" rounded-3" fluid  rounded/>
+                <figcaption className="figure-caption  f5-4 text-light  ">{nextTrack?.title}</figcaption>  
+                <figcaption className="figure-caption  f5-4 text-light  ">{nextTrack?.artist.name}, {nextTrack?.album.title}</figcaption>
+                <figcaption className="figure-caption  f5-4 text-light  ">genre:{nextTrack.genre.title}</figcaption>  
+                <figcaption className="figure-caption  f5-4 text-light  ">Duration:{timeConverter(nextTrack?.duration)}</figcaption>  
+                
+                </figure>  ) : ( <figure className="figure col mb-5 pb-5 "> 
+                  <div className="p-2">About Artist</div>
                  <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${currentTrack?.artist.cover_image}`}  className=" rounded-3" fluid  rounded/>
-                <figcaption className="figure-caption fw-bold f5-4 text-light  ">{currentTrack?.artist.name}</figcaption> 
-                <figcaption className="figure-caption fw-bold f5-4 text-light  ">Biography</figcaption> 
+                <figcaption className="figure-caption  f5-4 text-light  ">{currentTrack?.artist.name}</figcaption>
+                <figcaption className="figure-caption  f5-4 text-light  ">Following:{currentTrack?.artist.followers}</figcaption>
+                <figcaption className="figure-caption  f5-4 text-light  ">Biography</figcaption> 
                  <div className="figure-caption text-light    ">{currentTrack?.artist.bio}</div> 
-                </figure>  
+                 
+                </figure>  )}
+   
    
 </div>
 

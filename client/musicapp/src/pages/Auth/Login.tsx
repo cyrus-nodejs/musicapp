@@ -81,9 +81,9 @@ interface FormValues {
 
           }, [isAuthenticated, user, navigate])
   
-       const  handleGoogleLogin = () => {
-        window.location.href = "http://localhost:3000/auth/google";
-       }
+      //  const  handleGoogleLogin = () => {
+      //   window.location.href = "http://localhost:3000/auth/google";
+      //  }
           
          
          
@@ -121,10 +121,10 @@ interface FormValues {
                </div> 
 
                </Form>
-               <div>
+               {/* <div>
       <Button variant='success'  className='' onClick={handleGoogleLogin}>Login with Google</Button>
     </div>
-           
+            */}
               
               <div className="d-flex mb-3">
            <div className="p-2"><a href="/forgotpassword" style={{color:'red', textDecoration:'none'}}><p style={{color:'red', textDecoration:'none'}}>Forgot password?</p></a></div>

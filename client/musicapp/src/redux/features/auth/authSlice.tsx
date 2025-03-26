@@ -68,17 +68,15 @@ export const fetchAsyncUser = createAsyncThunk(
   //     });
       export const fetchForgotPassword = createAsyncThunk(
         'auth/fetchForgotPassword',  async (data:{email:string}) => {
-         const {email} = data
-            const response= await axios.post(`${BASEURL}/api/request-password/`,{email})
+         const {email} = data   
+            const response= await axios.post(`${BASEURL}/api/request-password/`, {email})
             console.log(response.data)
             return response.data
           });
           export const fetchResetPassword = createAsyncThunk(
-            'auth/fetchResetPassword',  async (data:{uid:string, password:string, token:string}) => {
-               const {uid, password, token} = data
-               
-               
-              const response= await axios.post(`${BASEURL}/api/reset-password/`,{uid, password, token})
+            'auth/fetchResetPassword',  async (data:{password:string, token:string, uid:number}) => {
+               const { password,uid, token} = data
+              const response= await axios.post(`${BASEURL}/api/reset-password/`, { password, uid, token})
                 console.log(response.data)
                 return response.data
               });
@@ -134,7 +132,8 @@ export const authSlice = createSlice({
         .addCase(fetchLogin.fulfilled, (state, action) => {
           state.isAuthenticated = true
           state.message= action.payload.message
-          state.token=action.payload.access
+          state.authUser= action.payload
+          
           
           
   
