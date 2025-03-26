@@ -17,7 +17,7 @@ cloudinary.config(
     api_key=os.getenv('CLOUDINARY_KEY'),
     api_secret=os.getenv('CLOUDINARY_SECRET')
 )
-
+BASE_DIR = Path(__file__).resolve().parent.parent
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET'),
 STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
 JWT_SECRET_KEY = os.getenv('JWT_SECRET_KEY')
@@ -175,7 +175,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 if not DEBUG:    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
