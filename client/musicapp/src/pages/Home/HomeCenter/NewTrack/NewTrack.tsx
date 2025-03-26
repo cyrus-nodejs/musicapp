@@ -14,8 +14,9 @@ const NewTrack= ({track}: {track: TRACK }) => {
   const [hidden, setHidden] = useState(false);
    
 console.log(track)
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 let data;
+console.log(data)
   
 
   const Playlist = useAppSelector(getPlaylists)
@@ -109,10 +110,10 @@ const HandleSelect = (e:Event) =>{
 							>
 
                 {Playlist ? (<div>
-     {Playlist?.map((list:PLAYLIST, id:number) =>{
+     {Playlist?.map((playlist:PLAYLIST, id:number) =>{
            return (
             
-            <ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem bg-dark" key={id} id="reload" onClick={() => dispatch(fetchAddToPlaylist(data= {track, list}))}> {list?.title} 
+            <ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem bg-dark" key={id} id="reload" onClick={() => dispatch(fetchAddToPlaylist(data= {track, playlist}))}> {playlist?.title} 
             </ContextMenu.Item>
         
                )
@@ -142,7 +143,7 @@ const HandleSelect = (e:Event) =>{
 								alignOffset={-5}
 							>
 							
-                {currentSub?.plans.plans == "medium" || currentSub?.plans.plans == "premium" ? (	<ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem "><a href={`${import.meta.env.VITE_APP_CLOUD_URL}/${track.audio_file}`} className="text-decoration-none text-light"  target="_blank" download>   <div className="d-flex ">   <div className="me-1">Download</div>
+                {currentSub?.pricing.plans == "medium" || currentSub?.pricing.plans == "premium" ? (	<ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem "><a href={`${import.meta.env.VITE_APP_CLOUD_URL}/${track.audio_file}`} className="text-decoration-none text-light"  target="_blank" download>   <div className="d-flex ">   <div className="me-1">Download</div>
            <div className=""><i className='bx bx-download text-light'></i></div> </div></a></ContextMenu.Item>) : (   <ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem ">
        <div className="border border-none"    ref={target} onClick={() => setShow(!Show)}>
         Subscribe to Download    </div>

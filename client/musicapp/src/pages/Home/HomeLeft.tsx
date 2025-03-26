@@ -19,10 +19,12 @@ import * as ContextMenu from "@radix-ui/react-context-menu";
 const HomeLeft = () => {
   
   
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  
   let data;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  console.log(data)
+  
   let data2;
+  console.log(data2)
 
   const dispatch = useAppDispatch()
 
@@ -120,55 +122,7 @@ const formik = useFormik({
         <Button size="sm" variant="" ref={target} onClick={() => setShow(!show)}>
         <i    className='bx text-light bx-plus bx-sm'></i>
       </Button>
-       {/* <Overlay target={target.current} show={show} placement="bottom">
-        {({
-          // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          placement: _placement,
-           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          arrowProps: _arrowProps,
-           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          show: _show,
-           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          popper: _popper,
-           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          hasDoneInitialMeasure: _hasDoneInitialMeasure,
-          ...props
-        }) => (
-          <div
-            {...props}
-            style={{
-              position: 'absolute',
-              backgroundColor: '',
-              padding: '0px 10px',
-              color: 'white',
-              borderRadius: 3,
-              ...props.style,
-            }}
-            
-          >
-             {authUser && isauthenticated ?  (<Form className="p-1" onSubmit={formik.handleSubmit}>
-          
-  
-          <div className="d-flex w-75">
-        
-          <div className="">  <Form.Control type="text" className=" form-control  text-light  rounded-2   border border-0  w-100 h-100  rounded-2  shadow-none " placeholder="Create Playlist" value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}  name="title" />
-          {formik.touched.title && formik.errors.title && (
-                    <div className="error text-light">{formik.errors.title} </div>
-                  )}
-                 
-          </div>
-          <div className="" onClick={hideForm} ><Button  type="submit" disabled={submitting} variant="dark" >Save</Button></div>
-          </div>
-        
-         
-        
-                       
-        </Form>
-        ) : (<p className='text-light'>Login to Create Playlist</p>) } 
-             
-          </div>
-        )}
-      </Overlay>  */}
+       
       </div>
         <div className="p-2"><i className='bx  bx-sm bx-right-arrow-alt'></i></div>
       

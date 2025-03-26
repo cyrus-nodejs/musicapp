@@ -41,7 +41,6 @@ export const fetchPlaylist = createAsyncThunk(
     export const fetchCurrentPlaylist = createAsyncThunk(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       'playlist/fetchCurrentPlaylist',  async (id:any) => {
-      
           const response= await axios.get(`${BASEURL}/api/current-playlist/${id}`, {params: {param:id}, withCredentials: true })
           console.log(response.data)
           return response.data
@@ -79,18 +78,18 @@ export const fetchCreatePlaylist = createAsyncThunk(
 
 export const fetchRemoveFromPlaylist = createAsyncThunk(
 
-    'playlist/fetchRemoveFromPlaylist', async (data:{track:TRACK, playList:PLAYLIST}) => {
-        const {track, playList} = data
+    'playlist/fetchRemoveFromPlaylist', async (data:{track:TRACK, currentPlaylist:PLAYLIST | null}) => {
+        const {track, currentPlaylist} = data
         const trackId = track.id
-        const playlistId = playList.id
+        const playlistId = currentPlaylist?.id
         const response= await axios.put(`${BASEURL}/api/remove-from -playlist/`, {trackId, playlistId}, { withCredentials: true })
         console.log(response.data)
         return response.data
       });
 
   export const fetchClearPlaylist = createAsyncThunk(
-    'playlist/fetchClearPlaylist',  async (file:PLAYLIST) => {
-        const playlistId = file.id   
+    'playlist/fetchClearPlaylist',  async (file:PLAYLIST | null) => {
+        const playlistId = file?.id   
         const response= await axios.put(`${BASEURL}/api/clear-playlist/`,{playlistId},{ withCredentials: true })
         console.log(response.data)
         return response.data

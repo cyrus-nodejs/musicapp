@@ -5,14 +5,14 @@ import type { Action, ThunkAction } from '@reduxjs/toolkit'
 import   audioReducer from '../features/audio/audioSlice'
 import  checkoutReducer from '../features/checkout/checkoutSlice'
 import playlistReducer from '../features/playlist/playlistSlice';
-import adminReducer from "../features/admin/adminSlice"
+
 export const store = configureStore({
   reducer: {
     auth:authReducer,
     audio:audioReducer,
     checkout:checkoutReducer,
     playlist:playlistReducer,
-    admin:adminReducer,
+    
   }
 })
 

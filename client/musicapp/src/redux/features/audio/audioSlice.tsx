@@ -1,4 +1,4 @@
-import { createSlice,  createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice,  createAsyncThunk} from '@reduxjs/toolkit'
 import { TRACK, ARTIST, GENRE, ALBUM, PLAYLIST} from '../../../utils/@types'
 import { RootState } from '../../app/store'
 import axios from 'axios'
@@ -204,9 +204,8 @@ export const audioSlice = createSlice({
      
     },
     
-    playTrack: (state, action: PayloadAction ) => {
-
-     state.currentTrack = action.payload
+    playTrack: (state, action ) => {
+     state.currentTrack = action?.payload
      state.isplaying = !state.isplaying
     },
     togglePlayPause: (state) => {

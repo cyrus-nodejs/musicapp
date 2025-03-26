@@ -23,9 +23,9 @@ import { fetchClearPlaylist, fetchRemoveFromPlaylist } from "../../redux/feature
 import { timeConverter } from "../../utils/helpers/utilities";
 const Playlist = () => {
 
-     // eslint-disable-next-line @typescript-eslint/no-unused-vars
+     
 let data;
-  
+console.log(data)
     
     const { id } = useParams()
     const dispatch = useAppDispatch()

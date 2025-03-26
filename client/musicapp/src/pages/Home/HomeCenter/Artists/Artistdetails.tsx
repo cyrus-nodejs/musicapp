@@ -19,8 +19,9 @@ import { getCurrentSub } from '../../../../redux/features/checkout/checkoutSlice
 import * as ContextMenu from "@radix-ui/react-context-menu";
 import { timeConverter } from '../../../../utils/helpers/utilities';
 const Artistdetails = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  
   let data 
+  console.log(data)
      const {id} = useParams()
      const [Show, setShow] = useState(false);
      const target = useRef(null);
@@ -198,7 +199,7 @@ null
 								alignOffset={-5}
 							>
 							
-                {currentSub?.plans.plans == "medium" || currentSub?.plans.plans == "Premium" ? (	<ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem "><a href={ `${track.audio_file}` } className="text-decoration-none text-light"  target="_blank" download>   <div className="d-flex ">   <div className="me-1">Download</div>
+                {currentSub?.pricing.plans == "medium" || currentSub?.pricing.plans == "Premium" ? (	<ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem "><a href={ `${track.audio_file}` } className="text-decoration-none text-light"  target="_blank" download>   <div className="d-flex ">   <div className="me-1">Download</div>
            <div className=""><i className='bx bx-download text-light'></i></div> </div></a></ContextMenu.Item>) : (   <ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem ">
        <div className="border border-none"    ref={target} onClick={() => setShow(!Show)}>
         Subscribe to Download    </div>
