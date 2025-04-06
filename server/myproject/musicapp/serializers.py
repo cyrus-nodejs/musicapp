@@ -15,23 +15,16 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ['id', 'username', 'email', 'first_name', 'last_name', 'password']
         extra_kwargs = {'password': {'write_only': True}}
 
-        def to_representation(self, instance):
-            # Handle AnonymousUser case
-            if isinstance(instance, AnonymousUser):
-               return {'username': 'Anonymous', 'is_authenticated': False}
-            return super().to_representation(instance)
-
-        def create(self, validated_data):
-           user = User.create_user(
-               username=validated_data['username'],
-               email=validated_data['email'],
-               first_name=validated_data['first_name'],
-               last_name=validated_data['last_name'] ,
-               password=validated_data['password']
-           )
-
-           return user
-        
+    def create(self, validated_data):
+        # Hash the password before saving the user
+        user = User.objects.create_user(
+            username=validated_data['username'],
+            first_name=validated_data.get('first_name', ''),
+            last_name=validated_data.get('last_name', ''),
+            email=validated_data.get('email', ''),
+            password=validated_data['password']
+        )
+        return user
 
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
