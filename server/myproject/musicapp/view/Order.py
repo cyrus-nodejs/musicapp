@@ -48,8 +48,8 @@ class OrderViewSet(viewsets.ModelViewSet):
 # retrieve cuurent order
 class CurrentOrderView(APIView):
     permission_classes = [IsAuthenticated]
-    def get(self, request, format=None):
-        current_order = Order.objects.latest('order_date')
+    def get(self, request, id, format=None):
+        current_order = Order.objects.filter(id=id).latest('order_date')
         order_serializer = OrderSerializer(current_order)
         return Response(order_serializer.data, status=status.HTTP_200_OK)
 

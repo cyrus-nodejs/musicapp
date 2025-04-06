@@ -40,7 +40,7 @@ SECRET_KEY =  os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['musicapp-k4th.onrender.com']
+ALLOWED_HOSTS = ['musicapp-k4th.onrender.com', '127.0.0.1', 'localhost']
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
@@ -131,7 +131,7 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 DATABASE_TYPE = os.getenv('DATABASE_TYPE', 'sqlite')
 if DATABASE_TYPE == 'postgresql':
     DATABASES = {
-       'default': dj_database_url.config(default='postgresql://king_cyrus:8tC3AgIBtVs5BkIz0bK21ljhGslnt4YY@dpg-cvhmabt2ng1s739sqiag-a/musicapp_p2ve', conn_max_age=600    )
+       'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), conn_max_age=600    )
     }
 else:
     DATABASES = {

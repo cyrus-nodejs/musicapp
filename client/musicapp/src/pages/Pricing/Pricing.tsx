@@ -20,7 +20,7 @@ const Pricing = () => {
   const searchterm = useAppSelector(getSearchTerm)
   const isauthenticated = useAppSelector(getIsAuthenticated)
   const authUser = useAppSelector(getAuthUser)
-  
+  const id = authUser?.id
   useEffect(() => {
      
     dispatch(fetchPrice())
@@ -28,9 +28,9 @@ const Pricing = () => {
   }, [dispatch])
 
   useEffect(() => {
-    dispatch(fetchCurrentSub())
+    dispatch(fetchCurrentSub(id))
 
-    }, [authUser, dispatch]);
+    }, [id, dispatch]);
      
     const renderTooltip = (props: JSX.IntrinsicAttributes & TooltipProps & RefAttributes<HTMLDivElement>) => (
       <Tooltip id="button-tooltip" className="tooltip badge text-bg-success bg-succes" {...props}>

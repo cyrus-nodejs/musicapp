@@ -18,7 +18,7 @@ const MostPlayed= ({track}: {track: TRACK }) => {
    
 console.log(track)
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 let data;
 console.log(data)
 

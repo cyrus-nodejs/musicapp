@@ -27,8 +27,8 @@ class SubscriptionViewSet(viewsets.ModelViewSet):
 # update playlist title
 class CurrentSubView(APIView):
     permission_classes = [IsAuthenticated]
-    def get(self, request, format=None):
-        current_sub = Subscription.objects.latest('start_date')
+    def get(self, request, id, format=None):
+        current_sub = Subscription.objects.filter(id=id).latest('start_date')
         currentsub_serializer = SubscriptionSerializer(current_sub)
         return Response(currentsub_serializer.data, status=status.HTTP_200_OK)
     

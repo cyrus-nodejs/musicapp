@@ -92,7 +92,6 @@ class AddtoPlaylistView(APIView):
 
 # Remove track from playlist
 class RemoveFromPlaylistView(APIView):
-    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     def put(self, request, format=None):
         

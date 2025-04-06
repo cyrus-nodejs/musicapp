@@ -5,6 +5,7 @@ import {useAppDispatch,  useAppSelector } from "../../redux/app/hook";
 import NavSearchResults from "../../components/NavBar/NavSearch/NavSearchResults";
 import { getCurrentOrder } from "../../redux/features/checkout/checkoutSlice";
 import { getSearchTerm } from "../../redux/features/audio/audioSlice";
+import { getAuthUser, fetchAsyncUser } from "../../redux/features/auth/authSlice";
 import NavIndex from "../../components/NavBar/NavIndex"
 const CurrentOrder = () => {
  const dispatch = useAppDispatch()
@@ -12,12 +13,19 @@ const CurrentOrder = () => {
 
    const currentOrder = useAppSelector(getCurrentOrder)
    const searchterm = useAppSelector(getSearchTerm)
-   
-
+   const authUser = useAppSelector(getAuthUser)
+   const id = authUser?.id
    useEffect(() => {
-        dispatch(fetchCurrentOrder())
+    dispatch(fetchAsyncUser())
+  
+  }, [ dispatch]);
+
+console.log(currentOrder)
+   useEffect(() => {
+        dispatch(fetchCurrentOrder(id))
       
-      }, [ dispatch]);
+      }, [ dispatch, id]);
+      
 console.log(currentOrder)
 
  return (

@@ -67,17 +67,17 @@ export const fetchConfig = createAsyncThunk(
         
       export const fetchCurrentOrder = createAsyncThunk(
       
-        'checkout/fetchCurrentOrder',  async () => {
+        'checkout/fetchCurrentOrder',  async (id:string | undefined) => {
           
-            const response= await axios.get(`${BASEURL}/api/current-order/`,{ withCredentials: true })
+            const response= await axios.get(`${BASEURL}/api/current-order/`,{params: {param:id}, withCredentials: true })
             console.log(response.data)
             return response.data
           });
 
           export const fetchCurrentSub = createAsyncThunk(
-            'checkout/fetchSub',  async () => {
+            'checkout/fetchSub',  async (id:string | undefined) => {
           
-                const response= await axios.get(`${BASEURL}/api/current-sub/`, { withCredentials: true })
+                const response= await axios.get(`${BASEURL}/api/current-sub/`, {params: {param:id}, withCredentials: true })
                 console.log(response.data)
                 return response.data
               });
