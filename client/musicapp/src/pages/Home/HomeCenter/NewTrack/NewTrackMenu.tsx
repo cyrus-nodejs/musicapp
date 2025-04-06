@@ -21,7 +21,7 @@ useEffect(() =>{
 
 </div>
 
-  {newtracks?.slice(0, 5).map((track:TRACK )=> <NewTrack  track={track} />  )}
+  {newtracks?.map((track:TRACK )=> <NewTrack  track={track} />  )}
     
     </div>
   )

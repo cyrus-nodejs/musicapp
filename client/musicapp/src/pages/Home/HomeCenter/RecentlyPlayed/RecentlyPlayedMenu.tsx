@@ -21,7 +21,7 @@ useEffect(() =>{
 
 </div>
 
-  {recentlyplayed?.slice(0, 5).map((track:TRACK )=> <RecentlyPlayed  track={track} />  )}
+  {recentlyplayed?.map((track:TRACK )=> <RecentlyPlayed  track={track} />  )}
     
     </div>
   )
