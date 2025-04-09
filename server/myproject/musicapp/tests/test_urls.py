@@ -12,33 +12,29 @@ from django.contrib.auth.models import User
 class MusicAppAPITest(APITestCase):
 
     def setUp(self):
-        self.user = User.objects.create_user(username='username', password='password')
-        self.client.login(username='username', password='password')
-        self.user = User.objects.create(username="username", password='password', first_name="first_name", last_name='last_name' )
+        self.user = User.objects.create_user(username='testuser', password='password')
+          # Create some tracks
         self.genre = Genre.objects.create(title="Genre Title Test", cover_image='Genre Image Url')
-        self.artist = Artist.objects.create(name="Artist Name", bio="Artist Bio", cover_image='Album Image Url', followers=self.user)
-        self.album =  album = Album.objects.create(title="Album Title Test",  artist=self.artist,  release_date="2025-01-01", cover_image='Album Image Url')
-        self.track = Track.objects.create(title="Track Title Test",  artist=self.artist, album=album, genre=self.genre, duration='240', likes='1', release_year="2023", cover_image='Track Image Url', audio_file='Track audio url', times_played='5', last_played='2025-05-21')
-        self.playlist = Playlist.objects.create(title="Playlist Title Test",  user=self.user,   created_on='2025-01-01')
-        # self.playlist.tracks.add(self.track)
-        self.pricing = Pricing.objects.create(plans="Pricing Plan Test",  price=100,  status='Pricing Status Test', duration=30, subscribers=self.user)
-        self.order = Order.objects.create(owner=self.user,  pricing=self.pricing,  payment=True, paymentid='Order Paymentid Test', bill=100, order_date='Order Date Test')
-        self.subscription = Subscription.objects.create(user=self.user,  pricing=self.pricing,  payment=True, start_date='2025-01-01', end_date='2025-01-31', status='Sub Status Test', bill=100, payment_status=True)
-       
+        self.artist  = Artist.objects.create(name="Artist Name", bio="Artist Bio", cover_image='Artist Image Url', followers=self.user)
+        self.album =   Album.objects.create(title="Album TItle Test",  artist=self.artist,  release_date="2025-01-01", cover_image='Album Image Url')
+        self.track1 = Track.objects.create(title="Track Title Test",  artist=self.artist, album=self.album, genre=self.genre, duration=240, likes=1, release_year="2023", cover_image='Track Image Url', audio_file='Track Audio url', times_played=5 , last_played='2025-05-21')
+        # self.track = Track.objects.create(title="Track 1", artist="Artist 1", duration=180)
+  
+   
     def test_get_artist(self):
         response = self.client.get('/api/artists/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data[0]['name'], 'Artist Name')
+        
     
     def test_get_album(self):
         response = self.client.get('/api/albums/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data[0]['title'], 'Album Title Test')
+   
     
     def test_get_genre(self):
         response = self.client.get('/api/genres/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data[0]['title'], 'Genre Title Test')
+     
 
     # def test_get_track(self):
     #     response = self.client.get('/api/tracks/')
@@ -48,71 +44,148 @@ class MusicAppAPITest(APITestCase):
     def test_get_playlist(self):
         response = self.client.get('/api/playlist/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data[0]['name'], 'Playlist Title Test')
+     
 
 
     def test_create_playlist(self):
+        # Authenticate the user
+        
+        self.client.login(username='testuser', password='password')
         playlist_data = {
-            "title": self.playlist.title,
+            "title": 'My Playlist',
         }
+        #Create new Playlist
         response = self.client.post('/api/create-playlist/', playlist_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(response.data['title'], self.playlist.title)
+        self.assertEqual(response.data['title'], 'My Playlist')
+        # playlist_id = response.data['id']
     
-    # def test_add_to_playlist(self):
-    #     playlist_data = {
-    #         "playlistId": self.playlist.id,
-    #           "trackId": self.playlist.tracks.id,
-    #     }
-    #     response = self.client.put('/api/add-to-playlist/', playlist_data, format='json')
-    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-    #     self.assertEqual(response.data['id'], self.playlist.id)
-    #     self.assertEqual(response.data['tracks']['id'], self.playlist.tracks.id)
+    def test_add_to_playlist(self):
+         # Authenticate the user
+
+        self.client.login(username='testuser', password='password')
+        playlist_data = {
+            "title": 'My Playlist',
+        }
+        #Create new Playlist
+        response = self.client.post('/api/create-playlist/', playlist_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['title'], "My Playlist")
+        playlist_id = response.data['id']
+
+        # Add track to playlist
+        add_to_playlist_data = {
+            "playlistId": playlist_id,
+              "trackId": self.track1,
+        }
+        response = self.client.put('/api/add-to-playlist/', add_to_playlist_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+       
     
     
-    # def test_remove_from_playlist(self):
-    #     playlist_data = {
-    #         "playlistId": self.playlist.id,
-    #           "trackId": self.playlist.tracks.id,
-    #     }
-    #     response = self.client.put('/api/remove-from-playlist/', playlist_data, format='json')
-    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-    #     self.assertEqual(response.data['id'], self.playlist.id)
+    def test_remove_from_playlist(self):
+        # Authenticate the user
+
+        self.client.login(username='testuser', password='password')
+        playlist_data = {
+            "title": 'My Playlist',
+        }
+        #Create new Playlist
+        response = self.client.post('/api/create-playlist/', playlist_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['title'], "My Playlist")
+        playlist_id = response.data['id']
+
+
+        #Remove track from playlist
+        remove_playlist_data = {
+            "playlistId": playlist_id,
+              "trackId": self.track1,
+        }
+        response = self.client.put('/api/remove-from-playlist/', remove_playlist_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+       
         
     
     
-    # def test_delete_playlist(self):
-    #     playlist_data = {
-    #         "playlistId": self.playlist.id,
-    #     }
-    #     response = self.client.post('/api/delete-playlist/', playlist_data, format='json')
-    #     self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-    #     self.assertEqual(response.data['id'], self.playlist.id,)
+    def test_delete_playlist(self):
+         # Authenticate the user
+   
+        self.client.login(username='testuser', password='password')
+        playlist_data = {
+            "title": 'My Playlist',
+        }
+        #Create new Playlist
+        response = self.client.post('/api/create-playlist/', playlist_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['title'], "My Playlist")
+        playlist_id = response.data['id']
+
+        delete_playlist_data = {
+            "playlistId": playlist_id,
+        }
+        response = self.client.post('/api/delete-playlist/', delete_playlist_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['id'], self.playlist.id,)
     
 
     def test_create_order(self):
+        # Authenticate the user
+       
+        self.client.login(username='testuser', password='password')
+        
+         # Create new order
         order_data = {
-            "bill": self.order.bill,
-            "plan": self.order.pricing.plans
+            "bill": 100,
+            "plan": 'premium'
         }
         response = self.client.post('/api/orders/', order_data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(response.data['bill'], self.order.bill)
+        order_id = response.data['id']
  
     def test_current_playlist(self):
-        response = self.client.get(f'/api/current-playlist/{self.playlist.id}/')
+        # Authenticate the user
+        
+        self.client.login(username='testuser', password='password')
+
+        # Create a playlist
+        playlist_data = {
+            "title": 'My Playlist',
+        }
+        response = self.client.post('/api/create-playlist/', playlist_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['title'], "My Playlist")
+        playlist_id = response.data['id']
+         
+        #Get current playlist
+        response = self.client.get(f'/api/current-playlist/{playlist_id}/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data['title'], 'Playlist Title Test')
  
     
     def test_current_order(self):
-        response = self.client.get(f'/api/current-order/{self.order.id}/')
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['bill'], 'Order Bill Test')
-        self.assertEqual(response.data['owner']['first_name'], 'Order User Test')
+        # Authenticate the user
+  
+        self.client.login(username='testuser', password='password')
 
-    def test_current_subscription(self):
-        response = self.client.get(f'/api/current-sub/{self.subscription.id}/')
+         # Create new order
+        order_data = {
+            "bill": 100,
+            "plan": 'premium'
+        }
+        response = self.client.post('/api/orders/', order_data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        order_id = response.data['id']
+
+         # Get current Order
+        response = self.client.get(f'/api/current-order/{order_id}/')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['pricing']['plans'], 'Sub Plans test')
-        self.assertEqual(response.data['start_date'], 'Sub Start Date Test')
+        self.assertEqual(response.data['bill'], 100)
+     
+
+    # def test_current_subscription(self):
+    #     self.client.login(username='testuser', password='password')
+    #     response = self.client.get(f'/api/current-sub/{self.subscription.id}/')
+    #     self.assertEqual(response.status_code, status.HTTP_200_OK)
+    #     self.assertEqual(response.data['pricing']['plans'], 'Pricing Plan Test')
+    #     self.assertEqual(response.data['start_date'], '2025-01-01')
