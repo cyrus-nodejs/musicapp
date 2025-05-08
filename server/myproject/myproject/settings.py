@@ -17,6 +17,7 @@ cloudinary.config(
     api_key=os.getenv('CLOUDINARY_KEY'),
     api_secret=os.getenv('CLOUDINARY_SECRET')
 )
+DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() in ["true", "1", "yes"]
 BASE_DIR = Path(__file__).resolve().parent.parent
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET'),
 STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
