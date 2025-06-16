@@ -15,8 +15,7 @@ const AllArtists = () => {
   
   const artists  = useAppSelector(getArtists)
  const searchterm = useAppSelector(getSearchTerm)
-  
-    console.log(artists)
+
   return (
     
     <Container className="vh-100 overflow-hidden" fluid>

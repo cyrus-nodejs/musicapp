@@ -26,7 +26,7 @@ const AllGenres = () => {
            <div className="d-inline-flex my-3 text-light fs-4 border-info position-sticky border-bottom">GENRES</div>
         
             <div className="col   ">
-       {genres.map((genre:GENRE) =>{
+       {genres?.map((genre:GENRE) =>{
           return (
         <figure className="figure col ">
             <Link to={`/genre/${genre.title}`} className="text-decoration-none text-light">    <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${genre.cover_image}`} className="m-3 rounded-3" width="130" height="120"  rounded/></Link>

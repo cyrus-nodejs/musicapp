@@ -26,7 +26,7 @@ const AllAlbums = () => {
            <div className="d-inline-flex my-3 text-light fs-4 border-info position-sticky border-bottom">ALBUMS</div>
         
             <div className="col   ">
-       {albums.map((album:ALBUM) =>{
+       {albums?.map((album:ALBUM) =>{
           return (
         <figure className="figure col ">
             <Link to={`/album/${album.title}`} className="text-decoration-none text-light">    <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${album.cover_image}`} className="m-3 rounded-3" width="130" height="120"  rounded/></Link>
