@@ -96,7 +96,7 @@ class RemoveFromPlaylistView(APIView):
     def put(self, request, format=None):
         
         try:
-           trackId, playlistId
+        
            trackId= request.data.get("trackId")
            playlistId =request.data.get("playlistId")
            playlist = Playlist.objects.get(id=playlistId)

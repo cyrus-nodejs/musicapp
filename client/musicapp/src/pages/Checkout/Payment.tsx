@@ -3,14 +3,13 @@
 import { Row,  Container } from "react-bootstrap";
 
 import {  useEffect } from "react"
-import Login from "../Auth/Login";
+
 import {Elements} from '@stripe/react-stripe-js';
 import CheckoutForm from './CheckoutForm'
 import { useAppDispatch } from "../../redux/app/hook";
 import { loadStripe } from '@stripe/stripe-js';
 import { useAppSelector } from "../../redux/app/hook";
 import { fetchCurrentOrder, getClientSecret, getCurrentOrder } from "../../redux/features/checkout/checkoutSlice";
-import {getIsAuthenticated, getAuthUser} from "../../redux/features/auth/authSlice"
 
 const STRIPE = import.meta.env.VITE_APP_STRIPE_PUBLISHABLE_KEY
 import NavIndex from "../../components/NavBar/NavIndex";
@@ -26,8 +25,7 @@ const clientSecret = useAppSelector(getClientSecret)
 
 const stripePromise = loadStripe(STRIPE)
   const currentOrder = useAppSelector(getCurrentOrder)
-  const isAuthenticated = useAppSelector(getIsAuthenticated)
-  const authUser = useAppSelector(getAuthUser)
+
 
 
       useEffect(() => {
@@ -41,7 +39,7 @@ const stripePromise = loadStripe(STRIPE)
     <section className="  ">
       
       <Container className="mt-5  " fluid>
-       {isAuthenticated && authUser ? ( <Row>
+       <Row>
         {clientSecret && stripePromise ? ( <div className=" row">
           <div className=" col-7   border-start-0 border-bottom-0" >
         
@@ -90,7 +88,7 @@ const stripePromise = loadStripe(STRIPE)
           <p className="fs-1 text-center text-dark">No order exist</p>
           </div>) }
         
-      </Row>) : (<Login />) }
+      </Row>
      
       
     </Container>

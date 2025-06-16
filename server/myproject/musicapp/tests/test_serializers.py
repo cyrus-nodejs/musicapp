@@ -4,8 +4,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from ..models import Album, Artist, Genre, Track, Playlist, Pricing, Order, Subscription
 from ..serializers import AlbumSerializer, ArtistSerializer, GenreSerializer, TrackSerializer, PlaylistSerializer, PricingSerializer, OrderSerializer, SubscriptionSerializer
-
-
+from datetime import date,  timedelta
 
 
 
@@ -25,6 +24,8 @@ from ..serializers import AlbumSerializer, ArtistSerializer, GenreSerializer, Tr
 class MusicAppSerializerTest(TestCase):
 
     def setUp(self):
+        future_date = (date.today() + timedelta(days=30)).isoformat()
+        today_date = date.today().isoformat()
         self.user = User.objects.create(username='testName', password='testPassword', first_name='testFirstName', last_name='lastName')
         self.genre = Genre.objects.create(title="Genre Title Test", cover_image='Genre Image Url')
         self.artist  = Artist.objects.create(name="Artist Name", bio="Artist Bio", cover_image='Artist Image Url', followers=self.user)
@@ -35,7 +36,7 @@ class MusicAppSerializerTest(TestCase):
         self.playlist.tracks.set([self.track])
         self.pricing = Pricing.objects.create(plans="Pricing Plan Test",  price=100,  status='Pricing Status Test', duration=30, subscribers=self.user)
         self.order = Order.objects.create(owner=self.user,  pricing=self.pricing,  payment=True, paymentid='Order Paymentid Test', bill=100, order_date='2025-04-08T05:08:15.939487Z')
-        self.subscription = Subscription.objects.create(user=self.user,  pricing=self.pricing,  payment=True, start_date='2025-04-09', end_date='2025-04-09', status='Active', bill=100, payment_status='Paid')
+        self.subscription = Subscription.objects.create(user=self.user,  pricing=self.pricing,  payment=True, start_date=today_date, end_date=future_date, status='Active', bill=100, payment_status='Paid')
     
     def test_artist_serializer(self):
         serializer = ArtistSerializer(self.artist)
@@ -110,8 +111,8 @@ class MusicAppSerializerTest(TestCase):
         self.assertEqual(serializer.data['user']['first_name'], 'testFirstName')
         self.assertEqual(serializer.data['pricing']['plans'], 'Pricing Plan Test')
         self.assertEqual(serializer.data['payment'], True)
-        self.assertEqual(serializer.data['start_date'], '2025-04-09')
-        self.assertEqual(serializer.data['end_date'], '2025-04-09')
+        self.assertEqual(serializer.data['start_date'],  date.today().isoformat())
+        self.assertEqual(serializer.data['end_date'], (date.today() + timedelta(days=30)).isoformat())
         self.assertEqual(serializer.data['status'], 'Active')
         self.assertEqual(serializer.data['bill'], 100)
         self.assertEqual(serializer.data['payment_status'],  'Paid')

@@ -14,7 +14,7 @@ import Report from "./pages/Report";
 import Completion from "./pages/Checkout/Completion";
 import CurrentOrder from "./pages/Orders/currentOrder";
 import ErrorPage from './pages/ErrorPage/Error';
-
+import PrivateRoute from './pages/PrivateRoutes';
 import Payment from "./pages/Checkout/Payment";
 
 import Index from "./pages/Home/Index";
@@ -64,7 +64,11 @@ console.log(currentTrack)
   const router = createBrowserRouter([
     {
     path: "/",
-    element: <Index />,
+    element:  (
+      
+        <Index />
+    
+    ),
     errorElement: <ErrorPage />
   },
   {
@@ -95,57 +99,93 @@ console.log(currentTrack)
 
   {
     path: "/allartists",
-    element: <AllArtists />,
+    element:  (
+      <PrivateRoute>
+        <AllArtists />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />
   },
 
   {
     path: "/artist/:id",
-    element: <Artistdetails />,
+    element:  (
+      <PrivateRoute>
+        <Artistdetails />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />
   },
 
   {
     path: "/allgenres",
-    element: <AllGenres />,
+    element:  (
+      <PrivateRoute>
+        <AllGenres />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />
   },
 
  
   {
     path: "/genre/:id",
-    element: <Genredetails />,
+    element:  (
+      <PrivateRoute>
+        <Genredetails />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />
   },
 
   {
     path: "/allalbums",
-    element: <AllAlbums />,
+    element:  (
+      <PrivateRoute>
+        <AllAlbums />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />
   },
 
  
   {
     path: "/album/:id",
-    element: <Albumdetails />,
+    element:  (
+      <PrivateRoute>
+        <Albumdetails />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />
   },
 
 
   {
     path: "/pricing",
-    element: <Pricing />,
+    element:  (
+      <PrivateRoute>
+        <Pricing/>
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />
   },
   
   {
     path: "/payment",
-    element: <Payment/>,
+    element:  (
+      <PrivateRoute>
+        <Payment />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />
   },
   {
     path: "/completion",
-    element: <Completion/>,
+    element:  (
+      <PrivateRoute>
+        <Completion />
+      </PrivateRoute>
+    ),
     errorElement: <ErrorPage />
   },
 
@@ -153,19 +193,31 @@ console.log(currentTrack)
   
 {
   path: "/currentOrder",
-  element: <CurrentOrder/>,
+  element:  (
+    <PrivateRoute>
+      <CurrentOrder />,
+    </PrivateRoute>
+  ),
   errorElement: <ErrorPage />
 },
 
 {
   path: "/playlist/:id",
-  element: <Playlist/>,
+  element:  (
+    <PrivateRoute>
+      <Playlist />
+    </PrivateRoute>
+  ),
   errorElement: <ErrorPage />
 },
 
  {
   path: "/report",
-  element: <Report/>,
+  element:  (
+    <PrivateRoute>
+      <Report />
+    </PrivateRoute>
+  ),
   errorElement: <ErrorPage />
 },
 

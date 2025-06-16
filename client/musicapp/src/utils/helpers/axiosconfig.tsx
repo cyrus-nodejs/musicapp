@@ -3,6 +3,8 @@ import axios from 'axios';
 import { getToken } from './storage';
 import { getCsrfToken } from './csrftokenconfig'
 
+
+
 //Set CSRF token in the default headers
 const csrfToken = getCsrfToken();
 if (csrfToken) {
@@ -31,6 +33,18 @@ axios.interceptors.request.use(
   }
 );
 
+axios.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      // Cleanup bad token
+      localStorage.removeItem('access_token');
+      // Optionally notify user or redirect to login
+      console.warn('Unauthorized: Token/session expired or invalid');
+    }
+    return Promise.reject(error);
+  }
+);
 
 
 

@@ -14,11 +14,11 @@ import HomeRight from "../Home/HomeRight";
 import NavIndex from "../../components/NavBar/NavIndex";
 import Audioplayer from "../../components/Player/Audioplayer";
 
-import Login from "../Auth/Login";
+
 import { fetchCurrentPlaylist, getCurrentPlaylist, getCurrentPlaylistTrack } from "../../redux/features/playlist/playlistSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/app/hook";
 import { playAllTracks } from "../../redux/features/audio/audioSlice";
-import { getIsAuthenticated, getAuthUser } from "../../redux/features/auth/authSlice";
+
 import { fetchClearPlaylist, fetchRemoveFromPlaylist } from "../../redux/features/playlist/playlistSlice";
 import { timeConverter } from "../../utils/helpers/utilities";
 const Playlist = () => {
@@ -29,8 +29,7 @@ console.log(data)
     
     const { id } = useParams()
     const dispatch = useAppDispatch()
-  const isAuthenticated = useAppSelector(getIsAuthenticated)
-  const user = useAppSelector(getAuthUser)
+ 
   const currentPlaylist = useAppSelector(getCurrentPlaylist)
   const playlistTracks = useAppSelector(getCurrentPlaylistTrack)
 
@@ -54,7 +53,7 @@ console.log(data)
           console.log(playlistTracks)
   return (
     <section className="artistbg">
-    {isAuthenticated  && user ? (  <Container className="vh-100 overflow-hidden" fluid>
+   <Container className="vh-100 overflow-hidden" fluid>
         <NavIndex />
             <div className="row vh-100 overflow-hidden  mt-5">
                 <HomeLeft />
@@ -185,7 +184,7 @@ console.log(data)
                 <HomeRight />
         </div>
         <Audioplayer />
-          </Container>) : (<Login />)}
+          </Container>
           </section>
   
   )

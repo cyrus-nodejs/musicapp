@@ -41,7 +41,7 @@ export const fetchPlaylist = createAsyncThunk(
     export const fetchCurrentPlaylist = createAsyncThunk(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       'playlist/fetchCurrentPlaylist',  async (id:any) => {
-          const response= await axios.get(`${BASEURL}/api/current-playlist/${id}`, {params: {param:id}, withCredentials: true })
+          const response= await axios.get(`${BASEURL}/api/current-playlist/${id}/`, {params: {param:id}, withCredentials: true })
           console.log(response.data)
           return response.data
         });

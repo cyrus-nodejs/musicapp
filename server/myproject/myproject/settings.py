@@ -41,7 +41,7 @@ SECRET_KEY =  os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['musicapp-k4th.onrender.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['musicapp-k4th.onrender.com', '127.0.0.1']
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'musicapp',  #  music app
      'cloudinary',
@@ -78,6 +79,7 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+         'rest_framework.authentication.TokenAuthentication',
     ],
     # Optional: Other global settings for DRF, like permissions
     'DEFAULT_PERMISSION_CLASSES': [
@@ -122,25 +124,17 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-# DATABASES = {
-#     # 'default': {
-#     #     'ENGINE': 'django.db.backends.sqlite3',
-#     #     'NAME': BASE_DIR / 'db.sqlite3',
-#     # }
-#      'default': dj_database_url.config(default='postgresql://king_cyrus:8tC3AgIBtVs5BkIz0bK21ljhGslnt4YY@dpg-cvhmabt2ng1s739sqiag-a/musicapp_p2ve', conn_max_age=600    )
-#      }
-DATABASE_TYPE = os.getenv('DATABASE_TYPE', 'sqlite')
-if DATABASE_TYPE == 'postgresql':
-    DATABASES = {
-       'default': dj_database_url.config(default=os.getenv('DATABASEURL'), conn_max_age=600    )
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+      'default': dj_database_url.config(
+          default=os.getenv('DATABASEURL'), 
+          conn_max_age=600  
+              )
+     }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
