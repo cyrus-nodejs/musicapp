@@ -11,7 +11,6 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useAppSelector } from "../../redux/app/hook";
 import { fetchCurrentOrder, getClientSecret, getCurrentOrder } from "../../redux/features/checkout/checkoutSlice";
 
-const STRIPE = import.meta.env.VITE_APP_STRIPE_PUBLISHABLE_KEY
 import NavIndex from "../../components/NavBar/NavIndex";
 function Payment() {
   
@@ -22,8 +21,8 @@ function Payment() {
 const dispatch = useAppDispatch()
 
 const clientSecret = useAppSelector(getClientSecret)
-
-const stripePromise = loadStripe(STRIPE)
+const stripe = 'pk_test_51Mps4OAtt6kY2KD5Fk11TyCnr8MKgtAiFawUiZ8pktDZ87ZoMLp1ywccXje9k3QKwYppvh3UDf28XdeQnKMnOvar00r7UZq2FI'
+const stripePromise = loadStripe(stripe)
   const currentOrder = useAppSelector(getCurrentOrder)
 
 
