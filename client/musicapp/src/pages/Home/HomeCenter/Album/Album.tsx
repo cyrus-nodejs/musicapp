@@ -41,7 +41,7 @@ const Albums = () => {
           
         
             <div className="row   ">
-       {albums.slice(0, 5).map((album:ALBUM) =>{
+       {albums?.slice(0, 5).map((album:ALBUM) =>{
           return (
         <figure className="figure col ">
          <Link to={`/album/${album.title}`} className="text-decoration-none text-light"><Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${album.cover_image}`} className=" rounded-3" width="130" height="120"  rounded/></Link>

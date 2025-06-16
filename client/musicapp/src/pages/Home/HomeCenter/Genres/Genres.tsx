@@ -41,7 +41,7 @@ const Genres = () => {
           
         
             <div className="row   ">
-       {genres.slice(0, 5).map((genre:GENRE) =>{
+       {genres?.slice(0, 5).map((genre:GENRE) =>{
           return (
         <figure className="figure col ">
          <Link to={`/genre/${genre?.title}`} className="text-decoration-none text-light"><Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${genre.cover_image}`} className=" " width="130" height="120"  rounded/></Link>

@@ -29,7 +29,7 @@ const AllArtists = () => {
            <div className="d-inline-flex my-3 fs-4 border-info text-light  border-bottom">Artists</div>
         
             <div className="col m-1   ">
-       {artists.map((artist:ARTIST) =>{
+       {artists?.map((artist:ARTIST) =>{
           return (
         <figure className="figure col ">
               <Link to={`/artist/${artist.name}`} className="text-decoration-none text-light"> <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${artist.cover_image}`} className="m-3 rounded-circle" width="130" height="120"  /></Link>
