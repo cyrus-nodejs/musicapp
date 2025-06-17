@@ -17,6 +17,7 @@ cloudinary.config(
     api_key=os.getenv('CLOUDINARY_KEY'),
     api_secret=os.getenv('CLOUDINARY_SECRET')
 )
+DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() in ["true", "1", "yes"]
 BASE_DIR = Path(__file__).resolve().parent.parent
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET'),
 STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
@@ -128,10 +129,15 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
-      'default': dj_database_url.config(
-          default=os.getenv('DATABASEURL'), 
-          conn_max_age=600  
-              )
+       'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), conn_max_age=600 )
+    #  'default': {
+    #     'ENGINE': os.getenv('ENGINE'),s
+    #     'NAME': os.getenv('NAME'),
+    #     'USER':  os.getenv('USER'),
+    #     'PASSWORD':  os.getenv('PASSWORD'),
+    #     'HOST':  os.getenv('HOST'),
+    #     'PORT':os.getenv('PORT') ,
+    # }
      }
 
 
