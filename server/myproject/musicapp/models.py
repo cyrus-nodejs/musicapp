@@ -1,5 +1,7 @@
 from django.db import models
+
 # Create your models here.
+
 from datetime import timezone
 from django.db import models
 import uuid
@@ -33,6 +35,7 @@ class Artist(models.Model):
  
 
 class Album(models.Model):
+
     title = models.CharField(max_length=100)
     artist = models.ForeignKey(Artist, related_name='album_artist', on_delete=models.CASCADE)
     release_date = models.CharField(max_length=100)
@@ -55,6 +58,7 @@ class Album(models.Model):
     
 
 class Genre(models.Model):
+  
     title = models.CharField(max_length=100)
     cover_image =  CloudinaryField('image', blank=True, null=True)
 
@@ -74,6 +78,7 @@ class Genre(models.Model):
 
 
 class Track(models.Model):
+  
     title = models.CharField(max_length=100)
     artist = models.ForeignKey(Artist, related_name='track_artists', on_delete=models.CASCADE)
     genre = models.ForeignKey(Genre, related_name='track_genres', on_delete=models.CASCADE)
@@ -85,7 +90,7 @@ class Track(models.Model):
     cover_image =  CloudinaryField('image', blank=True, null=True)  # For image uploads
     audio_file = CloudinaryField('audio', resource_type='video', null=True) # For audio uploads
     times_played=models.IntegerField(default=0) 
-    last_played=models.DateField( null=True,)
+    last_played=models.DateField( null=True)
 
      # Method to return Cloudinary URL for image
     def save(self, *args, **kwargs):
@@ -108,6 +113,7 @@ class Track(models.Model):
 
 
 class Playlist(models.Model):
+    
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, unique=True)
     tracks = models.ManyToManyField(Track)
@@ -119,6 +125,7 @@ class Playlist(models.Model):
 
 
 class Played(models.Model):
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     tracks = models.ManyToManyField(Track)
   
@@ -126,6 +133,7 @@ class Played(models.Model):
 
 
 class Pricing(models.Model):
+
     plans = models.CharField(max_length=10, choices=[('basic', 'Basic'), ('medium', 'Medium'), ('premium', 'Premium')],)
     price = models.IntegerField() 
     duration= models.IntegerField(default=30) 
@@ -143,6 +151,7 @@ class Pricing(models.Model):
 
 
 class Order(models.Model):
+  
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     pricing = models.ForeignKey(Pricing, related_name='pricing_order', on_delete=models.CASCADE)
     uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
@@ -157,6 +166,7 @@ class Order(models.Model):
 
 
 class Subscription(models.Model):
+ 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_subscriptions')
     pricing = models.ForeignKey(Pricing, related_name='pricing_subscription', on_delete=models.CASCADE)
     paymentid = models.CharField(max_length=100, null=True)

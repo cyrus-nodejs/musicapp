@@ -100,9 +100,7 @@ console.log(currentTrack)
   {
     path: "/allartists",
     element:  (
-      <PrivateRoute>
         <AllArtists />
-      </PrivateRoute>
     ),
     errorElement: <ErrorPage />
   },
@@ -110,9 +108,7 @@ console.log(currentTrack)
   {
     path: "/artist/:id",
     element:  (
-      <PrivateRoute>
         <Artistdetails />
-      </PrivateRoute>
     ),
     errorElement: <ErrorPage />
   },
@@ -120,9 +116,7 @@ console.log(currentTrack)
   {
     path: "/allgenres",
     element:  (
-      <PrivateRoute>
         <AllGenres />
-      </PrivateRoute>
     ),
     errorElement: <ErrorPage />
   },
@@ -131,9 +125,7 @@ console.log(currentTrack)
   {
     path: "/genre/:id",
     element:  (
-      <PrivateRoute>
         <Genredetails />
-      </PrivateRoute>
     ),
     errorElement: <ErrorPage />
   },
@@ -141,9 +133,7 @@ console.log(currentTrack)
   {
     path: "/allalbums",
     element:  (
-      <PrivateRoute>
         <AllAlbums />
-      </PrivateRoute>
     ),
     errorElement: <ErrorPage />
   },
@@ -152,9 +142,7 @@ console.log(currentTrack)
   {
     path: "/album/:id",
     element:  (
-      <PrivateRoute>
         <Albumdetails />
-      </PrivateRoute>
     ),
     errorElement: <ErrorPage />
   },
@@ -163,9 +151,8 @@ console.log(currentTrack)
   {
     path: "/pricing",
     element:  (
-      <PrivateRoute>
+
         <Pricing/>
-      </PrivateRoute>
     ),
     errorElement: <ErrorPage />
   },
@@ -214,9 +201,7 @@ console.log(currentTrack)
  {
   path: "/report",
   element:  (
-    <PrivateRoute>
       <Report />
-    </PrivateRoute>
   ),
   errorElement: <ErrorPage />
 },

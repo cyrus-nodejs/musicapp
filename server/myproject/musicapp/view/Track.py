@@ -79,7 +79,7 @@ class MostPlayedSongs(APIView):
 
     def get(self, request, *args, **kwargs):
        
-            tracks = Track.objects.all().order_by('-times_played')[:20]
+            tracks = Track.objects.all().order_by('-times_played')[:5]
             serializer = TrackSerializer(tracks, many=True)
             if tracks:
               return   Response(serializer.data)
