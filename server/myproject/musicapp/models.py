@@ -137,6 +137,7 @@ class Pricing(models.Model):
     plans = models.CharField(max_length=10, choices=[('basic', 'Basic'), ('medium', 'Medium'), ('premium', 'Premium')])
     price = models.IntegerField() 
     duration= models.IntegerField(default=30) 
+
     subscribers= models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
 
