@@ -89,7 +89,7 @@ class PricingSerializer(serializers.ModelSerializer):
      
     class Meta:
         model = Pricing
-        fields = ['id', 'plans', 'price', 'status', 'duration', 'subscribers']
+        fields = ['id', 'plans', 'price',  'duration', 'subscribers']
 
 
 class PlaylistSerializer(serializers.ModelSerializer):

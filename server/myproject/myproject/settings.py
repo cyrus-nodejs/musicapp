@@ -131,7 +131,7 @@ DATABASES = {
     # }
        'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), conn_max_age=600 )
     #  'default': {
-    #     'ENGINE': os.getenv('ENGINE'),s
+    #     'ENGINE': os.getenv('ENGINE'),
     #     'NAME': os.getenv('NAME'),
     #     'USER':  os.getenv('USER'),
     #     'PASSWORD':  os.getenv('PASSWORD'),
