@@ -130,7 +130,7 @@ DATABASES = {
     #      'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     #  }
-       'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), conn_max_age=600 )
+       'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), conn_max_age=60 )
     #  'default': {
     #     'ENGINE': os.getenv('ENGINE'),
     #     'NAME': os.getenv('NAME'),
@@ -141,7 +141,7 @@ DATABASES = {
     #     'OPTIONS': {
     #         'sslmode': 'require',
     #     },
-    # }
+    #  }
      }
 
 
@@ -200,3 +200,6 @@ EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS ')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD ')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+
+USE_TZ = True
+TIME_ZONE = 'UTC'
