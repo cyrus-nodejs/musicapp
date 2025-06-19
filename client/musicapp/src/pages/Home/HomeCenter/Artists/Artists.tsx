@@ -1,6 +1,6 @@
 import { ARTIST } from "../../../../utils/@types";
-import { Row, Image,   } from "react-bootstrap"
-
+import { Row   } from "react-bootstrap"
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import {useEffect } from "react";
 
 
@@ -37,7 +37,10 @@ const Artists = () => {
        {artists?.slice(0, 5).map((artist:ARTIST) =>{
           return (
         <figure className="figure col  ">
-            <Link to={`/artist/${artist.name}`} className="text-decoration-none text-light">     <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${artist.cover_image}`} className="rounded-circle"  width="130" height="120"    rounded/></Link>
+            <Link to={`/artist/${artist.name}`} className="text-decoration-none text-light">     
+            
+               <LazyLoadImage className=" rounded-circle "  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${artist.cover_image}`}   style={{ width: '120px', height: '130px' }} />
+            </Link>
                  <figcaption className="figure-caption text-light  ">{artist.name}</figcaption> 
                 </figure>
               )

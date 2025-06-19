@@ -1,5 +1,6 @@
 import { ARTIST } from "../../../../utils/@types";
-import { Row, Image, Container   } from "react-bootstrap"
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Row,  Container   } from "react-bootstrap"
 import NavIndex from "../../../../components/NavBar/NavIndex";
 import {  getArtists, getSearchTerm } from "../../../../redux/features/audio/audioSlice";
 import { useAppSelector} from "../../../../redux/app/hook";
@@ -31,7 +32,10 @@ const AllArtists = () => {
        {artists?.map((artist:ARTIST) =>{
           return (
         <figure className="figure col ">
-              <Link to={`/artist/${artist.name}`} className="text-decoration-none text-light"> <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${artist.cover_image}`} className="m-3 rounded-circle" width="130" height="120"  /></Link>
+              <Link to={`/artist/${artist.name}`} className="text-decoration-none text-light">
+
+               <LazyLoadImage className=" rounded-circle m-3"  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${artist.cover_image}`}   style={{ width: '120px', height: '130px' }} />
+              </Link>
                  <figcaption className="figure-caption text-light  ">{artist.name}</figcaption> 
                 </figure>
               )

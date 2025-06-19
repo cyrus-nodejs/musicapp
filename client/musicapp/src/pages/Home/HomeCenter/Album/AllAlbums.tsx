@@ -1,6 +1,6 @@
 import { ALBUM } from "../../../../utils/@types";
-import { Row, Image, Container  } from "react-bootstrap"
-
+import { Row,  Container  } from "react-bootstrap"
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import { Link } from "react-router-dom";
 
@@ -29,7 +29,11 @@ const AllAlbums = () => {
        {albums?.map((album:ALBUM) =>{
           return (
         <figure className="figure col ">
-            <Link to={`/album/${album.title}`} className="text-decoration-none text-light">    <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${album.cover_image}`} className="m-3 rounded-3" width="130" height="120"  rounded/></Link>
+            <Link to={`/album/${album.title}`} className="text-decoration-none text-light">   
+  
+                 <LazyLoadImage className=" rounded-circle  m-3 "  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${album.cover_image}`}   style={{ width: '120px', height: '130px' }} />
+             
+             </Link>
                  <figcaption className="figure-caption text-light  ">{album.title}</figcaption> 
                 </figure>
               )

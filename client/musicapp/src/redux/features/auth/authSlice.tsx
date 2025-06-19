@@ -1,6 +1,6 @@
 import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit'
  import { USER } from '../../../utils/@types'
-import { saveToken } from '../../../utils/helpers/storage'
+import { saveToken, saveRefreshToken } from '../../../utils/helpers/storage'
 import { RootState } from '../../app/store'
 // import axios from 'axios'
 import axios from '../../../utils/helpers/axiosconfig'
@@ -44,7 +44,9 @@ export const fetchAsyncUser = createAsyncThunk(
             const response= await axios.post(`${BASEURL}/api/login/`,{username, password},{ withCredentials: true })
             console.log(response.data)
             const token = response.data.access;
+            const refreshToken= response.data.refresh;
             saveToken(token);  // Save the token in localStorage
+            saveRefreshToken(refreshToken) // Save the refresh token in localStorage
             return token;
           
 
@@ -82,20 +84,7 @@ export const fetchAsyncUser = createAsyncThunk(
               });
             
 
-          // export const fetchGoogleUser = createAsyncThunk(
-          //   // 'auth/fetchGoogleUser', async () => {
-          //   //   window.location.href = `${BASEURL}/auth/google`
-          //   //   }
-          //   'auth/fetchGoogleUser', async () => {
-          //     const response= await axios.get(`${BASEURL}/getgoogleuser`, { withCredentials: true })
-          //     console.log(response.data.user)
-          //     return response.data.user
-          //   }
-          // );
-
-         
-// Slices contain Redux reducer logic for updating state, and
-// generate actions that can be dispatched to trigger those updates.
+    
 export const authSlice = createSlice({
   name: 'auth',
   initialState,

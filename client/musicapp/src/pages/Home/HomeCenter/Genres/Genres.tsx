@@ -1,6 +1,6 @@
 import { GENRE } from "../../../../utils/@types";
-import { Row, Image,   } from "react-bootstrap"
-
+import { Row   } from "react-bootstrap"
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import {  useEffect} from "react";
 import { fetchGenres, getGenres } from "../../../../redux/features/audio/audioSlice";
 import { useAppSelector, useAppDispatch } from "../../../../redux/app/hook";
@@ -8,7 +8,6 @@ import { useAppSelector, useAppDispatch } from "../../../../redux/app/hook";
 
 
 import { Link } from "react-router-dom";
-
 
 const Genres = () => {
   
@@ -44,7 +43,10 @@ const Genres = () => {
        {genres?.slice(0, 5).map((genre:GENRE) =>{
           return (
         <figure className="figure col ">
-         <Link to={`/genre/${genre?.title}`} className="text-decoration-none text-light"><Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${genre.cover_image}`} className=" " width="130" height="120"  rounded/></Link>
+         <Link to={`/genre/${genre?.title}`} className="text-decoration-none text-light">
+         
+                         <LazyLoadImage className=" rounded-3 "  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${genre.cover_image}`}   style={{ width: '120px', height: '130px' }} />
+         </Link>
                  <figcaption className="figure-caption text-light  ">{genre.title}</figcaption> 
                 </figure>
               )

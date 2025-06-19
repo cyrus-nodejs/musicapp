@@ -1,9 +1,9 @@
 import { GENRE } from "../../../../utils/@types";
-import { Row, Image, Container  } from "react-bootstrap"
+import { Row,  Container  } from "react-bootstrap"
 
 
 import { Link } from "react-router-dom";
-
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import NavSearchResults from "../../../../components/NavBar/NavSearch/NavSearchResults";
 import NavIndex from "../../../../components/NavBar/NavIndex";
 import HomeLeft from "../../HomeLeft";
@@ -29,7 +29,12 @@ const AllGenres = () => {
        {genres?.map((genre:GENRE) =>{
           return (
         <figure className="figure col ">
-            <Link to={`/genre/${genre.title}`} className="text-decoration-none text-light">    <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${genre.cover_image}`} className="m-3 rounded-3" width="130" height="120"  rounded/></Link>
+            <Link to={`/genre/${genre.title}`} className="text-decoration-none text-light">   
+
+              <LazyLoadImage className=" rounded-3 m-3"  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${genre.cover_image}`}   style={{ width: '120px', height: 'px' }} />
+            
+            </Link>
+
                  <figcaption className="figure-caption text-light  ">{genre.title}</figcaption> 
                 </figure>
               )

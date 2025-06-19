@@ -1,10 +1,11 @@
 // api/axiosConfig.js
 import axios from 'axios';
-import { getToken } from './storage';
+import { getToken, getRefreshToken , saveToken, removeToken } from './storage';
 import { getCsrfToken } from './csrftokenconfig'
 
 
-
+// eslint-disable-next-line react-refresh/only-export-components
+const BASEURL = import.meta.env.VITE_APP_BASE_URL
 //Set CSRF token in the default headers
 const csrfToken = getCsrfToken();
 if (csrfToken) {
@@ -42,6 +43,46 @@ axios.interceptors.response.use(
       // Optionally notify user or redirect to login
       console.warn('Unauthorized: Token/session expired or invalid');
     }
+    return Promise.reject(error);
+  }
+);
+
+
+
+// Response Interceptor
+axios.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    const originalRequest = error.config;
+
+    if (
+      error.response?.status === 401 &&
+      !originalRequest._retry &&
+      getRefreshToken()
+    ) {
+      originalRequest._retry = true;
+
+      try {
+        const response = await axios.post(`${BASEURL}/api/token/refresh/`, {
+          refresh: getRefreshToken(),
+        });
+
+        const newAccessToken = response.data.access;
+        
+        saveToken(newAccessToken)  // update storage
+        axios.defaults.headers['Authorization'] = `Bearer ${newAccessToken}`;
+        originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+
+        return axios(originalRequest); // retry original request
+      } catch (refreshError) {
+       
+        removeToken()
+        console.error('Token refresh failed:', refreshError);
+        // Optional: redirect to login
+        return Promise.reject(refreshError);
+      }
+    }
+
     return Promise.reject(error);
   }
 );

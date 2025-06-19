@@ -1,6 +1,7 @@
 
 import { TRACK, PLAYLIST } from "../../../../utils/@types";
-import { Col,   Image,  Overlay, OverlayTrigger, Tooltip  } from "react-bootstrap"
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { Col,     Overlay, OverlayTrigger, Tooltip  } from "react-bootstrap"
 import { useState,  useRef } from "react";
 import {  fetchAddToPlaylist,  getPlaylists} from "../../../../redux/features/playlist/playlistSlice";
 import { getCurrentSub } from "../../../../redux/features/checkout/checkoutSlice";
@@ -72,7 +73,8 @@ const HandleSelect = (e:Event) =>{
                     overlay={RightClickTooltip}
                   >
       <div className="container ">
-                <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${track.cover_image}`} className=" rounded-3" width="120" height="130"  />
+             
+                <LazyLoadImage className=" rounded-3"  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${track.cover_image}`}   style={{ width: '120px', height: '130px' }}       />
                 </div>
                 </OverlayTrigger>
                 <div className="">

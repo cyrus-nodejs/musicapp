@@ -1,5 +1,5 @@
-
-import { Image, Row,Tooltip, Overlay, OverlayTrigger,  Table, Container } from 'react-bootstrap';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import {  Row,Tooltip, Overlay, OverlayTrigger,  Table, Container } from 'react-bootstrap';
 import { PLAYLIST, TRACK } from '../../../../utils/@types';
 import { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -62,7 +62,8 @@ console.log(data)
            <div className="artistbg " >
         <div className="d-flex align-items-center">
   <div className="flex-shrink-0">
-    <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${currentAlbum[0].cover_image}`} height="180" width="180" rounded/>
+
+     <LazyLoadImage className=" "  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${currentAlbum[0]?.cover_image}`}   style={{ width: '180px', height: '180px' }} />
   </div>
   <div className="flex-grow-1 ms-3">
   <div className="d-flex flex-column mb-3">
@@ -112,7 +113,8 @@ console.log(data)
           <td>
           <div className="d-flex align-items-center ">
   <div className="flex-shrink-0">
-    <Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${track?.cover_image}`} alt="..." width="50" height="50" />
+
+     <LazyLoadImage className=" rounded-3"  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${track?.cover_image}`}   style={{ width: '50px', height: '50px' }} />
   </div>
   <div className="flex-grow-1 ms-3  ">
   {track?.title}

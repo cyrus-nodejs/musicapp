@@ -1,6 +1,6 @@
 import { ALBUM } from "../../../../utils/@types";
-import { Row, Image,   } from "react-bootstrap"
-
+import { Row,   } from "react-bootstrap"
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import {  useEffect} from "react";
 import { fetchAlbums, getAlbums } from "../../../../redux/features/audio/audioSlice";
 import { useAppSelector, useAppDispatch } from "../../../../redux/app/hook";
@@ -44,7 +44,10 @@ const Albums = () => {
        {albums?.slice(0, 5).map((album:ALBUM) =>{
           return (
         <figure className="figure col ">
-         <Link to={`/album/${album.title}`} className="text-decoration-none text-light"><Image src={`${import.meta.env.VITE_APP_CLOUD_URL}/${album.cover_image}`} className=" rounded-3" width="130" height="120"  rounded/></Link>
+         <Link to={`/album/${album.title}`} className="text-decoration-none text-light">
+
+               <LazyLoadImage className=" rounded-3 "  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${album.cover_image}`}   style={{ width: '130px', height: '130px' }} />
+         </Link>
                  <figcaption className="figure-caption text-light  ">{album.title}</figcaption> 
                 </figure>
               )
