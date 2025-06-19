@@ -17,7 +17,7 @@ cloudinary.config(
     api_key=os.getenv('CLOUDINARY_KEY'),
     api_secret=os.getenv('CLOUDINARY_SECRET')
 )
-DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() in ["true", "1", "yes"]
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET'),
 STRIPE_PUBLISHABLE_KEY = os.getenv('STRIPE_PUBLISHABLE_KEY')
@@ -39,7 +39,7 @@ MEDIA_URL = '/media/'  # You can customize this if needed
 SECRET_KEY =  os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() in ["true", "1", "yes"]
 
 ALLOWED_HOSTS = ['musicapp-k4th.onrender.com', '127.0.0.1']
 
@@ -124,25 +124,38 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+if os.getenv("RENDER") == "1":
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.getenv("DATABASE_URL"), conn_max_age=600, ssl_require=True
+        )
+    }
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
-DATABASES = {
-    #  'default': {
-    #      'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    #  }
-       'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), conn_max_age=60 )
-    #  'default': {
-    #     'ENGINE': os.getenv('ENGINE'),
-    #     'NAME': os.getenv('NAME'),
-    #     'USER':  os.getenv('USER'),
-    #     'PASSWORD':  os.getenv('PASSWORD'),
-    #     'HOST':  os.getenv('HOST'),
-    #     'PORT':os.getenv('PORT') ,
-    #     'OPTIONS': {
-    #         'sslmode': 'require',
-    #     },
-    #  }
-     }
+# DATABASES = {
+#      'default': {
+#          'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#      }
+#     #    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), conn_max_age=60 )
+#     #  'default': {
+#     #     'ENGINE': os.getenv('ENGINE'),
+#     #     'NAME': os.getenv('NAME'),
+#     #     'USER':  os.getenv('USER'),
+#     #     'PASSWORD':  os.getenv('PASSWORD'),
+#     #     'HOST':  os.getenv('HOST'),
+#     #     'PORT':os.getenv('PORT') ,
+#     #     'OPTIONS': {
+#     #         'sslmode': 'require',
+#     #     },
+#     #  }
+#      }
 
 
 # Password validation
@@ -196,7 +209,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
 EMAIL_HOST = os.getenv('EMAIL_HOST')
 EMAIL_PORT = os.getenv('EMAIL_PORT')
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS ')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD ')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
