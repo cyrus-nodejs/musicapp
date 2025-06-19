@@ -1,1 +1,920 @@
 [
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "admin",
+        "model": "logentry"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "permission"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "group"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "auth",
+        "model": "user"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "contenttypes",
+        "model": "contenttype"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "sessions",
+        "model": "session"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "authtoken",
+        "model": "token"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "authtoken",
+        "model": "tokenproxy"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "musicapp",
+        "model": "genre"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "musicapp",
+        "model": "artist"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "musicapp",
+        "model": "album"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "musicapp",
+        "model": "pricing"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "musicapp",
+        "model": "order"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "musicapp",
+        "model": "subscription"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "musicapp",
+        "model": "track"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "musicapp",
+        "model": "playlist"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "musicapp",
+        "model": "played"
+    }
+},
+{
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "app_label": "django_rest_passwordreset",
+        "model": "resetpasswordtoken"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "add_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "change_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "delete_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view log entry",
+        "content_type": [
+            "admin",
+            "logentry"
+        ],
+        "codename": "view_logentry"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "add_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "change_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "delete_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view permission",
+        "content_type": [
+            "auth",
+            "permission"
+        ],
+        "codename": "view_permission"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "add_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "change_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "delete_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view group",
+        "content_type": [
+            "auth",
+            "group"
+        ],
+        "codename": "view_group"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "add_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "change_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "delete_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view user",
+        "content_type": [
+            "auth",
+            "user"
+        ],
+        "codename": "view_user"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "add_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "change_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "delete_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view content type",
+        "content_type": [
+            "contenttypes",
+            "contenttype"
+        ],
+        "codename": "view_contenttype"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "add_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "change_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "delete_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view session",
+        "content_type": [
+            "sessions",
+            "session"
+        ],
+        "codename": "view_session"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Token",
+        "content_type": [
+            "authtoken",
+            "token"
+        ],
+        "codename": "add_token"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Token",
+        "content_type": [
+            "authtoken",
+            "token"
+        ],
+        "codename": "change_token"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Token",
+        "content_type": [
+            "authtoken",
+            "token"
+        ],
+        "codename": "delete_token"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Token",
+        "content_type": [
+            "authtoken",
+            "token"
+        ],
+        "codename": "view_token"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Token",
+        "content_type": [
+            "authtoken",
+            "tokenproxy"
+        ],
+        "codename": "add_tokenproxy"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Token",
+        "content_type": [
+            "authtoken",
+            "tokenproxy"
+        ],
+        "codename": "change_tokenproxy"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Token",
+        "content_type": [
+            "authtoken",
+            "tokenproxy"
+        ],
+        "codename": "delete_tokenproxy"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Token",
+        "content_type": [
+            "authtoken",
+            "tokenproxy"
+        ],
+        "codename": "view_tokenproxy"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add genre",
+        "content_type": [
+            "musicapp",
+            "genre"
+        ],
+        "codename": "add_genre"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change genre",
+        "content_type": [
+            "musicapp",
+            "genre"
+        ],
+        "codename": "change_genre"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete genre",
+        "content_type": [
+            "musicapp",
+            "genre"
+        ],
+        "codename": "delete_genre"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view genre",
+        "content_type": [
+            "musicapp",
+            "genre"
+        ],
+        "codename": "view_genre"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add artist",
+        "content_type": [
+            "musicapp",
+            "artist"
+        ],
+        "codename": "add_artist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change artist",
+        "content_type": [
+            "musicapp",
+            "artist"
+        ],
+        "codename": "change_artist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete artist",
+        "content_type": [
+            "musicapp",
+            "artist"
+        ],
+        "codename": "delete_artist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view artist",
+        "content_type": [
+            "musicapp",
+            "artist"
+        ],
+        "codename": "view_artist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add album",
+        "content_type": [
+            "musicapp",
+            "album"
+        ],
+        "codename": "add_album"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change album",
+        "content_type": [
+            "musicapp",
+            "album"
+        ],
+        "codename": "change_album"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete album",
+        "content_type": [
+            "musicapp",
+            "album"
+        ],
+        "codename": "delete_album"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view album",
+        "content_type": [
+            "musicapp",
+            "album"
+        ],
+        "codename": "view_album"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add pricing",
+        "content_type": [
+            "musicapp",
+            "pricing"
+        ],
+        "codename": "add_pricing"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change pricing",
+        "content_type": [
+            "musicapp",
+            "pricing"
+        ],
+        "codename": "change_pricing"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete pricing",
+        "content_type": [
+            "musicapp",
+            "pricing"
+        ],
+        "codename": "delete_pricing"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view pricing",
+        "content_type": [
+            "musicapp",
+            "pricing"
+        ],
+        "codename": "view_pricing"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add order",
+        "content_type": [
+            "musicapp",
+            "order"
+        ],
+        "codename": "add_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change order",
+        "content_type": [
+            "musicapp",
+            "order"
+        ],
+        "codename": "change_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete order",
+        "content_type": [
+            "musicapp",
+            "order"
+        ],
+        "codename": "delete_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view order",
+        "content_type": [
+            "musicapp",
+            "order"
+        ],
+        "codename": "view_order"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add subscription",
+        "content_type": [
+            "musicapp",
+            "subscription"
+        ],
+        "codename": "add_subscription"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change subscription",
+        "content_type": [
+            "musicapp",
+            "subscription"
+        ],
+        "codename": "change_subscription"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete subscription",
+        "content_type": [
+            "musicapp",
+            "subscription"
+        ],
+        "codename": "delete_subscription"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view subscription",
+        "content_type": [
+            "musicapp",
+            "subscription"
+        ],
+        "codename": "view_subscription"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add track",
+        "content_type": [
+            "musicapp",
+            "track"
+        ],
+        "codename": "add_track"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change track",
+        "content_type": [
+            "musicapp",
+            "track"
+        ],
+        "codename": "change_track"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete track",
+        "content_type": [
+            "musicapp",
+            "track"
+        ],
+        "codename": "delete_track"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view track",
+        "content_type": [
+            "musicapp",
+            "track"
+        ],
+        "codename": "view_track"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add playlist",
+        "content_type": [
+            "musicapp",
+            "playlist"
+        ],
+        "codename": "add_playlist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change playlist",
+        "content_type": [
+            "musicapp",
+            "playlist"
+        ],
+        "codename": "change_playlist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete playlist",
+        "content_type": [
+            "musicapp",
+            "playlist"
+        ],
+        "codename": "delete_playlist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view playlist",
+        "content_type": [
+            "musicapp",
+            "playlist"
+        ],
+        "codename": "view_playlist"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add played",
+        "content_type": [
+            "musicapp",
+            "played"
+        ],
+        "codename": "add_played"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change played",
+        "content_type": [
+            "musicapp",
+            "played"
+        ],
+        "codename": "change_played"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete played",
+        "content_type": [
+            "musicapp",
+            "played"
+        ],
+        "codename": "delete_played"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view played",
+        "content_type": [
+            "musicapp",
+            "played"
+        ],
+        "codename": "view_played"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can add Password Reset Token",
+        "content_type": [
+            "django_rest_passwordreset",
+            "resetpasswordtoken"
+        ],
+        "codename": "add_resetpasswordtoken"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can change Password Reset Token",
+        "content_type": [
+            "django_rest_passwordreset",
+            "resetpasswordtoken"
+        ],
+        "codename": "change_resetpasswordtoken"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can delete Password Reset Token",
+        "content_type": [
+            "django_rest_passwordreset",
+            "resetpasswordtoken"
+        ],
+        "codename": "delete_resetpasswordtoken"
+    }
+},
+{
+    "model": "auth.permission",
+    "fields": {
+        "name": "Can view Password Reset Token",
+        "content_type": [
+            "django_rest_passwordreset",
+            "resetpasswordtoken"
+        ],
+        "codename": "view_resetpasswordtoken"
+    }
+}
+]
