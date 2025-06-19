@@ -154,7 +154,6 @@ class Order(models.Model):
   
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     pricing = models.ForeignKey(Pricing, related_name='pricing_order', on_delete=models.CASCADE)
-    uuid = models.UUIDField(default=uuid.uuid4, unique=True, editable=False)
     payment =  models.BooleanField(default=False)
     paymentid = models.CharField(max_length=100)
     bill = models.IntegerField()
