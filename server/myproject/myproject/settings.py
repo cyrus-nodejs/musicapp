@@ -122,8 +122,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
+##Database
+##https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 if os.getenv("RENDER") == "1":
     DATABASES = {
         'default': dj_database_url.config(
@@ -137,6 +137,12 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # DATABASES = {
 #      'default': {
