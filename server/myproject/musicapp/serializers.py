@@ -1,11 +1,21 @@
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import serializers
-from .models import Track, Artist, Album, Genre, Playlist, Pricing, Played, Order, Subscription
 from django.contrib.auth.models import User
 from django.contrib.auth.models import AnonymousUser
 import django_filters
 from django.contrib.auth.password_validation import validate_password
 
+from .models import (
+    Track, 
+    Artist, 
+    Album, 
+    Genre, 
+    Playlist, 
+    Pricing, 
+    Played, 
+    Order, 
+    Subscription
+    )
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True)

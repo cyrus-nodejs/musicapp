@@ -2,11 +2,30 @@
 # Create your tests here.
 from django.test import TestCase
 from django.contrib.auth.models import User
-from ..models import Album, Artist, Genre, Track, Playlist, Pricing, Order, Subscription
-from ..serializers import AlbumSerializer, ArtistSerializer, GenreSerializer, TrackSerializer, PlaylistSerializer, PricingSerializer, OrderSerializer, SubscriptionSerializer
 from datetime import date,  timedelta
 
+from ..serializers import (
+    AlbumSerializer, 
+    ArtistSerializer, 
+    GenreSerializer, 
+    TrackSerializer, 
+    PlaylistSerializer, 
+    PricingSerializer, 
+    OrderSerializer, 
+    SubscriptionSerializer
+)
 
+
+from ..models import (
+    Album, 
+    Artist, 
+    Genre, 
+    Track, 
+    Playlist, 
+    Pricing, 
+    Order, 
+    Subscription
+)
 
 
 

@@ -44,9 +44,9 @@ DEBUG = os.getenv("DJANGO_DEBUG", "False").lower() in ["true", "1", "yes"]
 ALLOWED_HOSTS = ['musicapp-k4th.onrender.com', '127.0.0.1']
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=30),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
-    'ROTATE_REFRESH_TOKENS': False,
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=5),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
     'ALGORITHM': 'HS256',
     'SIGNING_KEY': 'your-secret-key',
@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary_storage',
     'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
     'django_filters',
       'django_rest_passwordreset',
 ]
@@ -137,32 +138,6 @@ else:
             'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-# DATABASES = {
-#      'default': {
-#          'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#      }
-#     #    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), conn_max_age=60 )
-#     #  'default': {
-#     #     'ENGINE': os.getenv('ENGINE'),
-#     #     'NAME': os.getenv('NAME'),
-#     #     'USER':  os.getenv('USER'),
-#     #     'PASSWORD':  os.getenv('PASSWORD'),
-#     #     'HOST':  os.getenv('HOST'),
-#     #     'PORT':os.getenv('PORT') ,
-#     #     'OPTIONS': {
-#     #         'sslmode': 'require',
-#     #     },
-#     #  }
-#      }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

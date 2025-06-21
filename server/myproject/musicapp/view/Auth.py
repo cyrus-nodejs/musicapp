@@ -7,6 +7,7 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from rest_framework import status
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.response import Response
 from ..serializers import  UserSerializer
 from rest_framework.permissions import IsAuthenticated
@@ -43,13 +44,16 @@ class RegisterUserView(APIView):
         return Response(serializer.errors, message='status.HTTP_400_BAD_REQUEST', status=status.HTTP_400_BAD_REQUEST)
      
 class LogoutView(APIView):
-     permission_classes = [AllowAny]
-    
-     def post(self, request, *args, **kwargs):
-         response = JsonResponse({'message': 'Successfully logged out'})
-         response.delete_cookie('jwt_token', path='/')  # Deletes the cookie
-         return response
+     permission_classes = [IsAuthenticated]
 
+     def post(self, request):
+        try:
+            refresh_token = request.data.get("refresh")
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=status.HTTP_205_RESET_CONTENT)
+        except Exception:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
    
 class AuthUserView(APIView):
