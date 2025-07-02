@@ -74,7 +74,7 @@ const Genredetails = () => {
   <div className="p-2 text-start">Playlist</div>
   <div className="p-2 fs-3 fw-bold">Genre Mix</div>
   <div className="p-2">{currentGenre[0]?.title}</div>
-  <div className="p-2">SoundPlanet {genreTrack.length} songs </div>
+  <div className="p-2">MusicPlanet {genreTrack.length} songs </div>
 </div>
 </div>
 </div>

@@ -59,7 +59,7 @@ console.log(data)
       <Row className=" ">
      {searchterm ? (<NavSearchResults />) : ( <div className="pb-5">
            
-           <div className="artistbg " >
+           <div className=" " >
         <div className="d-flex align-items-center">
   <div className="flex-shrink-0">
 
@@ -70,7 +70,7 @@ console.log(data)
   <div className="p-2 text-start">Playlist</div>
   <div className="p-2 fs-3 fw-bold">Album Mix</div>
   <div className="p-2">{currentAlbum[0]?.title}</div>
-  <div className="p-2">SoundPlanet {albumTrack.length} songs </div>
+  <div className="p-2">MusicPlanet {albumTrack.length} songs </div>
 </div>
 </div>
 </div>

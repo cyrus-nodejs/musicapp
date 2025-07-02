@@ -61,11 +61,11 @@ const ForgotPassword = () => {
 <div   className="ms-auto my-5 me-auto">
 
          
-    <h3 className='text-success text-center '>Forgot Password</h3>          
+    <h2 className=' text-center '>Forgot Password</h2>          
   <p className="text-center  fs-5 fw-normal">Forgot Your Password?No problem! </p>
   <p className='fs-5'>We'll send you instructions on how to reset your password.</p>
   <Form onSubmit={formik.handleSubmit}>
-      <Form.Control size="lg" className="shadow-none"  required  value={formik.values.email} onChange={formik.handleChange} style={{}} name="email"   type="email" placeholder="Enter Email" />
+      <Form.Control size="lg" className="shadow-none form-font text-white"  required  value={formik.values.email} onChange={formik.handleChange} style={{}} name="email"   type="email" placeholder="Enter Email" />
       {formik.touched.email && formik.errors.email && (
             <div className="error ">{formik.errors.email}</div>
           )}
@@ -73,7 +73,7 @@ const ForgotPassword = () => {
       <br />
      
                 <div className="text-center">
-             <Button type="submit" disabled={submitting}  variant="success" style={{margin:"20px 0px"}} size="lg"  >Send Reset Link</Button>
+             <Button type="submit" disabled={submitting}  className='create-button' style={{margin:"20px 0px"}} size="lg"  >Send Reset Link</Button>
                </div> 
 
                </Form>

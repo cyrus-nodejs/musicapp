@@ -33,7 +33,7 @@ const Pricing = () => {
     }, [id, dispatch]);
      
     const renderTooltip = (props: JSX.IntrinsicAttributes & TooltipProps & RefAttributes<HTMLDivElement>) => (
-      <Tooltip id="button-tooltip" className="tooltip badge text-bg-success bg-succes" {...props}>
+      <Tooltip id="button-tooltip" className="tooltip badge  text-light pricebg" {...props}>
         Login to Pay
       </Tooltip>
     );
@@ -54,10 +54,10 @@ console.log(currentSub)
            <div className="d-flex justify-content-center ms-auto">
             <div className="flex-col ">
   <div className=" d-flex  fs-4">
-  <div className="me-1 text-success ">Subscription: {currentSub?.status == 'active' ? ("Active") : ('Free')}</div>
+  <div className="me-1  ">Subscription: {currentSub?.status == 'active' ? ("Active") : ('Free')}</div>
   <div className=" "><i className='bx text-success  bx-check bx-md'></i></div>
     </div>
-    <div className=" d-flex fs-4">
+    <div className=" d-flex ">
   <div className="me-1 text-success ">Package Plan: {currentSub?.pricing?.plans}</div>
   <div className="me-auto "><i className='bx text-success bx-check bx-md'></i></div>
     </div>
@@ -89,13 +89,10 @@ console.log(currentSub)
                   <li>Email support</li>
                   <li>Help center access</li>
                 </ul>
-                {item.plans == currentSub?.pricing.plans ? ( <Button disabled     className="w-100 btn btn-lg btn-outline-light"><Link to="/payment" className="text-decoration-none text-success">Active</Link></Button>) 
+                {item.plans == currentSub?.pricing.plans ? ( <Button disabled     className="w-100  create-button "><Link to="/payment" className="text-decoration-none ">Active</Link></Button>) 
                     :
-                     ( <Button disabled variant='success'     className="w-100 btn btn-lg btn-outline-light"><Link to="/payment" className="text-decoration-none text-light">Pay Now</Link></Button>)
+                     ( <Button disabled     className="w-100  create-button "><Link to="/payment" className="text-decoration-none text-light">Pay Now</Link></Button>)
                      }
-                 
-              {/* <button disabled onClick={() => {dispatch(fetchCreatePayment(item))  }}  type="button" className="w-100 btn btn-lg btn-outline-light">Pay Now</button> */}
-              {/* onClick={() =>{addViewedItem(item); addRelatedItem(item) }} */}
               </div>
             </div>
           </div>
@@ -170,7 +167,7 @@ console.log(currentSub)
               </div>
               <div className="card-body pricingbg ">
                 <h1 className="card-title text-light pricing-card-title">${item.price}<small className=" text-light fw-light">/mo</small></h1>
-                <ul className="list-unstyled mt-3 mb-4">
+                <ul className="list-unstyled pricingbg mt-3 mb-4">
                   
                   <li>2 GB of storage</li>
                   <li>Email support</li>
@@ -178,9 +175,9 @@ console.log(currentSub)
                 </ul>
                 {isauthenticated && <a href=""></a> ? (
                   <div>
-                    {item?.plans === 'basic' ? ( <button disabled onClick={() => dispatch(fetchCreatePayment(item))  }   type="button" className="w-100 btn btn-lg btn-outline-light"><Link to="/payment" className="text-decoration-none text-success">Pay Now</Link></button>) 
+                    {item?.plans === 'basic' ? ( <button disabled onClick={() => dispatch(fetchCreatePayment(item))  }   type="button" className="w-100 create-button"><Link to="/payment" className="text-decoration-none text-reset">Pay Now</Link></button>) 
                     :
-                     ( <button  onClick={() => dispatch(fetchCreatePayment(item))  }   type="button" className="w-100 btn btn-lg btn-outline-light"><Link to="/payment" className="text-decoration-none text-success">Pay Now</Link></button>)
+                     ( <button  onClick={() => dispatch(fetchCreatePayment(item))  }   type="button" className="w-100 create-button"><Link to="/payment" className="text-decoration-none text-reset">Pay Now</Link></button>)
                      }
                  
                
@@ -190,7 +187,7 @@ console.log(currentSub)
       delay={{ show: 250, hide: 400 }}
       overlay={renderTooltip}
     >
-           <button    type="button" className="w-100 btn btn-lg btn-outline-light"><Link to="/payment" className="text-decoration-none text-success">Pay Now</Link></button>
+           <button    type="button" className="w-100 btn  btn-lg btn-outline-light create-button"><Link to="/payment" className="text-decoration-none text-reset ">Pay Now</Link></button>
     </OverlayTrigger>
    )}
               
@@ -204,7 +201,7 @@ console.log(currentSub)
 
     <h2 className="display-6 text-center mb-4">Compare pricing</h2>
 
-    <div className="table-responsive ">
+    <div className="table-responsive pricingbg">
       <table className="table  table-hover table-secondary text-light text-center">
         <thead>
           <tr>
@@ -216,13 +213,13 @@ console.log(currentSub)
         </thead>
         <tbody className="">
           <tr>
-            <th scope="row" className="text-start text-light">Playlist</th>
+            <th scope="row" className="text-start ">Playlist</th>
             <td><i className='bx text-light bx-check bx-md'></i></td>
             <td><i className='bx text-light bx-check bx-md'></i></td>
             <td><i className='bx text-light bx-check bx-md'></i></td>
           </tr>
           <tr>
-            <th scope="row" className="text-start text-light">Download</th>
+            <th scope="row" className="text-start ">Download</th>
             <td></td>
             <td><i className='bx bx-check text-light bx-md'></i></td>
             <td><i className='bx bx-check bx-md text-light'></i></td>
@@ -231,25 +228,25 @@ console.log(currentSub)
 
         <tbody>
           <tr>
-            <th scope="row" className="text-start text-light">Permissions</th>
+            <th scope="row" className="text-start ">Permissions</th>
             <td><i className='bx bx-check bx-md text-light'></i></td>
             <td><i className='bx bx-check bx-md text-light'></i></td>
             <td><i className='bx bx-check bx-md text-light'></i></td>
           </tr>
           <tr>
-            <th scope="row" className="text-start text-light">Sharing</th>
+            <th scope="row" className="text-start ">Sharing</th>
             <td></td>
             <td><i className='bx bx-check bx-md text-light'></i></td>
             <td><i className='bx bx-check bx-md text-light'></i></td>
           </tr>
           <tr>
-            <th scope="row" className="text-start text-light">Family Plan</th>
+            <th scope="row" className="text-start ">Family Plan</th>
             <td></td>
             <td></td>
             <td><i className='bx bx-check bx-md text-light'></i></td>
           </tr>
           <tr>
-            <th scope="row" className="text-start text-light">Extra</th>
+            <th scope="row" className="text-start ">Extra</th>
             <td></td>
             <td></td>
             <td><i className='bx bx-check bx-md text-light'></i></td>

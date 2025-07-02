@@ -1,13 +1,13 @@
 // src/utils/auth.js
-export const saveToken = (token: string) => {
+export const saveAccessToken = (token: string) => {
     localStorage.setItem('access_token', token);
   };
   
-  export const getToken = () => {
+  export const getAccessToken = () => {
     return localStorage.getItem('access_token');
   };
   
-  export const removeToken = () => {
+  export const removeAccessToken = () => {
     localStorage.removeItem('access_token');
   };
   

@@ -6,7 +6,7 @@ import { RightClickTooltip } from "../../components/Player/Control/Overlay";
 import "../../index.css"
 import { Link } from "react-router-dom";
 import { PLAYLIST } from "../../utils/@types";
-import { useEffect,useRef,  useState, RefAttributes } from "react";
+import { useEffect,  useState, RefAttributes } from "react";
 import {fetchUpdateTitle, handleOnInput, fetchPlaylist, getMessage, getPlaylists, fetchDeletePlaylist, fetchCreatePlaylist } from "../../redux/features/playlist/playlistSlice";
 import { useAppSelector, useAppDispatch } from "../../redux/app/hook";
  import {getAuthUser, fetchAsyncUser, getIsAuthenticated } from "../../redux/features/auth/authSlice";
@@ -37,7 +37,7 @@ const Playlist = useAppSelector(getPlaylists)
 const message = useAppSelector(getMessage)
  const [title, setTitle]  = useState("")
  const [show, setShow] = useState(false)
- const target = useRef(null);
+//  const target = useRef(null);
  console.log(Playlist)
 const HandleSelect = (e:Event) =>{
 e.preventDefault()
@@ -118,13 +118,13 @@ const formik = useFormik({
     <div className="p-2 ">Your Library</div>
     
     
-         <div  className="ms-auto  p-1  " >
-        <Button size="sm" variant="" ref={target} onClick={() => setShow(!show)}>
+          <div  className="ms-auto   " >
+        {/* <Button className='' size="sm" ref={target} onClick={() => setShow(!show)}>
         <i    className='bx text-light bx-plus bx-sm'></i>
       </Button>
-       
-      </div>
-        <div className="p-2"><i className='bx  bx-sm bx-right-arrow-alt'></i></div>
+        */}
+      </div> 
+        {/* <div className="p-2"><i className='bx  bx-sm bx-right-arrow-alt'></i></div> */}
       
   </div>
 
@@ -190,7 +190,7 @@ const formik = useFormik({
                
                 <div className="d-flex ">
   <div className="">  <input type="text" className="bg-dark  rounded-2  text-light border border-0  w-100 h-100  rounded-2  shadow-none " placeholder="Edit title" onChange={e => {setTitle(e.target.value)}} /></div>
-  <div className="" ><Button variant="dark" onClick={() => dispatch(fetchUpdateTitle(data={title,playlist}))}>Save</Button></div>
+  <div className="" ><Button  className='create-button' onClick={() => dispatch(fetchUpdateTitle(data={title,playlist}))}>Save</Button></div>
 </div>
 								</ContextMenu.Item>
 								
@@ -215,11 +215,11 @@ const formik = useFormik({
 </div>
 
 ) : (<div className=" rounded-3  flex-column mb-3">
-  <h6 className="mt-2 fs-6 text-light  d-inline-flex">Create Your First Playlist</h6>
+  <h6 className="mt-2    d-inline-flex">Create Your First Playlist</h6>
    <p className="p-2 d-inline-flex">It's is easy we will help you </p> 
   <div className="d-flex flex-column mb-3">
   <div className=" ">
-  <div onClick={showForm} className={show ? ("p-2 text-center me-1  text-light bg-success  rounded-3 ") : ("p-2  me-1 text-light text-center bg-success  rounded-3 ") }>Create New Playlist <i className='bx  bxs-playlist bx-sm'></i></div>
+  <p onClick={showForm} className={show ? ("p-2 text-center me-1  text-light bg-success  rounded-3 ") : ("p-2  me-1 text-light text-center bg-success  rounded-3 ") }>Create New Playlist <i className='bx  bxs-playlist bx-sm'></i></p>
 
   {show && ( <div className="mt-2 ">
     <Form className='d-flex justify-content-evenly ' onSubmit={formik.handleSubmit}>
@@ -228,7 +228,7 @@ const formik = useFormik({
             <div className="error ">{formik.errors.title} {message}</div>
             
           )}</div>
-  <div className="ms-1"     ><Button type="submit" size="sm" className=""  disabled={submitting} variant="dark" >Save</Button></div>
+  <div className="ms-1"     ><Button type="submit" size="sm" className="create-button"  disabled={submitting}  >Save</Button></div>
 
   </Form>
  
@@ -243,15 +243,15 @@ const formik = useFormik({
 </div>
 ) : (
  <div className=" rounded-3  flex-column mb-3">
-  <div className="p-2 fs-6 d-inline-flex">Create Your First Playlist</div>
-  <div className="p-2 d-inline-flex">It's is easy we will help you </div>
+  <h6 className="p-2  d-inline-flex">Create Your First Playlist</h6>
+  <p className="p-2 d-inline-flex">It's is easy we will help you </p>
   <div  className="ms-auto  p-2  rounded-5" >
     <OverlayTrigger
       placement="right"
       delay={{ show: 250, hide: 400 }}
       overlay={renderTooltip1}
     >
-       <Button  variant="success"  className=" text-light  rounded-3  gap-2 mb-2">Create</Button>
+       <Button    className=" text-light create-button rounded-3  gap-2 mb-2">Create</Button>
     </OverlayTrigger>
           
         </div>
@@ -303,7 +303,7 @@ const formik = useFormik({
           )}
          
   </div>
-  <div className="" ><Button type="submit" disabled={submitting} variant="success" >Save</Button></div>
+  <div className="" ><Button type="submit" disabled={submitting} className='create-button' >Save</Button></div>
   </div>
 
  

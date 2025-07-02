@@ -1,42 +1,77 @@
 
 
-/* @import "@radix-ui/colors/black-alpha.css";
-/* @import "@radix-ui/colors/mauve.css";
-@import "@radix-ui/colors/violet.css"; */
-/* ::root{
-  --contexify-menu-minWidth: 120px;
-   --main: rgba(20, 20, 20, 0.987);
-  --submain:  rgba(0,0,0,0.8435749299719888) 72%;
-   --contextmain: rgb(14, 9, 9); 
-  --progressmain:  rgba(7, 87, 50, 0.475); 
-  box-sizing: border-box;
-  --contexify-menu-minWidth: 120px;
-    --progressmain:  rgba(7, 87, 50, 0.475); 
-    max-height: fit-content;
-  color: azure;
-  
-}  */
+:root {
+    --color-primary: #322f3b;
+  --color-accent: #060507;
+   --color-background: #131313;
+    --color-text: azure;
+}
+
+
 
 *{
   box-sizing: border-box;
 
     max-height: fit-content;
-  color: azure;
-  /* background-color:rgba(0,0,0,0.8435749299719888) 72%; */
-  background: rgb(6,6,6);
-background: -moz-linear-gradient(0deg, rgba(6,6,6,1) 50%, rgba(5,1,1,0.700717787114846) 100%);
-background: -webkit-linear-gradient(0deg, rgba(6,6,6,1) 50%, rgba(5,1,1,0.700717787114846) 100%);
-background: linear-gradient(0deg, rgba(6,6,6,1) 50%, rgba(5,1,1,0.700717787114846) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#060606",endColorstr="#050101",GradientType=1);
-} */
+  color:  var(--color-text);
+  background: var(--color-background);
+
+}
+ */
+::placeholder {
+  color:  var(--color-background); /* example orange color */
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.text-link{
+color:var(--color-text);
+}
+
+.form-font{
+background:var( --color-primary);
+}
 
 
+.form-font:hover{
+background:var(--color-accent);
 
+}
+.create-button{
+  background: var(--color-accent);
+color: var(--color-text);
+border: none;
+}
 
+.create-button:hover{
+  background: var(--color-primary) ;
+  color: var(--color-text);
+
+}
+
+.bio-icon{
+    color: var(--color-text);
+}
+.bio-icon:hover{
+    color: var(--color-accent);
+}
 
 
 .maincolor{
-  background-color: var(--submain) ;
+  background-color: var(--color-background) ;
 }
 
 
@@ -45,27 +80,29 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#060606",endCo
 }
 
 body{
-  background-color: var(--submain) ;
-color:azure;
+  background: var(--color-background) ;
+color:var(--color-text);
 height: 100vh; 
 }
 
 .bgcolor{
-  background-color:var(--submain) 
+  background:var(--color-background)
 }
 .card-header{
-  background-color:var(--submain)  
+  background:var(--color-background)
 }
 
 .card-body{
-  background-color:var(--submain) ;
-  color:azure; 
+  background:var(--color-background);
+  color:var(--color-text); 
 }
+
+
 .table{
   background-color:red   
 }
 .audioplayer {
-  background-color:var(--main); 
+  background-color: var(--color-background); 
   height:70px; 
 }
 
@@ -81,29 +118,29 @@ height: 100vh;
   overflow: hidden;
 } 
 .Navbar{
-  background-color:var(--main) ;
+  background: var(--color-background) ;
   height:70px; 
 }
 
 .logindiv {
-  background: var(--submain);
+  background:  var(--color-accent);
   
 }
 .homeleft{
-  background: var(--submain);
+  background:  var(--color-background);
   height: 100vh; 
   text-align: justify;
 }
 
 .homeCenter{
-  background:var(--submain);
+  background:var(--color-background);
   height: 100vh; 
   overflow-y: auto;
   overflow-x: hidden;
   text-align: justify;
 }
 .mainCenter{
-  background: var(--submain);
+  background: var(--color-background);
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
@@ -140,42 +177,39 @@ height: 100vh;
   margin-bottom: 10px;
 }
 .pricingbg{
-  background: var(--submain);
+  background: var(--color-accent);
 }
 
 
 .--range-progress{
-background-color: black ;
-color: black;
+background:var(--color-background) ;
+color: var(--color-primary);
 }
 input::placeholder {
-  color: white;
+  color: var(--color-text);
   opacity: 0.5;
   border:none
 }
 .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   /* color: rgba(0, 128, 23, 0.607);; */
-  color: white;
+  color: var(--color-text);
   opacity: 1; /* Firefox */
 }
 
 .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: rgba(0, 128, 23, 0.607);;
+  color: var(--color-primary);
 }
 
 .form-control::-ms-input-placeholder { /* Microsoft Edge */
-  color: rgba(0, 128, 23, 0.607);;
+  color: var(--color-primary);
 }
 .tooltip{
-   background-color:var(--submain) ; 
+   background:var(--color-background) ; 
 }
 .navform {
-  background-color:var(--submain) ;
+  background:var(--color-primary) ;
 }
-.artistbg{
-  background: rgb(0,36,13);
-  background: linear-gradient(180deg, rgba(0,36,13,0.9192051820728291) 36%, rgba(0,0,0,0.8435749299719888) 72%);
-  }
+
   .paymentdiv{
     margin: 50px, 50px;
     padding: 4px;
@@ -193,7 +227,7 @@ input::placeholder {
 .container {
   position: relative;
   text-align: center;
-  color: white;
+  color: var(--color-text);
   width: 148px;
   
 
@@ -215,7 +249,7 @@ input::placeholder {
 }
 
 .table{
-  background-color: #19E6DF;
+  background: var(--color-accent);
 }
 
 .facebookButton{
@@ -404,7 +438,7 @@ input[type='range']:active::-moz-range-thumb {
 .ContextMenuCheckboxItem[data-highlighted],
 .ContextMenuRadioItem[data-highlighted],
 .ContextMenuSubTrigger[data-highlighted] {
-	background-color: var(--violet-9);
+	background: var(--violet-9);
 	color: var(--violet-1);
 }
 .ContextMenuTrigger{
@@ -463,7 +497,7 @@ input[type='range']:active::-moz-range-thumb {
   width: 25px;
   height: 25px;
   border-radius: 50%; 
-  background: #04AA6D;
+  background: var(--color-background);
   cursor: pointer;
 }
 
@@ -471,7 +505,7 @@ input[type='range']:active::-moz-range-thumb {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #04AA6D;
+  background: var(--color-background);
   cursor: pointer;
 }
 
@@ -479,7 +513,7 @@ input[type='range']:active::-moz-range-thumb {
 @media only screen and (min-width: 992px) {
 
   .homeRight{
-    background:var(--submain);
+    background:var(--color-background);
     margin: 4px, 4px;
     padding: 4px;
     height: 800px;
@@ -491,7 +525,7 @@ input[type='range']:active::-moz-range-thumb {
 
 @media only screen and (max-width: 600px) {
   .homeRight{
-    background:var(--submain);
+    background:var(--color-background);
     margin: 4px, 4px;
     padding: 4px;
     height: 100%;

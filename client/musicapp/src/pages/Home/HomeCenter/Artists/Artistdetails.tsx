@@ -78,7 +78,7 @@ const Artistdetails = () => {
 
   <div className="p-2 fs-3 fw-bold">Artist Mix</div>
   <div className="p-2">{currentArtist[0]?.name}</div>
-  <div className="p-2">SoundPlanet {artistTrack.length} songs </div>
+  <div className="p-2">MusicPlanet {artistTrack.length} songs </div>
 </div>
 </div>
 </div>

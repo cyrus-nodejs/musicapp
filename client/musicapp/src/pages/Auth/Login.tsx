@@ -103,21 +103,21 @@ interface FormValues {
               <div className="">
           
                    
-            <p className="text-center   fs-3 fw-normal">Login</p>
-            <Form onSubmit={formik.handleSubmit}>
-      <Form.Control size="lg"  className='text-light'  required  value={formik.values.username} onChange={formik.handleChange} style={{}} name="username"   type="email" placeholder="Enter Email" />
+            <h2 className="text-center   my-3  ">Login</h2>
+            <Form className='' onSubmit={formik.handleSubmit}>
+      <Form.Control size="lg"  className='shadow-none form-font text-white'  required  value={formik.values.username} onChange={formik.handleChange} style={{}} name="username"   type="email" placeholder="Enter Email" />
       {formik.touched.username && formik.errors.username && (
             <div className="error ">{formik.errors.username}</div>
           )}
      
       <br />
-      <Form.Control size="lg"  required  className='text-light'  value={formik.values.password}  onChange={formik.handleChange} style={{}} name="password"     type="password" placeholder="Enter Password" />
+      <Form.Control size="lg"  required  className='shadow-none form-font text-white'  value={formik.values.password}  onChange={formik.handleChange} style={{}} name="password"     type="password" placeholder="Enter Password" />
       {formik.touched.password && formik.errors.password && (
             <div className="error">{formik.errors.password}</div>
           )}
       <br />
                 <div className="d-grid gap-2">
-             <Button type="submit" disabled={submitting}  variant="success" style={{margin:"20px 0px"}} size="lg"  >Sign in</Button>
+             <Button type="submit" disabled={submitting}  className='create-button ' style={{margin:"20px 0px"}} size="lg"  >Sign in</Button>
                </div> 
 
                </Form>

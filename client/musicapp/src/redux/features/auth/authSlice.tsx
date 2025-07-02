@@ -1,6 +1,6 @@
 import { createSlice,  createAsyncThunk } from '@reduxjs/toolkit'
  import { USER } from '../../../utils/@types'
-import { saveToken, saveRefreshToken } from '../../../utils/helpers/storage'
+import { saveAccessToken, saveRefreshToken } from '../../../utils/helpers/storage'
 import { RootState } from '../../app/store'
 // import axios from 'axios'
 import axios from '../../../utils/helpers/axiosconfig'
@@ -45,7 +45,7 @@ export const fetchAsyncUser = createAsyncThunk(
             console.log(response.data)
             const token = response.data.access;
             const refreshToken= response.data.refresh;
-            saveToken(token);  // Save the token in localStorage
+            saveAccessToken(token);  // Save the token in localStorage
             saveRefreshToken(refreshToken) // Save the refresh token in localStorage
             return token;
           
@@ -62,12 +62,12 @@ export const fetchAsyncUser = createAsyncThunk(
               });
         
 
-  // export const fetchAsyncLogout = createAsyncThunk(
-  //   'auth/fetchAsyncLogout',  async () => {
-  //       const response= await axios.post(`${BASEURL}/api/logout/`,{},{ withCredentials: true })
-  //       console.log(response.data)
-  //       return response.data
-  //     });
+  export const fetchLogout = createAsyncThunk(
+    'auth/fetchLogout',  async () => {
+        const response= await axios.post(`${BASEURL}/api/logout/`,{},{ withCredentials: true })
+        console.log(response.data)
+        return response.data
+      });
       export const fetchForgotPassword = createAsyncThunk(
         'auth/fetchForgotPassword',  async (data:{email:string}) => {
          const {email} = data   
@@ -91,10 +91,11 @@ export const authSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
 
-    fetchAsyncLogout: (state) => {
-      localStorage.removeItem('access_token');
-      state.authUser=null
-     }
+    // fetchAsyncLogout: (state) => {
+    //   localStorage.removeItem('access_token');
+    //   localStorage.removeItem('refresh_token');
+    //   state.authUser=null
+    //  }
  
   },
    extraReducers: (builder) => {
@@ -122,15 +123,26 @@ export const authSlice = createSlice({
           state.isAuthenticated = true
           state.message= action.payload.message
           state.authUser= action.payload
-          
-          
-          
-  
+          window.location.href = '/';
         })
         .addCase(fetchLogin.rejected, (state, action) => {
           state.status = 'failed'
           state.error = action.error.message;
         })
+
+         .addCase(fetchLogout.pending, (state) => {
+        state.status = 'pending'
+        })
+        .addCase(fetchLogout.fulfilled, (state) => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+          state.authUser= null
+        })
+        .addCase(fetchLogout.rejected, (state, action) => {
+          state.status = 'failed'
+          state.error = action.error.message;
+        })
+        
         .addCase(fetchRegister.pending, (state) => {
       state.status = 'pending'
      
@@ -183,6 +195,6 @@ export const getAuthStatus = (state:RootState) => state.auth.status
 export const getAuthToken = (state:RootState) => state.auth.token
 
 export const getMessage =(state:RootState) => state.auth.message
-export const {fetchAsyncLogout } = authSlice.actions
+
 // Export the slice reducer for use in the store configuration
 export default authSlice.reducer;

@@ -87,34 +87,34 @@ interface FormValues {
  <div className="ms-auto  me-auto">
 
                 
-  <h4 className="" style={{textAlign:"center"}}>Register an account</h4>
+  <h2 className="text-center" >Register </h2>
   <Form className='text-light' onSubmit={formik.handleSubmit}>
-  <Form.Control className='text-light'  size="lg"  required  onChange={formik.handleChange} value={formik.values.first_name} style={{}}  name="first_name"type="text"  placeholder="Enter first_name" />
+  <Form.Control className='shadow-none form-font text-white'  size="lg"  required  onChange={formik.handleChange} value={formik.values.first_name} style={{}}  name="first_name"type="text"  placeholder="Enter first_name" />
   {formik.touched.first_name && formik.errors.first_name && (
             <div className="error ">{formik.errors.first_name}</div>
           )}
       <br /> 
-      <Form.Control className='text-light' size="lg"  required onChange={formik.handleChange} value={formik.values.last_name}  style={{}}  name="last_name"   type="text"  placeholder="last_name" />
+      <Form.Control className='shadow-none form-font text-white' size="lg"  required onChange={formik.handleChange} value={formik.values.last_name}  style={{}}  name="last_name"   type="text"  placeholder="last_name" />
       {formik.touched.last_name && formik.errors.last_name && (
             <div className="error ">{formik.errors.last_name}</div>
           )}
       <br />
-      <Form.Control className='text-light' size="lg"  required  value={formik.values.username} onChange={formik.handleChange} style={{}} name="username"   type="email" placeholder="email" />
+      <Form.Control className='shadow-none form-font text-white' size="lg"  required  value={formik.values.username} onChange={formik.handleChange} style={{}} name="username"   type="email" placeholder="email" />
       {formik.touched.username && formik.errors.username && (
             <div className="error ">{formik.errors.username}</div>
           )}
       <br />
-      <Form.Control className='text-light' size="lg" hidden  required  value={formik.values.username} onChange={formik.handleChange} style={{}} name="username"   type="email" placeholder="email" />
+      <Form.Control className='shadow-none form-font text-white' size="lg" hidden  required  value={formik.values.username} onChange={formik.handleChange} style={{}} name="username"   type="email" placeholder="email" />
       {formik.touched.username && formik.errors.username && (
             <div className="error ">{formik.errors.username}</div>
           )}
       <br />
-      <Form.Control className='text-light' size="lg"  required   value={formik.values.password}  onChange={formik.handleChange} style={{}} name="password"     type="password" placeholder="Password" />
+      <Form.Control className='shadow-none form-font text-white' size="lg"  required   value={formik.values.password}  onChange={formik.handleChange} style={{}} name="password"     type="password" placeholder="Password" />
       {formik.touched.password && formik.errors.password && (
             <div className="error">{formik.errors.password}</div>
           )}
       <br />
-       <Form.Control className='text-light' size="lg"  required   value={formik.values.confirmPassword}  onChange={formik.handleChange} style={{}} name="confirmPassword"     type="password" placeholder="Confirm Password" />
+       <Form.Control className='shadow-none form-font text-white' size="lg"  required   value={formik.values.confirmPassword}  onChange={formik.handleChange} style={{}} name="confirmPassword"     type="password" placeholder="Confirm Password" />
        {formik.touched.confirmPassword && formik.errors.confirmPassword && (
             <div className="error">{formik.errors.confirmPassword}</div>
           )}
@@ -122,7 +122,7 @@ interface FormValues {
      
       <div className="d-grid gap-2">
     
-    <Button variant="outline-success" type="submit" disabled={submitting} style={{margin:"20px 0px"}} size="lg"      >Sign up</Button>
+    <Button className='create-button' type="submit" disabled={submitting} style={{margin:"20px 0px"}} size="lg"      >Sign up</Button>
    
      </div>
      </Form>

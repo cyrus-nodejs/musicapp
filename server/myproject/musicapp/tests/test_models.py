@@ -1,8 +1,18 @@
 # Create your tests here.
 from django.test import TestCase
 from django.contrib.auth.models import User
-from ..models import Album, Artist, Genre, Track, Playlist, Pricing, Order, Subscription
 from rest_framework.authtoken.models import Token
+
+from ..models import (
+    Album,
+    Artist,
+    Genre,
+    Track,
+    Playlist,
+    Pricing,
+    Order,
+    Subscription 
+)
 
 #Unit Test
 class MusicAppTestCase(TestCase):

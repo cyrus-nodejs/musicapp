@@ -1,6 +1,6 @@
 // api/axiosConfig.js
 import axios from 'axios';
-import { getToken, getRefreshToken , saveToken, removeToken } from './storage';
+import { getAccessToken, getRefreshToken , saveAccessToken, removeAccessToken } from './storage';
 import { getCsrfToken } from './csrftokenconfig'
 
 
@@ -20,7 +20,7 @@ axios.defaults.withCredentials = true;  // This will send cookies in cross-origi
 axios.interceptors.request.use(
   (config) => {
     // Get the token from Redux state
-    const token = getToken();
+    const token = getAccessToken();
 
     // If the token exists, attach it to the Authorization header
     if (token) {
@@ -69,14 +69,14 @@ axios.interceptors.response.use(
 
         const newAccessToken = response.data.access;
         
-        saveToken(newAccessToken)  // update storage
+        saveAccessToken(newAccessToken)  // update storage
         axios.defaults.headers['Authorization'] = `Bearer ${newAccessToken}`;
         originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
 
         return axios(originalRequest); // retry original request
       } catch (refreshError) {
        
-        removeToken()
+        removeAccessToken()
         console.error('Token refresh failed:', refreshError);
         // Optional: redirect to login
         return Promise.reject(refreshError);

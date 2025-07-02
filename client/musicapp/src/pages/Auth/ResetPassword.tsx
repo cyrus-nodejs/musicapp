@@ -76,21 +76,21 @@ interface FormValues {
 <div   className="d-flex justify-content-center">
 
          <div>
-<p className="text-center  fs-5 fw-normal">Reset your password.</p>           
+<h2 className="text-center  ">Reset your password.</h2>           
 
   <Form onSubmit={formik.handleSubmit}>
-      <Form.Control size="lg"  required  className='text-light' value={formik.values.password}  onChange={formik.handleChange} style={{}} name="password"     type="password" placeholder="Password" />
+      <Form.Control size="lg"  required  className='shadow-none form-font text-white' value={formik.values.password}  onChange={formik.handleChange} style={{}} name="password"     type="password" placeholder="Password" />
       {formik.touched.password && formik.errors.password && (
             <div className="error">{formik.errors.password}</div>
           )}
       <br />
-      <Form.Control size="lg"  required className="shadow-none text-light"   value={formik.values.confirmPassword}  onChange={formik.handleChange} style={{}} name="confirmPassword"     type="password" placeholder="Confirm Password" />
+      <Form.Control size="lg"  required className="shadow-none form-font text-white"   value={formik.values.confirmPassword}  onChange={formik.handleChange} style={{}} name="confirmPassword"     type="password" placeholder="Confirm Password" />
        {formik.touched.confirmPassword && formik.errors.confirmPassword && (
             <div className="error">{formik.errors.confirmPassword}</div>
           )}
       <br />
                 <div className="d-grid gap-2">
-             <Button type="submit" disabled={submitting}  variant="success" style={{margin:"20px 0px"}} size="lg"  >Reset Password</Button>
+             <Button type="submit" disabled={submitting}  className='create-button' style={{margin:"20px 0px"}} size="lg"  >Reset Password</Button>
                </div> 
 
                </Form>
