@@ -34,6 +34,7 @@ const HomeLeft = () => {
  console.log(authUser)
  console.log(isauthenticated)
 const Playlist = useAppSelector(getPlaylists)
+console.log(Playlist)
 const message = useAppSelector(getMessage)
  const [title, setTitle]  = useState("")
  const [show, setShow] = useState(false)
@@ -46,9 +47,7 @@ e.preventDefault()
 const showForm = () => {
   setShow((prev) => !prev)
 }
-// const hideForm = () => {
-//   setShow((prev) => !prev)
-// }
+
 
 useEffect(() => {
   dispatch(fetchPlaylist())
@@ -111,28 +110,25 @@ const formik = useFormik({
   return (
 
     
-    <div  className="mt-3 d-none d-lg-block  homeleft col-2 me-1 rounded    text-light ">
+    <div  className="mt-3 d-none d-lg-block  homeleft col-2 me-1    text-light ">
     
 
-    <div className="d-flex mb-3">
-    <div className="p-2 ">Your Library</div>
+    <div className="d-flex mb-3 artist-bg">
+    <div className="p-2 artist-bg">Your Library</div>
     
     
-          <div  className="ms-auto   " >
-        {/* <Button className='' size="sm" ref={target} onClick={() => setShow(!show)}>
-        <i    className='bx text-light bx-plus bx-sm'></i>
-      </Button>
-        */}
+          <div  className="ms-auto artist-bg  " >
+    
       </div> 
-        {/* <div className="p-2"><i className='bx  bx-sm bx-right-arrow-alt'></i></div> */}
+        <div className="p-2 artist-bg"><i className='bx artist-bg bx-sm bx-right-arrow-alt'></i></div>
       
   </div>
 
   { authUser && isauthenticated  ? (
   
     <div  className="">
-        {Playlist  ? ( 
-            
+        {Playlist?.length !== 0    ? ( 
+          
           <div>
           <div className="text-start mb-3">My Playlist(s)</div>
 {Playlist?.map((playlist:PLAYLIST, id:number) =>{
@@ -214,47 +210,81 @@ const formik = useFormik({
 
 </div>
 
-) : (<div className=" rounded-3  flex-column mb-3">
-  <h6 className="mt-2    d-inline-flex">Create Your First Playlist</h6>
-   <p className="p-2 d-inline-flex">It's is easy we will help you </p> 
-  <div className="d-flex flex-column mb-3">
-  <div className=" ">
-  <p onClick={showForm} className={show ? ("p-2 text-center me-1  text-light bg-success  rounded-3 ") : ("p-2  me-1 text-light text-center bg-success  rounded-3 ") }>Create New Playlist <i className='bx  bxs-playlist bx-sm'></i></p>
-
-  {show && ( <div className="mt-2 ">
-    <Form className='d-flex justify-content-evenly ' onSubmit={formik.handleSubmit}>
-  <div className="">     <Form.Control size="sm" className='text-light shadow-none'  required  value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}   name="title"   type="text" placeholder="title" />
+) : (<div className="  homeleft-text flex-column mb-3">
+ 
+ <div className='rounded-3 py-3 px-1 '>
+  <p className="mt-2 fw-medium  ">Create Your First Playlist</p>
+   <p className="  ">It's is easy we will help you </p> 
+  <div className="d-flex   mb-3 flex-column">
+           
+  {show && ( <div className="my-2 ">
+    <Form className='d-flex justify-content-evenly shadow-none form-font ' onSubmit={formik.handleSubmit}>
+  <div className="">     <Form.Control size="sm" className='text-light form-text shadow-none'  required  value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}   name="title"   type="text" placeholder="title" />
       {formik.touched.title && formik.errors.title && (
             <div className="error ">{formik.errors.title} {message}</div>
             
           )}</div>
-  <div className="ms-1"     ><Button type="submit" size="sm" className="create-button"  disabled={submitting}  >Save</Button></div>
-
+  <div className="m-1 "     ><Button type="submit" size="sm" className="create-button"  disabled={submitting}  >Save</Button></div>
   </Form>
  
 </div>)}
+  <div  className="me-auto   p-2  " >
+ <Button onClick={showForm} className={show ? (" text-center   text-light create-button   ") : ("   text-light text-center create-button  ") }>Create  Playlist</Button>
+ </div>
+    </div>
+    </div>
+  <div className="homeleft-text my-2  rounded-3 ">
+ 
+<div className=' py-3 px-2 rounded-3'>
+  <p className="fw-medium   ">Lets find some more pod</p>
+  <p className="  "> We will keep you updated on new episode </p>
+  <div  className="ms-auto   p-2  " >
 
+       <Button    className=" text-light create-button rounded-3  gap-2 mb-2">Browse Podcast</Button>
+   
+          
+        </div>
+        </div>
   </div>
-   <div className="p-2">{message  &&  (<p className="text-warning" >{message}</p>)}</div>
-  </div>
+   <div className="p-2 homeleft-text">{message  &&  (<p className="text-warning" >{message}</p>)}</div>
+
 </div>)}
     
    
 </div>
 ) : (
- <div className=" rounded-3  flex-column mb-3">
-  <h6 className="p-2  d-inline-flex">Create Your First Playlist</h6>
-  <p className="p-2 d-inline-flex">It's is easy we will help you </p>
-  <div  className="ms-auto  p-2  rounded-5" >
+ <div className=" rounded-5  homeleft-text flex-column my-5">
+
+  <div className='rounded-2 py-3 px-1'>
+  <p className="fw-medium ">Create Your First Playlist</p>
+  <p className="  ">It's is easy we will help you </p>
+  <div  className="ms-auto   p-2  " >
     <OverlayTrigger
       placement="right"
       delay={{ show: 250, hide: 400 }}
       overlay={renderTooltip1}
     >
-       <Button    className=" text-light create-button rounded-3  gap-2 mb-2">Create</Button>
+       <Button    className=" text-light create-button rounded-3  gap-2 mb-2">Create Playlist</Button>
     </OverlayTrigger>
           
         </div>
+        </div>
+       
+         <div className='rounded-2 my-3 py-3 px-1'>
+  <p className=" fw-medium  ">Lets find some more podcast</p>
+  <p className=""> We will keep you updated on new episode </p>
+  <div  className="ms-auto  p-2  " >
+    <OverlayTrigger
+      placement="right"
+      delay={{ show: 250, hide: 400 }}
+      overlay={renderTooltip1}
+    >
+       <Button    className=" text-light create-button rounded-3  gap-2 mb-2">Browse Podcast</Button>
+    </OverlayTrigger>
+          
+        </div>
+        </div>
+        
 
 </div>
 
@@ -297,7 +327,7 @@ const formik = useFormik({
   
   <div className="d-flex ">
 
-  <div className="">  <Form.Control type="text" className="bg-dark  className='text-light'   rounded-2  text-light border border-0  w-100 h-100  rounded-2  shadow-none " placeholder="Edit title" value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}  name="title" />
+  <div className="">  <Form.Control type="text" className="bg-dark form-text  className='text-light'   rounded-2  text-light border border-0  w-100 h-100  rounded-2  shadow-none " placeholder="Edit title" value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}  name="title" />
   {formik.touched.title && formik.errors.title && (
             <div className="error text-light">{formik.errors.title} </div>
           )}

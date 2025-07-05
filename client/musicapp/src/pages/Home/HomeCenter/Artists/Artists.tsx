@@ -24,25 +24,27 @@ const Artists = () => {
     
            
            
-      <Row  className='mt-5' >
+      <Row  className='mt-5 artist-bg ' >
          {artists && (
-          <div>
+          <div className='artist-bg '>
            
-           <div className="d-flex mb-3">
-           <div className="d-inline-flex my-3 fs-4 border-info  border-bottom">Artists</div>
+           <div className="d-flex mb-3 artist-bg">
+           <div className="d-inline-flex my-3 fs-4 artist-bg border-bottom">Artists</div>
     
-    <div className="ms-auto p-2"><Link to="/allartists" className="text-decoration-none d-none d-lg-block text-light">Show all</Link>  </div>
+    <div className="ms-auto artist-bg  p-2"><Link to="/allartists" className="text-decoration-none d-none artist-bg d-lg-block text-light">Show all</Link>  </div>
   </div>
-            <div className="row    ">
+            <div className="row  artist-bg  ">
        {artists?.slice(0, 5).map((artist:ARTIST) =>{
           return (
-        <figure className="figure col  ">
-            <Link to={`/artist/${artist.name}`} className="text-decoration-none text-light">     
-            
-               <LazyLoadImage className=" rounded-circle "  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${artist.cover_image}`}   style={{ width: '120px', height: '130px' }} />
-            </Link>
-                 <figcaption className="figure-caption text-light  ">{artist.name}</figcaption> 
-                </figure>
+        <div className=" col artist-bg   " key={artist.bio || artist.name}>
+      
+            <Link to={`/artist/${artist.name}`} className="text-decoration-none artist-bg text-light">     
+               
+               <LazyLoadImage  className=" rounded-circle artist-image"   effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${artist.cover_image}`}   width='150px' height='160px'    />
+         </Link>
+          
+                 <figcaption className="figure-caption text-light  artist-bg">{artist.name}</figcaption> 
+                </div>
               )
        })}
     

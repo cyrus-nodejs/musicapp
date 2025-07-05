@@ -15,11 +15,11 @@ const Center = () => {
 const searchTerm = useAppSelector(getSearchTerm)
 
   return (
-    <div  className="col pb-5   mt-3 rounded  mt-3 rounded   vh-100   homeRight   text-light ">
+    <div  className="col pb-5     homecenter-text rounded px-2 mt-3 rounded-3  vh-100   homeCenter   text-light ">
       <Row className="  ">
       <div  className="col pb-5    mt-3 rounded  mt-3 rounded     text-light ">
       <Row className=" ">
-      {!searchTerm ? (<div className="pb-5">
+      {!searchTerm ? (<div className="pb-5 artist-bg">
         <Artists />
 <Genres />
 

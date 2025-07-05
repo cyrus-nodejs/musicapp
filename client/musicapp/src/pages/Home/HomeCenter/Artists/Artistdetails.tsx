@@ -16,8 +16,10 @@ import { playAllTracks } from '../../../../redux/features/audio/audioSlice';
 import { Link } from 'react-router-dom';
 import { fetchAddToPlaylist, getPlaylists } from '../../../../redux/features/playlist/playlistSlice';
 import { getCurrentSub } from '../../../../redux/features/checkout/checkoutSlice';
+
 import * as ContextMenu from "@radix-ui/react-context-menu";
 import { timeConverter } from '../../../../utils/helpers/utilities';
+
 const Artistdetails = () => {
   
   let data 
@@ -41,7 +43,7 @@ const Artistdetails = () => {
       
       
   const filterTrack = (current: string | undefined) => {
-    return  songs.filter(song =>  song.artist.name === current );
+    return  songs.filter((song: { artist: { name: string | undefined; }; }) =>  song.artist.name === current );
   };
   const artistTrack = filterTrack(id)
   console.log(artistTrack)
@@ -60,14 +62,14 @@ const Artistdetails = () => {
         <div className="row vh-100 overflow-hidden homeRight  mt-5">
             <HomeLeft />
      
-            <div  className='mt-5  pb-5   mt-3 rounded  mt-3 rounded   vh-100     text-light  artistbg mx-1 my-2 homeCenter  col' >
+            <div  className='mt-5  pb-5   mt-3 rounded  mt-3 rounded   vh-100     text-light  artistbg mx-1 my-2 CenterScroll  col' >
    
       <div  className=" pb-5    mt-3 rounded  mt-3 rounded     text-light ">
       <Row className=" pb-5">
     
         {searchterm ? (<NavSearchResults />) : (  <div className="" >
            
-           <div className="artistbg" >
+           <div className="" >
         <div className="d-flex align-items-center">
   <div className="flex-shrink-0">
 
@@ -99,7 +101,7 @@ const Artistdetails = () => {
 <ContextMenu.Root>
 <ContextMenu.Trigger className="ContextMenuTrigger">
   <div className=" pb-5">
-    <Table  className="table col pb-5     mt-5 rounded     text-light   table-dark table-hover bg-info" responsive   >
+    <Table  className=" custom-table col pb-5     mt-5 rounded     text-light   " responsive   >
       <thead>
         <tr>
         <th>#</th>

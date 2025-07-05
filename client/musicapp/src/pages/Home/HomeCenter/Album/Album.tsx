@@ -29,27 +29,27 @@ const Albums = () => {
     
            
            
-      <Row  className='mt-5' >
+      <Row  className='mt-5 artist-bg' >
          {albums && (
-          <div>
+          <div className='artist-bg'>
 
-<div className="d-flex mb-3">
-<div className="d-inline-flex my-3 fs-4 border-info text-light  border-bottom">Albums</div>
+<div className="d-flex artist-bg mb-3">
+<div className="d-inline-flex my-3 fs-4 border-info text-light artist-bg  border-bottom">Albums</div>
     
-    <div className="ms-auto d-none d-lg-block p-2"><Link to="/allalbums" className="text-decoration-none text-light">Show all</Link>  </div>
+    <div className="ms-auto d-none artist-bg d-lg-block p-2"><Link to="/allalbums" className="text-decoration-none artist-bg text-light">Show all</Link>  </div>
   </div>
           
         
-            <div className="row   ">
+            <div className="row  artist-bg ">
        {albums?.slice(0, 5).map((album:ALBUM) =>{
           return (
-        <figure className="figure col ">
+        <div className="artist-bg col ">
          <Link to={`/album/${album.title}`} className="text-decoration-none text-light">
 
-               <LazyLoadImage className=" rounded-3 "  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${album.cover_image}`}   style={{ width: '130px', height: '130px' }} />
+               <LazyLoadImage className=" rounded-3 artist-bg"  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${album.cover_image}`}   style={{ width: '130px', height: '130px' }} />
          </Link>
-                 <figcaption className="figure-caption text-light  ">{album.title}</figcaption> 
-                </figure>
+                 <figcaption className="figure-caption text-light artist-bg ">{album.title}</figcaption> 
+                </div>
               )
        })}
     

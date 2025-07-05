@@ -1,10 +1,13 @@
 
 
 :root {
-    --color-primary: #322f3b;
-  --color-accent: #060507;
-   --color-background: #131313;
+    --color-primary: #7c2113;
+  --color-accent: #423853;
+   --color-background: #0c0909;
+       --color-sub-background:#171212;
     --color-text: azure;
+    --color-scrollbar:#353434;
+   
 }
 
 
@@ -42,7 +45,7 @@ color:var(--color-text);
 }
 
 .form-font{
-background:var( --color-primary);
+background:var( --color-sub-background);
 }
 
 
@@ -127,39 +130,74 @@ height: 100vh;
   
 }
 .homeleft{
-  background:  var(--color-background);
+  background:  var(--color-sub-background);
   height: 100vh; 
   text-align: justify;
 }
 
+.homeleft-text{
+  background: var(--color-sub-background) ;
+}
 .homeCenter{
-  background:var(--color-background);
+  background:var(--color-sub-background);
   height: 100vh; 
   overflow-y: auto;
   overflow-x: hidden;
   text-align: justify;
+  border-radius: 50px;
+}
+.homeleft-bar{
+   background: var(--color-sub-background);
+}
+.artist-image {
+  width: 150px;
+  height: 160px;
+  object-fit: cover;
+  background-color: var(--color-scrollbar); /* or any default color */
+}
+.CenterScroll{
+  height: 100vh; 
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: justify;
+  border-radius: 10px;
+}
+.artist-bg {
+    background:var(--color-sub-background);
+}
+
+.artist-subbg {
+    background:var(--color-background);
+}
+.homecenter-text{
+  background: var(--color-sub-background) ;
 }
 .mainCenter{
-  background: var(--color-background);
+  background: var(--color-sub-background);
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
 }
 
-/* .homeRight{
-  background:var(--submain);
+.homeRight{
+  background:var(--color-sub-background);
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
   height: 100vh; 
-} */
-/* .smallHomeRight{
-  background:var(--submain);
+}
+
+.homeRight-text{
+  background: var(--color-sub-background) ;
+}
+
+.smallHomeRight{
+  background:var(--color-sub-background);
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
   height: 100vh; 
-} */
+}
 .scroll{
   overflow-x: hidden;
   overflow-y: auto;
@@ -176,9 +214,7 @@ height: 100vh;
   margin-top: -10px;
   margin-bottom: 10px;
 }
-.pricingbg{
-  background: var(--color-accent);
-}
+
 
 
 .--range-progress{
@@ -207,9 +243,23 @@ input::placeholder {
    background:var(--color-background) ; 
 }
 .navform {
-  background:var(--color-primary) ;
+  background:var(--color-sub-background) ;
+}
+.navform:hover {
+  background:var(--color-sub-background) ;
 }
 
+.form-control {
+      background:var(--color-sub-background) ; /* light grey */
+    border: 1px solid #ced4da;
+    color: #212529;
+}
+
+.form-control:focus {
+      background:var(--color-sub-background) ; /* white on focus if desired */
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.2rem rgba(13,110,253,.25);
+}
   .paymentdiv{
     margin: 50px, 50px;
     padding: 4px;
@@ -263,19 +313,19 @@ height: 3rem;
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px rgb(104, 99, 99); 
+  box-shadow: inset 0 0 5px rgb(72, 71, 71); 
   border-radius: 10px;
 }
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(60, 60, 61, 0.638); 
+  background: rgba(53, 52, 52, 0.638); 
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background:  rgba(49, 49, 53, 0.638); ; 
+  background:  rgba(52, 50, 50, 0.638); ; 
 }
 
 .menu{
@@ -379,6 +429,24 @@ input[type='range']:active::-moz-range-thumb {
   transform: scale(1.2);
   background-color: var(--progressmain);
 }
+
+
+.custom-table {
+  background-color:var(--color-background) ; /* Light blue background */
+  color: var(--color-text); /* Text color */
+}
+
+.custom-table th {
+  background-color:var(--color-background);
+  color: var(--color-text);
+}
+
+.custom-table td {
+  background-color: var(--color-background);
+   color: var(--color-text);
+
+}
+
 
 /* 
 .ContextMenuTrigger {
@@ -534,3 +602,4 @@ input[type='range']:active::-moz-range-thumb {
     text-align: justify;
   }
 }
+

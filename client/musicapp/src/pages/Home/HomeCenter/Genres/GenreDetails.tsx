@@ -57,7 +57,7 @@ const Genredetails = () => {
         <div className="row vh-100 overflow-hidden   mt-5">
             <HomeLeft />
             
-            <div  className='mt-5  pb-5    rounded  mt-3 rounded   vh-100     text-light  artistbg mx-1 my-2 homeCenter  col' >
+            <div  className='mt-5  pb-5    rounded  mt-3 rounded   vh-100     text-light  artistbg mx-1 my-2 CenterScroll  col' >
    
       <div  className=" pb-5    mt-3 rounded  mt-3 rounded     text-light ">
       <Row className=" ">
@@ -94,7 +94,7 @@ const Genredetails = () => {
     <ContextMenu.Root>
     <ContextMenu.Trigger className="ContextMenuTrigger">
     <div className="pb-5">
-    <Table  className="table col pb-5     mt-3 rounded     text-light   table-dark table-hover " responsive   >
+    <Table  className="custom-table col pb-5     mt-3 rounded     text-light   table-dark table-hover " responsive   >
       <thead>
         <tr>
         <th>#</th>

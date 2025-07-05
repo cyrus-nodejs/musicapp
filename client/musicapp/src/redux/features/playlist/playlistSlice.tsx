@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 export interface PlaylistState {
-playlists:PLAYLIST[] | void 
+playlists:PLAYLIST[] | void | null
 currentPlayList:PLAYLIST | null
 currentPlaylistSong:TRACK[]
 recentlyplayed:TRACK[]|null

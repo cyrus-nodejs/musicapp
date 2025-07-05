@@ -49,18 +49,18 @@ const HandleSelect = (e:Event) =>{
     
            
            
-      <Col  className='' >
+      <Col  className='artist-bg' >
   
           <div
-          className='col'
+          className='col artist-bg'
           >
      
     
             <div
             onMouseOver={() => setHidden(true)}
-            onMouseOut={() => setHidden(false)} className=" rounded-3 d-flex flex-row  mb-3  ">
+            onMouseOut={() => setHidden(false)} className="artist-bg rounded-3 d-flex flex-row  mb-3  ">
     
-        <figure  className="figure  position-relative  ">
+        <figure  className="figure artist-bg  position-relative  ">
           <ContextMenu.Root>
 			<ContextMenu.Trigger className="ContextMenuTrigger">
             <OverlayTrigger
@@ -68,9 +68,9 @@ const HandleSelect = (e:Event) =>{
                     delay={{ show: 250, hide: 400 }}
                     overlay={RightClickTooltip}
                   >
-      <div className="container ">
+      <div className="container artist-bg ">
                
-                               <LazyLoadImage className=" rounded-3"  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${track.cover_image}`}   style={{ width: '120px', height: '130px' }} />
+                               <LazyLoadImage className="artist-bg rounded-3"  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${track.cover_image}`}   style={{ width: '120px', height: '130px' }} />
                 </div>
                 </OverlayTrigger>
                 <div className="">
@@ -83,7 +83,7 @@ const HandleSelect = (e:Event) =>{
                 
   </div> 
 
-                 <figcaption className="figure-caption text-light  ">{track?.title}</figcaption> 
+                 <figcaption className="figure-caption  text-light artist-bg ">{track?.title}</figcaption> 
                 
 			</ContextMenu.Trigger>
 			<ContextMenu.Portal>

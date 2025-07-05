@@ -23,12 +23,12 @@ const AllArtists = () => {
     <NavIndex />
         <div className="row vh-100  overflow-hidden homeRight  mt-5">
             <HomeLeft />
-            <Row  className='mx-1 my-2 homeCenter  col' >
+            <Row  className='mx-1 my-2 pb-5 CenterScroll  col' >
      {searchterm ? (< NavSearchResults />) : (  
-          <div>
+          <div className='pb-5'>
            <div className="d-inline-flex my-3 fs-4 border-info text-light  border-bottom">Artists</div>
         
-            <div className="col m-1   ">
+            <div className="col m-1  artist-subbg ">
        {artists?.map((artist:ARTIST) =>{
           return (
         <figure className="figure col ">

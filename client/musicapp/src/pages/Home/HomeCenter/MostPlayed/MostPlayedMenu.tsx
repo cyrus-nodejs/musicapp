@@ -14,10 +14,10 @@ useEffect(() =>{
       }, [dispatch])
   
   return (
-    <div className='row'>
-               <div className="d-flex ">
+    <div className='row artist-bg'>
+               <div className="d-flex artist-bg">
 
-<div className="d-inline-flex my-3 fs-4 border-info  border-bottom">Most Played</div>
+<div className="d-inline-flex my-3 fs-4 border-info artist-bg border-bottom">Most Played</div>
 
 </div>
 

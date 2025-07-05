@@ -28,27 +28,27 @@ const Genres = () => {
     
            
            
-      <Row  className='mt-5' >
+      <Row  className='mt-5 artist-bg' >
          {genres && (
-          <div>
+          <div className='artist-bg'>
 
-<div className="d-flex mb-3">
-<div className="d-inline-flex my-3 fs-4 border-info text-light  border-bottom">Genres</div>
+<div className="d-flex  artist-bg">
+<div className="d-inline-flex my-3 fs-4 border-info text-light artist-bg  border-bottom">Genres</div>
     
-    <div className="ms-auto d-none d-lg-block p-2"><Link to="/allgenres" className="text-decoration-none text-light">Show all</Link>  </div>
+    <div className="ms-auto d-none artist-bg d-lg-block p-2"><Link to="/allgenres" className="text-decoration-none artist-bg text-light">Show all</Link>  </div>
   </div>
           
         
-            <div className="row   ">
+            <div className="row   artist-bg">
        {genres?.slice(0, 5).map((genre:GENRE) =>{
           return (
-        <figure className="figure col ">
-         <Link to={`/genre/${genre?.title}`} className="text-decoration-none text-light">
+        <div className=" col artist-bg">
+         <Link to={`/genre/${genre?.title}`} className="text-decoration-none artist-bg text-light">
          
-                         <LazyLoadImage className=" rounded-3 "  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${genre.cover_image}`}   style={{ width: '120px', height: '130px' }} />
+                         <LazyLoadImage className=" rounded-3 artist-bg"  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${genre.cover_image}`}   style={{ width: '120px', height: '130px' }} />
          </Link>
-                 <figcaption className="figure-caption text-light  ">{genre.title}</figcaption> 
-                </figure>
+                 <figcaption className="figure-caption artist-bg text-light  ">{genre.title}</figcaption> 
+                </div>
               )
        })}
     

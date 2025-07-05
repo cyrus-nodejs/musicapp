@@ -10,8 +10,6 @@ const Audioplayer = () => {
     
  
     return (
- 
-   
   <section className="sticky-bottom d-none d-lg-block">
    <div className="d-flex audioplayer   ">
   <div className="col-2 "><DisplayTrack  /></div>
