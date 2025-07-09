@@ -53,9 +53,9 @@ console.log(data)
         <div className="row vh-100 overflow-hidden   mt-5">
             <HomeLeft />
             
-            <div  className='mt-5  pb-5    rounded  mt-3 rounded   vh-100     text-light  artistbg mx-1 my-2 CenterScroll  col' >
+            <div  className='mt-5  pb-5    rounded  mt-3 rounded   vh-100       artistbg mx-1 my-2 CenterScroll  col' >
    
-      <div  className=" pb-5    mt-3 rounded  mt-3 rounded     text-light ">
+      <div  className=" pb-5    mt-3 rounded  mt-3 rounded      ">
       <Row className=" ">
      {searchterm ? (<NavSearchResults />) : ( <div className="pb-5">
            
@@ -68,7 +68,7 @@ console.log(data)
   <div className="flex-grow-1 ms-3">
   <div className="d-flex flex-column mb-3">
   <div className="p-2 text-start">Playlist</div>
-  <div className="p-2 fs-3 fw-bold">Album Mix</div>
+  <div className="p-2 fs-3 ">Album Mix</div>
   <div className="p-2">{currentAlbum[0]?.title}</div>
   <div className="p-2">MusicPlanet {albumTrack.length} songs </div>
 </div>
@@ -91,14 +91,14 @@ console.log(data)
     <ContextMenu.Root>
     <ContextMenu.Trigger className="ContextMenuTrigger">
     <div className="pb-5">
-    <Table  className="custom-table col pb-5     mt-3 rounded     text-light   table-dark " responsive   >
+    <Table  className="custom-table col pb-5     mt-3 rounded        table-dark " responsive   >
       <thead>
         <tr>
         <th>#</th>
           <th>Title</th>
           <th>Album</th>
           <th>Year</th>
-          <th><i className='bx text-light bx-alarm'></i></th>
+          <th><i className='bx  bx-alarm'></i></th>
         </tr>
       </thead>
       <tbody>
@@ -191,8 +191,8 @@ null
 								alignOffset={-5}
 							>
 							
-                {currentSub?.pricing.plans== "medium" || currentSub?.pricing.plans == "premium" ? (	<ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem "><a href={ `${track.audio_file}` } className="text-decoration-none text-light"  target="_blank" download>   <div className="d-flex ">   <div className="me-1">Download</div>
-           <div className=""><i className='bx bx-download text-light'></i></div> </div></a></ContextMenu.Item>) : (   <ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem ">
+                {currentSub?.pricing.plans== "medium" || currentSub?.pricing.plans == "premium" ? (	<ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem "><a href={ `${track.audio_file}` } className="text-decoration-none "  target="_blank" download>   <div className="d-flex ">   <div className="me-1">Download</div>
+           <div className=""><i className='bx bx-download '></i></div> </div></a></ContextMenu.Item>) : (   <ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem ">
        <div className="border border-none"    ref={target} onClick={() => setShow(!Show)}>
         Subscribe to Download    </div>
       <Overlay target={target.current} show={Show} placement="top">
@@ -209,7 +209,7 @@ null
 						</ContextMenu.Portal>
 					</ContextMenu.Sub>
           <ContextMenu.Item className="ContextMenuItem">
-          <Link to={`/report`} className='text-decoration-none d-block text-light '> Report </Link> 
+          <Link to={`/report`} className='text-decoration-none d-block  '> Report </Link> 
 					</ContextMenu.Item>
 				</ContextMenu.Content>
 			</ContextMenu.Portal>

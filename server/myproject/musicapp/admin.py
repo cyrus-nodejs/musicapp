@@ -22,6 +22,5 @@ admin.site.register(Track)
 admin.site.register(Pricing)
 admin.site.register(Playlist)
 admin.site.register(Order)
-admin.site.register(Subscription)
 
 

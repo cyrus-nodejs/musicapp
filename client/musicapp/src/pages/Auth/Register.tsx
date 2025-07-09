@@ -122,7 +122,7 @@ interface FormValues {
      
       <div className="d-grid gap-2">
     
-    <Button className='create-button' type="submit" disabled={submitting} style={{margin:"20px 0px"}} size="lg"      >Sign up</Button>
+    <Button className='create-button custom-button' type="submit" disabled={submitting} style={{margin:"20px 0px"}} size="lg"      >Sign up</Button>
    
      </div>
      </Form>

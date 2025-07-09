@@ -110,7 +110,7 @@ const formik = useFormik({
   return (
 
     
-    <div  className="mt-3 d-none d-lg-block  homeleft col-2 me-1    text-light ">
+    <div  className="mt-3 d-none d-lg-block  homeleft col-2 me-1   ">
     
 
     <div className="d-flex mb-3 artist-bg">
@@ -185,7 +185,7 @@ const formik = useFormik({
 								<ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem ">
                
                 <div className="d-flex ">
-  <div className="">  <input type="text" className="bg-dark  rounded-2  text-light border border-0  w-100 h-100  rounded-2  shadow-none " placeholder="Edit title" onChange={e => {setTitle(e.target.value)}} /></div>
+  <div className="">  <input type="text" className="bg-dark  rounded-2 border border-0  w-100 h-100  rounded-2  shadow-none " placeholder="Edit title" onChange={e => {setTitle(e.target.value)}} /></div>
   <div className="" ><Button  className='create-button' onClick={() => dispatch(fetchUpdateTitle(data={title,playlist}))}>Save</Button></div>
 </div>
 								</ContextMenu.Item>
@@ -219,7 +219,7 @@ const formik = useFormik({
            
   {show && ( <div className="my-2 ">
     <Form className='d-flex justify-content-evenly shadow-none form-font ' onSubmit={formik.handleSubmit}>
-  <div className="">     <Form.Control size="sm" className='text-light form-text shadow-none'  required  value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}   name="title"   type="text" placeholder="title" />
+  <div className="">     <Form.Control size="sm" className='form-text shadow-none'  required  value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}   name="title"   type="text" placeholder="title" />
       {formik.touched.title && formik.errors.title && (
             <div className="error ">{formik.errors.title} {message}</div>
             
@@ -229,7 +229,7 @@ const formik = useFormik({
  
 </div>)}
   <div  className="me-auto   p-2  " >
- <Button onClick={showForm} className={show ? (" text-center   text-light create-button   ") : ("   text-light text-center create-button  ") }>Create  Playlist</Button>
+ <Button onClick={showForm} className={show ? (" text-center  create-button   ") : ("  text-center create-button  ") }>Create  Playlist</Button>
  </div>
     </div>
     </div>
@@ -240,7 +240,7 @@ const formik = useFormik({
   <p className="  "> We will keep you updated on new episode </p>
   <div  className="ms-auto   p-2  " >
 
-       <Button    className=" text-light create-button rounded-3  gap-2 mb-2">Browse Podcast</Button>
+       <Button    className=" create-button custom-btn rounded-3  gap-2 mb-2">Browse Podcast</Button>
    
           
         </div>
@@ -264,7 +264,7 @@ const formik = useFormik({
       delay={{ show: 250, hide: 400 }}
       overlay={renderTooltip1}
     >
-       <Button    className=" text-light create-button rounded-3  gap-2 mb-2">Create Playlist</Button>
+       <Button    className="  variant=''  create-button rounded-3  gap-2 mb-2">Create Playlist</Button>
     </OverlayTrigger>
           
         </div>
@@ -279,7 +279,7 @@ const formik = useFormik({
       delay={{ show: 250, hide: 400 }}
       overlay={renderTooltip1}
     >
-       <Button    className=" text-light create-button rounded-3  gap-2 mb-2">Browse Podcast</Button>
+       <Button   className=" create-button rounded-3   gap-2 mb-2">Browse Podcast</Button>
     </OverlayTrigger>
           
         </div>
@@ -327,7 +327,7 @@ const formik = useFormik({
   
   <div className="d-flex ">
 
-  <div className="">  <Form.Control type="text" className="bg-dark form-text  className='text-light'   rounded-2  text-light border border-0  w-100 h-100  rounded-2  shadow-none " placeholder="Edit title" value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}  name="title" />
+  <div className="">  <Form.Control type="text" className="bg-dark form-text  className='text-light'   rounded-2 border border-0  w-100 h-100  rounded-2  shadow-none " placeholder="Edit title" value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}  name="title" />
   {formik.touched.title && formik.errors.title && (
             <div className="error text-light">{formik.errors.title} </div>
           )}

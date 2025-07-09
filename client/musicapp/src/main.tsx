@@ -10,7 +10,7 @@ import 'react-contexify/ReactContexify.css';
 import { Provider } from 'react-redux';
 
 import {store} from "./redux/app/store.tsx"
-
+import { ThemeProvider } from './context/themeContext.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -18,9 +18,9 @@ createRoot(document.getElementById('root')!).render(
     <AudioPlayerProvider>
     <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID}>
       <Provider store={store}>
- 
+   <ThemeProvider>
     <App />
-  
+  </ThemeProvider>
     </Provider>
     </GoogleOAuthProvider>
     </AudioPlayerProvider>

@@ -174,7 +174,7 @@ const dispatch = useAppDispatch()
       delay={{ show: 250, hide: 400 }}
       overlay={ShuffleTooltip}
     >
-       <i  className={!isShuffle  ? 'bx text-light me-1 bx-shuffle bx-sm' : 'bx me-1 bx-shuffle text-secondary bx-sm'}></i>
+       <i  className={!isShuffle  ? 'bx  me-1 bx-shuffle bx-sm' : 'bx me-1 bx-shuffle text-secondary bx-sm'}></i>
     </OverlayTrigger>
        
         </div>
@@ -184,7 +184,7 @@ const dispatch = useAppDispatch()
       delay={{ show: 250, hide: 400 }}
       overlay={PrevTooltip}
     >
-          <i className='bx me-1 bxs-skip-previous-circle control-icon bx-sm'></i>
+          <i className='bx me-1 bxs-skip-previous-circle  bx-sm'></i>
     </OverlayTrigger>
      
         </div>
@@ -194,7 +194,7 @@ const dispatch = useAppDispatch()
       delay={{ show: 250, hide: 400 }}
       overlay={BackwardTooltip}
     >
-             <i className='bx me-1 bx-skip-previous-circle control-icon bx-sm'></i>
+             <i className='bx me-1 bx-skip-previous-circle  bx-sm'></i>
     </OverlayTrigger>
      
         </div>
@@ -206,7 +206,7 @@ const dispatch = useAppDispatch()
             delay={{ show: 250, hide: 400 }}
             overlay={PauseTooltip}
           >
-                    <i className='bx me-1 bx-pause-circle control-icon bx-sm' ></i> 
+                    <i className='bx me-1 bx-pause-circle  bx-sm' ></i> 
           </OverlayTrigger>
            
           :
@@ -215,7 +215,7 @@ const dispatch = useAppDispatch()
           delay={{ show: 250, hide: 400 }}
           overlay={PlayTooltip}
         >
-            <i className='bx me-1 bx-play-circle control-icon bx-sm' ></i>
+            <i className='bx me-1 bx-play-circle  bx-sm' ></i>
         </OverlayTrigger>
            }
         </div>
@@ -225,7 +225,7 @@ const dispatch = useAppDispatch()
           delay={{ show: 250, hide: 400 }}
           overlay={ForwardTooltip}
         >
-            <i className='bx me-1 bx-fast-forward-circle control-icon bx-sm' ></i>
+            <i className='bx me-1 bx-fast-forward-circle  bx-sm' ></i>
         </OverlayTrigger>
         
         </div>
@@ -235,7 +235,7 @@ const dispatch = useAppDispatch()
           delay={{ show: 250, hide: 400 }}
           overlay={NextTooltip}
         >
-            <i className='bx bxs-fast-forward-circle control-icon bx-sm' ></i>
+            <i className='bx bxs-fast-forward-circle  bx-sm' ></i>
         </OverlayTrigger>
       
         </div>

@@ -33,9 +33,9 @@ const Genres = () => {
           <div className='artist-bg'>
 
 <div className="d-flex  artist-bg">
-<div className="d-inline-flex my-3 fs-4 border-info text-light artist-bg  border-bottom">Genres</div>
+<div className="d-inline-flex my-3 fs-4 border-info artist-bg  border-bottom">Genres</div>
     
-    <div className="ms-auto d-none artist-bg d-lg-block p-2"><Link to="/allgenres" className="text-decoration-none artist-bg text-light">Show all</Link>  </div>
+    <div className="ms-auto d-none artist-bg d-lg-block p-2"><Link to="/allgenres" className="text-decoration-none  text-reset artist-bg">Show all</Link>  </div>
   </div>
           
         
@@ -43,11 +43,11 @@ const Genres = () => {
        {genres?.slice(0, 5).map((genre:GENRE) =>{
           return (
         <div className=" col artist-bg">
-         <Link to={`/genre/${genre?.title}`} className="text-decoration-none artist-bg text-light">
+         <Link to={`/genre/${genre?.title}`} className="text-decoration-none  text-reset artist-bg">
          
                          <LazyLoadImage className=" rounded-3 artist-bg"  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${genre.cover_image}`}   style={{ width: '120px', height: '130px' }} />
          </Link>
-                 <figcaption className="figure-caption artist-bg text-light  ">{genre.title}</figcaption> 
+                 <figcaption className=" artist-bg  ">{genre.title}</figcaption> 
                 </div>
               )
        })}

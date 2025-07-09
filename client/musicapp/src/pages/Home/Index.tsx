@@ -5,11 +5,13 @@ import HomeLeft from "./HomeLeft"
 import HomeRight from "./HomeRight"
 import Audioplayer from "../../components/Player/Audioplayer"
  import NavBottom from "../../components/NavBar/NavBottom"
-const Index = () => {
-  
+
+
+const Index  = () => {
+
   return (
   <Container fluid className="smContainer ">
-<NavIndex />
+<NavIndex  />
     <div className=" row smcenter ">
         <HomeLeft />
       <Center />  

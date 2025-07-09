@@ -1,25 +1,65 @@
 
 
 :root {
-    --color-primary: #7c2113;
+    /* --color-primary: #7c2113;
+
+   /* --color-background: #0c0909;
+       --color-sub-background:#171212;
+    --color-text: azure; */
+    --color-scrollbar:#353434; 
+      --color-button: #6B41C1; 
+       --color-outlinebutton: #8652f2; 
+      --color-background: #D2CDDE;
+      --color-sub-background: #C8C2D6;
+    --color-text: #0c1217;
+    --color-primary: #2563eb;;
+  
+}
+
+ [data-theme='dark'] {
+   --color-primary: #7c2113;
   --color-accent: #423853;
    --color-background: #0c0909;
        --color-sub-background:#171212;
     --color-text: azure;
     --color-scrollbar:#353434;
-   
 }
-
 
 
 *{
-  box-sizing: border-box;
-
-    max-height: fit-content;
-  color:  var(--color-text);
+   max-height: fit-content;
+   color:  var(--color-text);
   background: var(--color-background);
 
+} 
+body {
+    max-height: fit-content;
+   color:  var(--color-text);
+  background: var(--color-background);
 }
+
+/* .custom-btn {
+
+  color: #353434;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+}
+
+
+.custom-btn:hover {
+
+  color:  #423853;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 5px;
+} */
+
+
+
+
+
+
  */
 ::placeholder {
   color:  var(--color-background); /* example orange color */
@@ -64,6 +104,19 @@ border: none;
   color: var(--color-text);
 
 }
+
+.custom-button{
+  background: var(--color-outlinebutton);
+color: var(--color-background);
+border: none;
+}
+
+.custom-button:hover{
+  background: var(--color-button) ;
+  color: var(--color-text);
+
+}
+
 
 .bio-icon{
     color: var(--color-text);

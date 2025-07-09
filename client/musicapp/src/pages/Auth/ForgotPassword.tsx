@@ -73,7 +73,7 @@ const ForgotPassword = () => {
       <br />
      
                 <div className="text-center">
-             <Button type="submit" disabled={submitting}  className='create-button' style={{margin:"20px 0px"}} size="lg"  >Send Reset Link</Button>
+             <Button type="submit" disabled={submitting}  className='create-button custom-button' style={{margin:"20px 0px"}} size="lg"  >Send Reset Link</Button>
                </div> 
 
                </Form>

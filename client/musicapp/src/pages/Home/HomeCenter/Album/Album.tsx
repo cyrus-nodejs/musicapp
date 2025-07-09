@@ -34,9 +34,9 @@ const Albums = () => {
           <div className='artist-bg'>
 
 <div className="d-flex artist-bg mb-3">
-<div className="d-inline-flex my-3 fs-4 border-info text-light artist-bg  border-bottom">Albums</div>
+<div className="d-inline-flex my-3 fs-4 border-info  artist-bg  border-bottom">Albums</div>
     
-    <div className="ms-auto d-none artist-bg d-lg-block p-2"><Link to="/allalbums" className="text-decoration-none artist-bg text-light">Show all</Link>  </div>
+    <div className="ms-auto d-none artist-bg d-lg-block p-2"><Link to="/allalbums" className="text-decoration-none  text-reset artist-bg ">Show all</Link>  </div>
   </div>
           
         
@@ -44,11 +44,11 @@ const Albums = () => {
        {albums?.slice(0, 5).map((album:ALBUM) =>{
           return (
         <div className="artist-bg col ">
-         <Link to={`/album/${album.title}`} className="text-decoration-none text-light">
+         <Link to={`/album/${album.title}`} className="text-decoration-none ">
 
                <LazyLoadImage className=" rounded-3 artist-bg"  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${album.cover_image}`}   style={{ width: '130px', height: '130px' }} />
          </Link>
-                 <figcaption className="figure-caption text-light artist-bg ">{album.title}</figcaption> 
+                 <figcaption className=" artist-bg ">{album.title}</figcaption> 
                 </div>
               )
        })}

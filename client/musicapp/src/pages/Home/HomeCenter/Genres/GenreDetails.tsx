@@ -46,7 +46,7 @@ const Genredetails = () => {
         }, [dispatch])
     
   const filterGenre = (current: string | undefined) => {
-    return  genres.filter(genre =>  genre.title === current );
+    return  genres.filter((genre: { title: string | undefined; }) =>  genre.title === current );
   };
   const currentGenre = filterGenre(id)
   console.log(currentGenre)
@@ -72,7 +72,7 @@ const Genredetails = () => {
   <div className="flex-grow-1 ms-3">
   <div className="d-flex flex-column mb-3">
   <div className="p-2 text-start">Playlist</div>
-  <div className="p-2 fs-3 fw-bold">Genre Mix</div>
+  <div className="p-2 fs-3 ">Genre Mix</div>
   <div className="p-2">{currentGenre[0]?.title}</div>
   <div className="p-2">MusicPlanet {genreTrack.length} songs </div>
 </div>

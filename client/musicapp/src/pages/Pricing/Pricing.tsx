@@ -262,8 +262,9 @@ console.log(currentSub)
       placement="bottom"
       delay={{ show: 250, hide: 400 }}
       overlay={renderTooltip}
+      
     >
-          <Link to="/payment" className="text-decoration-none text-reset "> <button    type="button" className="w-100 btn  btn-lg btn-outline-light create-button">Pay Now</button></Link>
+          <Link to="/payment" className="text-decoration-none text-reset artist-bg"> <button    type="button" className="w-100 btn  btn-lg create-button">Pay Now</button></Link>
     </OverlayTrigger>
    
               </div>

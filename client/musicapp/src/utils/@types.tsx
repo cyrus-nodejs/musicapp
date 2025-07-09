@@ -191,3 +191,8 @@ setVolume:React.Dispatch<React.SetStateAction<number>>;
 setMuteVolume:React.Dispatch<React.SetStateAction<boolean>>
 
 }
+
+export type themeType = {
+theme:string
+ toggleTheme:() => void
+}

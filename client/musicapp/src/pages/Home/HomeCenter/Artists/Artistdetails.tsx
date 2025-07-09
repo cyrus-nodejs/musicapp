@@ -78,7 +78,7 @@ const Artistdetails = () => {
   <div className="flex-grow-1 ms-3">
   <div className="d-flex flex-column mb-3">
 
-  <div className="p-2 fs-3 fw-bold">Artist Mix</div>
+  <div className="p-2 fs-3 ">Artist Mix</div>
   <div className="p-2">{currentArtist[0]?.name}</div>
   <div className="p-2">MusicPlanet {artistTrack.length} songs </div>
 </div>

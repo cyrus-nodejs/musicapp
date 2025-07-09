@@ -23,18 +23,18 @@ const AllAlbums = () => {
             <HomeLeft />
             <Row  className='m-1 mt-3 CenterScroll   col' >
         {searchterm ? (<NavSearchResults />) : (<div>
-           <div className="d-inline-flex my-3 text-light fs-4 border-info position-sticky border-bottom">ALBUMS</div>
+           <div className="d-inline-flex my-3  fs-4 border-info position-sticky border-bottom">ALBUMS</div>
         
             <div className="col   ">
        {albums?.map((album:ALBUM) =>{
           return (
         <figure className="figure col ">
-            <Link to={`/album/${album.title}`} className="text-decoration-none text-light">   
+            <Link to={`/album/${album.title}`} className="text-decoration-none ">   
   
                  <LazyLoadImage className=" rounded-circle  m-3 "  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${album.cover_image}`}   style={{ width: '120px', height: '130px' }} />
              
              </Link>
-                 <figcaption className="figure-caption text-light  ">{album.title}</figcaption> 
+                 <figcaption className="  ">{album.title}</figcaption> 
                 </figure>
               )
        })}

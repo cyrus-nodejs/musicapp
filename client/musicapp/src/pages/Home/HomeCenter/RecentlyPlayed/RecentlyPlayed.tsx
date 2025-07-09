@@ -78,12 +78,12 @@ const HandleSelect = (e:Event) =>{
                     placement="top"
                     delay={{ show: 250, hide: 400 }}
                     overlay={PlayTooltip}
-                  ><i onClick={() => dispatch(playTrack(track))} className='bx bx-play-circle top-left   text-light bx-lg' ></i></OverlayTrigger>)}
-                {/* {currentplaying ? <i onClick={() => PlayTrack(track)} className='bx bx-play-circle top-left   text-light bx-lg' ></i>:<i className='bx bx-play-circle control-icon top-left  bx-lg' ></i> } */}
+                  ><i onClick={() => dispatch(playTrack(track))} className='bx bx-play-circle top-left   bx-lg' ></i></OverlayTrigger>)}
+                {/* {currentplaying ? <i onClick={() => PlayTrack(track)} className='bx bx-play-circle top-left   bx-lg' ></i>:<i className='bx bx-play-circle control-icon top-left  bx-lg' ></i> } */}
                 
   </div> 
 
-                 <figcaption className="figure-caption  text-light artist-bg ">{track?.title}</figcaption> 
+                 <figcaption className="  artist-bg ">{track?.title}</figcaption> 
                 
 			</ContextMenu.Trigger>
 			<ContextMenu.Portal>
@@ -146,8 +146,8 @@ const HandleSelect = (e:Event) =>{
 								alignOffset={-5}
 							>
 							
-                {currentSub?.pricing.plans == "medium" || currentSub?.pricing.plans == "premium" ? (	<ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem "><a href={`${import.meta.env.VITE_APP_CLOUD_URL}/${track.audio_file}`} className="text-decoration-none text-light"  target="_blank" download>   <div className="d-flex ">   <div className="me-1">Download</div>
-           <div className=""><i className='bx bx-download text-light'></i></div> </div></a></ContextMenu.Item>) : (   <ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem ">
+                {currentSub?.pricing.plans == "medium" || currentSub?.pricing.plans == "premium" ? (	<ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem "><a href={`${import.meta.env.VITE_APP_CLOUD_URL}/${track.audio_file}`} className="text-decoration-none"  target="_blank" download>   <div className="d-flex ">   <div className="me-1">Download</div>
+           <div className=""><i className='bx bx-download'></i></div> </div></a></ContextMenu.Item>) : (   <ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem ">
        <div className="border border-none"    ref={target} onClick={() => setShow(!Show)}>
         Subscribe to Download    </div>
       <Overlay target={target.current} show={Show} placement="top">
@@ -164,7 +164,7 @@ const HandleSelect = (e:Event) =>{
 						</ContextMenu.Portal>
 					</ContextMenu.Sub>
           <ContextMenu.Item className="ContextMenuItem">
-          <Link to={`/report`} className='text-decoration-none d-block text-light '> Report </Link> 
+          <Link to={`/report`} className='text-decoration-none d-block '> Report </Link> 
 					</ContextMenu.Item>
 				</ContextMenu.Content>
 			</ContextMenu.Portal>

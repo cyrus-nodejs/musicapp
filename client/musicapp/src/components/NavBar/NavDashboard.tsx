@@ -3,6 +3,9 @@ import { useAppDispatch, useAppSelector } from "../../redux/app/hook";
 import { fetchLogout ,  getAuthUser} from "../../redux/features/auth/authSlice";
 import { getIsAuthenticated } from "../../redux/features/auth/authSlice";
 import { capitalizeFirstLetter } from "../../utils/helpers/utilities";
+import { Button } from "react-bootstrap";
+
+import { useTheme } from "../../context/themeContext";
 
 const NavDashboard = () => {
     
@@ -11,7 +14,7 @@ const NavDashboard = () => {
  const dispatch = useAppDispatch()
 
 
-
+  const { theme, toggleTheme } = useTheme();
 
       return (
     <div className="d-flex">
@@ -26,22 +29,25 @@ const NavDashboard = () => {
 )}  
 
 
-    <div className=" p-2 text-light d-none d-lg-block"><a href="/pricing" className="text-light  fw-medium p-2 text-decoration-none">Pricing</a></div>
-      <div className=" text-light d-none d-lg-block me-auto">
+    <div className=" p-2  d-none d-lg-block"><a href="/pricing" className="text-link  fw-medium p-2 text-decoration-none">Pricing</a></div>
+      <div className="  d-none d-lg-block me-auto">
     { authUser && isAuthenticated ? ( <div onClick={() => dispatch(fetchLogout())} className="d-flex flex-row p-2">
 
-  <p className=" me-1 text-light fw-medium fs-6">Logout</p>
-  <p className=" text-white ">Hi {capitalizeFirstLetter(authUser?.first_name)}</p>
+  <p className=" me-1  text-link ">Logout</p>
+  <p className=" text-link ">Hi {capitalizeFirstLetter(authUser?.first_name)}</p>
 
 
 </div>
-) : (<a href="/login" className="text-light text-decoration-none"><div className="d-flex flex-row  p-2 text-light">
-  <p className='me-1'>Login</p>
-<p className=''>Hi Guest</p>
+) : (<a href="/login" className=" text-decoration-none"><div className="d-flex flex-row  p-2 text-light">
+  <p className='me-1 text-link'>Login</p>
+<p className='text-link'>Hi Guest</p>
 </div></a>
 ) }
     </div>  
-         
+      <div> <Button className="custom-button mb-4 rounded-5 px-5" onClick={toggleTheme}>
+        {theme}
+      </Button>
+</div>
   </div>
     
   )

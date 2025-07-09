@@ -56,7 +56,7 @@ const DisplayTrack = () => {
               </span>
             </div>
           )}</div>
-  <div className="flex-grow-1 d-lg-block ms-3"><div className="text-light  fs-6 fw-normal">{currentTrack?.title}</div><div className="text-light fs-6 ">{currentTrack?.artist.name}</div></div>
+  <div className="flex-grow-1 d-lg-block ms-3"><div className="  fs-6 fw-normal">{currentTrack?.title}</div><div className=" fs-6 ">{currentTrack?.artist.name}</div></div>
   
 </div> 
        </Col> 

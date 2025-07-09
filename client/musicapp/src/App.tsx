@@ -37,11 +37,15 @@ import 'react-contexify/ReactContexify.css';
 import Playlist from "./pages/Playlist/Playlist";
 
 import { useAppDispatch, useAppSelector } from "./redux/app/hook";
-import { useEffect } from "react";
+import { useEffect} from "react";
 import { getAuthUser ,fetchAsyncUser } from "./redux/features/auth/authSlice";
 import { getCurrentTrack } from "./redux/features/audio/audioSlice";
 
 function App() {
+
+
+
+
    const dispatch = useAppDispatch()
   const user = useAppSelector(getAuthUser)
    const currentTrack = useAppSelector(getCurrentTrack)
@@ -66,7 +70,7 @@ console.log(currentTrack)
     path: "/",
     element:  (
       
-        <Index />
+        <Index  />
     
     ),
     errorElement: <ErrorPage />

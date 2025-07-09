@@ -23,19 +23,19 @@ const AllGenres = () => {
             <HomeLeft />
             <Row  className='m-1 mt-3 .CenterScroll   col' >
         {searchterm ? (<NavSearchResults />) : (<div>
-           <div className="d-inline-flex my-3 text-light fs-4 border-info position-sticky border-bottom">GENRES</div>
+           <div className="d-inline-flex my-3  fs-4 border-info position-sticky border-bottom">GENRES</div>
         
             <div className="col   ">
        {genres?.map((genre:GENRE) =>{
           return (
         <figure className="figure col ">
-            <Link to={`/genre/${genre.title}`} className="text-decoration-none text-light">   
+            <Link to={`/genre/${genre.title}`} className="text-decoration-none ">   
 
               <LazyLoadImage className=" rounded-3 m-3"  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${genre.cover_image}`}   style={{ width: '120px', height: 'px' }} />
             
             </Link>
 
-                 <figcaption className="figure-caption text-light  ">{genre.title}</figcaption> 
+                 <figcaption className="   ">{genre.title}</figcaption> 
                 </figure>
               )
        })}
