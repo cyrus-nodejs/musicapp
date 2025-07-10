@@ -240,7 +240,7 @@ const formik = useFormik({
   <p className="  "> We will keep you updated on new episode </p>
   <div  className="ms-auto   p-2  " >
 
-       <Button    className=" create-button custom-btn rounded-3  gap-2 mb-2">Browse Podcast</Button>
+       <Button    className=" create-button rounded-3  gap-2 mb-2">Browse Podcast</Button>
    
           
         </div>

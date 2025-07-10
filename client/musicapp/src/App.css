@@ -6,6 +6,8 @@
    /* --color-background: #0c0909;
        --color-sub-background:#171212;
     --color-text: azure; */
+   --color-primary : #7c2113;
+  --color-accent: #423853;
     --color-scrollbar:#353434; 
       --color-button: #6B41C1; 
        --color-outlinebutton: #8652f2; 
@@ -105,17 +107,6 @@ border: none;
 
 }
 
-.custom-button{
-  background: var(--color-outlinebutton);
-color: var(--color-background);
-border: none;
-}
-
-.custom-button:hover{
-  background: var(--color-button) ;
-  color: var(--color-text);
-
-}
 
 
 .bio-icon{

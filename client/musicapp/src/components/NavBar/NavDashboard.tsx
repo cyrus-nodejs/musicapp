@@ -44,7 +44,7 @@ const NavDashboard = () => {
 </div></a>
 ) }
     </div>  
-      <div> <Button className="custom-button mb-4 rounded-5 px-5" onClick={toggleTheme}>
+      <div> <Button className="create-button mb-4 rounded-5 px-5" onClick={toggleTheme}>
         {theme}
       </Button>
 </div>
