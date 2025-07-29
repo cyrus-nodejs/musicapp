@@ -75,6 +75,7 @@ export const fetchAsyncUser = createAsyncThunk(
             console.log(response.data)
             return response.data
           });
+         
           export const fetchResetPassword = createAsyncThunk(
             'auth/fetchResetPassword',  async (data:{password:string, token:string, uid:number}) => {
                const { password,uid, token} = data
@@ -83,7 +84,23 @@ export const fetchAsyncUser = createAsyncThunk(
                 return response.data
               });
             
+            export const fetchGoogleLogin = createAsyncThunk(
+          
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            'auth/fetchGoogleLogin',  async (credential:any) => {
+      
+              const response= await axios.post(`${BASEURL}/api/google-login/`, {credential})
+                console.log(response.data)
+              
+              const token = response.data.access;
+              const refreshToken= response.data.refresh;
+              saveAccessToken(token);  // Save the token in localStorage
+               saveRefreshToken(refreshToken) // Save the refresh token in localStorage
+               return token;
+          
 
+              });
+            
     
 export const authSlice = createSlice({
   name: 'auth',
@@ -126,6 +143,20 @@ export const authSlice = createSlice({
           window.location.href = '/';
         })
         .addCase(fetchLogin.rejected, (state, action) => {
+          state.status = 'failed'
+          state.error = action.error.message;
+        })
+          
+        .addCase(fetchGoogleLogin.pending, (state) => {
+        state.status = 'pending'
+        })
+        .addCase(fetchGoogleLogin.fulfilled, (state, action) => {
+          state.isAuthenticated = true
+          state.message= action.payload.message
+          state.authUser= action.payload
+          window.location.href = '/';
+        })
+        .addCase(fetchGoogleLogin.rejected, (state, action) => {
           state.status = 'failed'
           state.error = action.error.message;
         })

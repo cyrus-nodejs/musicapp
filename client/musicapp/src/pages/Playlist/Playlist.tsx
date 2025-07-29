@@ -9,8 +9,8 @@ import { Image, Row, OverlayTrigger, Table, Container } from 'react-bootstrap';
 import { PlayAllTooltip } from "../../components/Player/Control/Overlay";
 import { useParams } from 'react-router-dom';
 import { capitalizeFirstLetter } from "../../utils/helpers/utilities";
-import HomeLeft from "../Home/HomeLeft";
-import HomeRight from "../Home/HomeRight";
+import HomeLeft from "../Home/LeftSidebar";
+import HomeRight from "../Home/RightSidebar";
 import NavIndex from "../../components/NavBar/NavIndex";
 import Audioplayer from "../../components/Player/Audioplayer";
 

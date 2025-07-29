@@ -1,5 +1,5 @@
 
-
+import os
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import AnonymousUser
 from rest_framework.views import APIView
@@ -16,7 +16,8 @@ from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.template.loader import render_to_string
-
+from google.oauth2 import id_token
+from google.auth.transport import requests as google_requests 
 
 
 
@@ -122,3 +123,42 @@ class ResetPasswordView(APIView):
         user.save()
 
         return Response({"detail": "Password has been reset successfully."}, status=status.HTTP_200_OK)
+
+
+   
+
+class GoogleLoginView(APIView):
+    permission_classes = [AllowAny]
+    
+    def post(self, request):
+        token = request.data.get('credential')
+
+        try:
+            idinfo = id_token.verify_oauth2_token(
+                token,
+                google_requests.Request(),
+                os.getenv('Google_ClientId')
+               
+                
+            )
+
+            email = idinfo['email']
+            first_name = idinfo.get('given_name', '')
+            last_name = idinfo.get('family_name', '')
+
+            user, created = User.objects.get_or_create(email=email, defaults={
+                'username': email,
+                'first_name': first_name,
+                'last_name': last_name,
+            })
+
+            refresh = RefreshToken.for_user(user)
+
+            return Response({
+                'refresh': str(refresh),
+                'access': str(refresh.access_token),
+            })
+
+        except ValueError:
+            return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
+        

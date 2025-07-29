@@ -1,21 +1,23 @@
-
+import { useNavigate } from "react-router-dom";
 import { TRACK, PLAYLIST } from "../../../../utils/@types";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { Col,     Overlay, OverlayTrigger, Tooltip  } from "react-bootstrap"
-import { useState,  useRef } from "react";
+import { Col, OverlayTrigger } from "react-bootstrap"
+import { useState } from "react";
 import {  fetchAddToPlaylist,  getPlaylists} from "../../../../redux/features/playlist/playlistSlice";
 import { getCurrentSub } from "../../../../redux/features/checkout/checkoutSlice";
-import * as ContextMenu from "@radix-ui/react-context-menu";
-import { Link } from "react-router-dom";
-import { PlayTooltip, RightClickTooltip } from "../../../../components/Player/Control/Overlay";
 
+import { PlayTooltip } from "../../../../components/Player/Control/Overlay";
+import { useTrackCustomContextMenu } from "../../../../context/contextmenu/trackcontextmenu";
 
 import { useAppDispatch, useAppSelector } from "../../../../redux/app/hook";
 
 import { playTrack } from "../../../../redux/features/audio/audioSlice";
 
 const MostPlayed= ({track}: {track: TRACK }) => {
-  const [hidden, setHidden] = useState(false);
+
+const navigate = useNavigate()
+
+const [hidden, setHidden] = useState(false);
    
 console.log(track)
 
@@ -23,32 +25,48 @@ console.log(track)
 let data;
 console.log(data)
 
-  const Playlist = useAppSelector(getPlaylists)
-const [Show, setShow] = useState(false);
-const target = useRef(null);
 const dispatch = useAppDispatch()
+
+const Playlist = useAppSelector(getPlaylists)
 const currentSub = useAppSelector(getCurrentSub)
 
 
+const { showMenu } = useTrackCustomContextMenu();
 
-  
- 
-  
-const HandleSelect = (e:Event) =>{
-  e.preventDefault()
-  }
-   
+const handleContextMenu = (e: { preventDefault: () => void; pageX: number; pageY: number; }) => {
+  e.preventDefault();
 
-      
-   
+  const items = [
+    {
+      label: `Go to Artists `,
+      onClick: () => navigate(`/allartists`),
+    },
+    {
+      label:  'Add to Playlist',
+      children:  Playlist?.map((playlist: PLAYLIST) => ({
+        label: playlist.title,
+        onClick: () => dispatch(fetchAddToPlaylist({ track, playlist })),
+      })),
+    },
+    {
+      label: 'Download',
+      onClick: () => {
+        if (currentSub?.pricing.plans === 'premium' || currentSub?.pricing.plans === 'medium') {
+          window.open(`${import.meta.env.VITE_APP_CLOUD_URL}/${track.audio_file}`, '_blank');
+        } else {
+          alert('Subscribe to download');
+        }
+      },
+    },
+    {
+      label: 'Report',
+      onClick: () => navigate('/report'),
+    },
+  ];
+
+  showMenu(e.pageX, e.pageY, items);
+};
     
-     
-
-
-
-
-    
-  
   return (
     
            
@@ -58,25 +76,20 @@ const HandleSelect = (e:Event) =>{
           <div
           className='col artist-bg'
           >
-     
-    
             <div
             onMouseOver={() => setHidden(true)}
             onMouseOut={() => setHidden(false)} className="artist-bg rounded-3 d-flex flex-row  mb-3  ">
     
         <figure  className="figure  position-relative artist-bg ">
-          <ContextMenu.Root>
-			<ContextMenu.Trigger className="ContextMenuTrigger">
-      <OverlayTrigger
-                    placement="top"
-                    delay={{ show: 250, hide: 400 }}
-                    overlay={RightClickTooltip}
-                  >
-      <div className="container artist-bg ">
+   
+      <div
+    onContextMenu={handleContextMenu}
+  className="rounded-3 d-flex flex-row mb-3 artist-bg container  "
+      >
              
                 <LazyLoadImage className="artist-bg rounded-3"  effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${track.cover_image}`}   style={{ width: '120px', height: '130px' }}       />
                 </div>
-                </OverlayTrigger>
+              
                 <div className="">
                 {hidden && (<OverlayTrigger
                     placement="top"
@@ -87,90 +100,7 @@ const HandleSelect = (e:Event) =>{
                 
   </div> 
                  <figcaption className="  artist-bg ">{track.title}</figcaption> 
-			</ContextMenu.Trigger>
-			<ContextMenu.Portal>
-				<ContextMenu.Content
-					className="ContextMenuContent bg-dark"
-				
-				
-				>
-					<ContextMenu.Item className="ContextMenuItem">
-          <Link to={`/allartists`} className='text-decoration-none d-block text-success '> Go to Artist Radio  </Link> 
-					</ContextMenu.Item>
-					<ContextMenu.Item className="ContextMenuItem">
-						Reload <div className="RightSlot">⌘+R</div>
-					</ContextMenu.Item>
-					<ContextMenu.Sub>
-						<ContextMenu.SubTrigger className="ContextMenuSubTrigger">
-							Add to Playlist
-							<div className="RightSlot">
-              <i className='bx bx-chevron-right'></i>
-							</div>
-						</ContextMenu.SubTrigger>
-						<ContextMenu.Portal>
-							<ContextMenu.SubContent
-								className="ContextMenuSubContent"
-								sideOffset={2}
-								alignOffset={-5}
-							>
-
-                {Playlist ? (<div>
-     {Playlist?.map((playlist:PLAYLIST, id:number) =>{
-           return (
-            
-            <ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem bg-dark" key={id} id="reload" onClick={() => dispatch(fetchAddToPlaylist(data= {track, playlist}))}> {playlist?.title} 
-            </ContextMenu.Item>
-        
-               )
-        })}
-   
- </div>
- ) : (
-''
- ) }  
-								
-								
-							</ContextMenu.SubContent>
-						</ContextMenu.Portal>
-					</ContextMenu.Sub>
-					<ContextMenu.Separator className="ContextMenuSeparator" />
-          <ContextMenu.Sub>
-						<ContextMenu.SubTrigger className="ContextMenuSubTrigger">
- Download
-							<div className="RightSlot">
-              <i className='bx bx-chevron-right'></i>
-							</div>
-						</ContextMenu.SubTrigger>
-						<ContextMenu.Portal>
-							<ContextMenu.SubContent
-								className="ContextMenuSubContent"
-								sideOffset={2}
-								alignOffset={-5}
-							>
-							
-                {currentSub?.pricing.plans == "medium" || currentSub?.pricing.plans == "premium" ? (	<ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem "><a href={`${import.meta.env.VITE_APP_CLOUD_URL}/${track.audio_file}`} className="text-decoration-none "  target="_blank" download>   <div className="d-flex ">   <div className="me-1">Download</div>
-           <div className=""><i className='bx bx-download '></i></div> </div></a></ContextMenu.Item>) : (   <ContextMenu.Item onSelect={HandleSelect} className="ContextMenuItem ">
-       <div className="border border-none"    ref={target} onClick={() => setShow(!Show)}>
-        Subscribe to Download    </div>
-      <Overlay target={target.current} show={Show} placement="top">
-         {(props) => (
-           <Tooltip id="overlay-example" {...props}>
-             Pls Subscribe to Download
-           </Tooltip>
-         )}
-       </Overlay>
-       </ContextMenu.Item>) }
-								
-								
-							</ContextMenu.SubContent>
-						</ContextMenu.Portal>
-					</ContextMenu.Sub>
-          <ContextMenu.Item className="ContextMenuItem">
-          <Link to={`/report`} className='text-decoration-none d-block  '> Report </Link> 
-					</ContextMenu.Item>
-				</ContextMenu.Content>
-			</ContextMenu.Portal>
-		</ContextMenu.Root>
+			
 
                 </figure>
 

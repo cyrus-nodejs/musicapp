@@ -1,4 +1,6 @@
 
+from django.db.models.functions import Cast
+from django.db.models import IntegerField
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 from ..models import Track
@@ -60,15 +62,16 @@ class LatestSongView(APIView):
 
     def get(self, request, *args, **kwargs):
        
-     query =request.data.get("searchQuery")
-         
-     tracks = Track.objects.filter(release_year='2023')
-     # Serialize the queryset
-     serializer = TrackSerializer(tracks, many=True)
+     latest_year =  Track.objects.values_list('release_year', flat=True).order_by('-release_year').distinct().first()
+     if not latest_year:
+            return Response({'detail': 'No tracks found.'}, status=status.HTTP_404_NOT_FOUND)   
+     latest_tracks  =  Track.objects.filter(release_year=latest_year).order_by('-date_added')[:5]
+     serializer = TrackSerializer(latest_tracks, many=True)
     
     
-     if tracks:
+     if latest_tracks:
          # Return the serialized data as JSON
+         print(serializer.data)
          return Response(serializer.data)
      else:
         return   Response({f"No results" })

@@ -1,5 +1,5 @@
 
-import NewTrack from "./NewTrack";
+import NewTrack from "./LatestTrack";
 import { useAppDispatch, useAppSelector } from "../../../../redux/app/hook";
 import {  useEffect } from "react";
 import { getLatestTracks, fetchLatestTracks } from "../../../../redux/features/audio/audioSlice";

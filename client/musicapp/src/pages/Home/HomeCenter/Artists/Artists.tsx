@@ -36,11 +36,11 @@ const Artists = () => {
             <div className="row  artist-bg  ">
        {artists?.slice(0, 5).map((artist:ARTIST) =>{
           return (
-        <div className=" col artist-bg   " key={artist.bio || artist.name}>
+        <div className=" col artist-bg  artist-background " key={artist.bio || artist.name}>
       
-            <Link to={`/artist/${artist.name}`} className="text-decoration-none artist-bg text-light">     
+            <Link to={`/artist/${artist.name}`} className="text-decoration-none artist-bg ">     
                
-               <LazyLoadImage  className=" rounded-circle artist-image"   effect="blur" src={`${import.meta.env.VITE_APP_CLOUD_URL}/${artist.cover_image}`}   width='150px' height='160px'    />
+               <LazyLoadImage  className=" rounded-circle artist-image"    src={`${import.meta.env.VITE_APP_CLOUD_URL}/${artist.cover_image}`}   width='150px' height='160px'    />
          </Link>
           
                  <figcaption className="  artist-bg">{artist.name}</figcaption> 

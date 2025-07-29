@@ -23,7 +23,7 @@ const NavbarSearch = () => {
     Search
    </Form.Label>
    <Form.Control
-   className="border border-0   shadow-none  me-2"
+   className="border border-0  navform  shadow-none  me-2"
      size="lg"
     id="inlineFormInput"
      placeholder="Search items"

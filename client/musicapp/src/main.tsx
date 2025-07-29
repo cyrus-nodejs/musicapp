@@ -11,18 +11,40 @@ import { Provider } from 'react-redux';
 
 import {store} from "./redux/app/store.tsx"
 import { ThemeProvider } from './context/themeContext.tsx';
+import {TrackContextMenuProvider} from './context/contextmenu/trackcontextmenu.tsx'
+import { LeftSideBarContextMenuProvider } from './context/contextmenu/leftsidebarcontextmenu.tsx';
+
 
 
 createRoot(document.getElementById('root')!).render(
+
   <StrictMode>
-    <AudioPlayerProvider>
-    <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID}>
-      <Provider store={store}>
+
+  <AudioPlayerProvider>
+
+  <Provider store={store}>
+
    <ThemeProvider>
-    <App />
+
+  <TrackContextMenuProvider>
+
+   <LeftSideBarContextMenuProvider>
+
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
+      
+       <App />
+ 
+ </GoogleOAuthProvider>  
+
+  </LeftSideBarContextMenuProvider>
+
+  </TrackContextMenuProvider>
+
   </ThemeProvider>
-    </Provider>
-    </GoogleOAuthProvider>
-    </AudioPlayerProvider>
+
+  </Provider>
+
+  </AudioPlayerProvider>
+
   </StrictMode>,
 )

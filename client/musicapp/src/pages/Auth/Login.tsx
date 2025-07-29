@@ -1,10 +1,10 @@
 
 
-
+import { GoogleLogin, CredentialResponse } from '@react-oauth/google';
 import {  redirect, Navigate, useNavigate} from 'react-router-dom';
 import "../../App.css"
 import {Button, Container, Form} from 'react-bootstrap'
-import "../../App.css"
+
 
 
 
@@ -15,7 +15,8 @@ import * as Yup from 'yup';
 import {  useState, useEffect } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../redux/app/hook';
-import {  getMessage,    fetchLogin, getAuthUser,   getIsAuthenticated } from '../../redux/features/auth/authSlice';
+import {  getMessage, fetchGoogleLogin,    fetchLogin, getAuthUser,   getIsAuthenticated } from '../../redux/features/auth/authSlice';
+
 
 
 const Login = () => {
@@ -71,6 +72,14 @@ interface FormValues {
     onSubmit: handleSubmit,
   });
 
+  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handGoogleLogin = async (credentialResponse: CredentialResponse) => {
+    const { credential } = credentialResponse;
+
+  dispatch(fetchGoogleLogin(credential))
+  };
+
 
       useEffect(() =>{
         if (isAuthenticated && user){
@@ -81,10 +90,7 @@ interface FormValues {
 
           }, [isAuthenticated, user, navigate])
   
-      //  const  handleGoogleLogin = () => {
-      //   window.location.href = "http://localhost:3000/auth/google";
-      //  }
-          
+
          
          
 
@@ -116,6 +122,13 @@ interface FormValues {
             <div className="error">{formik.errors.password}</div>
           )}
       <br />
+      
+
+        <div style={{ transform: 'scale(1.)', transformOrigin: 'top left' , paddingTop:"2rem", paddingBottom:"2rem"}}>
+          <GoogleLogin   size='large' className='bg-danger'   onSuccess={handGoogleLogin} onError={() => alert('Login Failed')} />
+            
+</div>
+          <br />
                 <div className="d-grid gap-2">
              <Button type="submit" disabled={submitting}  className='create-button custom-button' style={{margin:"20px 0px"}} size="lg"  >Sign in</Button>
                </div> 

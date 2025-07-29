@@ -23,7 +23,7 @@ useEffect(() =>{
           </a>
         <div className="p-2 me-3 col-12 ">
     
- <input onChange = {(e) => dispatch(handleSearchterm(e.target.value))}  type="text" className="text-light navform form-control form-control-lg  w-100  border rounded-4 border-light shadow-none d-none d-lg-block" placeholder="What do you want to play?" /> 
+ <input onChange = {(e) => dispatch(handleSearchterm(e.target.value))}  type="text" className=" navform form-control form-control-lg  w-100  border rounded-4  shadow-none d-none d-lg-block" placeholder="What do you want to play?" /> 
  {/* <Form.Control onChange = {(e) => dispatch(handleSearchterm(e.target.value))} placeholder="Enter search" type="text"  className="d-lg-none form-control bg-dark navform shadow-none" />  */}
   <span className='fs-6 d-lg-none '>Stream on large device!</span>
 </div> 

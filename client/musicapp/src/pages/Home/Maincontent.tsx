@@ -1,5 +1,5 @@
 import {Row} from "react-bootstrap"
-import Newtrack from "./HomeCenter/NewTrack/NewTrackMenu"
+import LatestTrack from "./HomeCenter/LatestTrack/LatestTrackMenu"
 import Artists from "./HomeCenter/Artists/Artists";
 import Genres from "./HomeCenter/Genres/Genres";
 import Albums from "./HomeCenter/Album/Album";
@@ -24,7 +24,7 @@ const searchTerm = useAppSelector(getSearchTerm)
 <Genres />
 
 <Albums />
- <Newtrack /> 
+ <LatestTrack /> 
 <MostPlayedMenu />
 <RecentlyPlayedMenu/>  
 

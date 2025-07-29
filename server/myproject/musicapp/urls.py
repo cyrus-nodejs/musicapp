@@ -18,6 +18,7 @@ from .view.Auth import (
     ForgotPasswordView,
     ResetPasswordView,
     LogoutView,
+    GoogleLoginView
 )
 from .view.Track import (
     TrackViewSet,
@@ -84,6 +85,10 @@ urlpatterns = [
     path('request-password/', ForgotPasswordView.as_view(), name='forgot-password'),
     path('reset-password/', ResetPasswordView.as_view(), name='reset-password'),
     path('logout/', LogoutView.as_view(), name='logout'),
+    
+    ##Socail auth
+    path('google-login/', GoogleLoginView.as_view(), name='google-login'),
+    
     path('create-payment/', CreatePaymentIntentView.as_view()),
     path('confirm-payment/', ConfirmPaymentIntentView.as_view() ),
     path('recover-payment/', RecoverPaymentIntentView.as_view() ),

@@ -4,8 +4,8 @@ import { Row,  Container   } from "react-bootstrap"
 import NavIndex from "../../../../components/NavBar/NavIndex";
 import {  getArtists, getSearchTerm } from "../../../../redux/features/audio/audioSlice";
 import { useAppSelector} from "../../../../redux/app/hook";
-import HomeLeft from "../../HomeLeft";
-import HomeRight from "../../HomeRight";
+import HomeLeft from "../../LeftSidebar";
+import HomeRight from "../../RightSidebar";
 import Audioplayer from "../../../../components/Player/Audioplayer";
 import NavSearchResults from "../../../../components/NavBar/NavSearch/NavSearchResults";
 import { Link } from "react-router-dom";

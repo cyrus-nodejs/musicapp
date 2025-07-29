@@ -8,7 +8,7 @@ import {  getCurrentTrack, getNextTrack } from "../../redux/features/audio/audio
 
 import { timeConverter } from "../../utils/helpers/utilities";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-const HomeRight = () => {
+const RightSidebar = () => {
 
 //  const artists = useAppSelector(getArtists)
 const currentTrack = useAppSelector(getCurrentTrack)
@@ -73,4 +73,4 @@ console.log(nextTrack)
 )
 }
 
-export default HomeRight;
+export default RightSidebar;
