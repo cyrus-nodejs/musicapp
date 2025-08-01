@@ -59,17 +59,6 @@ const dispatch = useAppDispatch()
  
 
  
-    // const handlePrevious = () => {
-    //   if (trackIndex === 0) {
-    //     const lastTrackIndex = songs.length - 1;
-    //     setTrackIndex(lastTrackIndex);
-    //     setCurrentTrack(songs[lastTrackIndex]);
-    //   } else {
-    //     setTrackIndex((prev:number) => prev - 1);
-    //     setCurrentTrack(songs[trackIndex - 1]);
-    //   }
-    // };
-    
   
    
   
@@ -78,16 +67,7 @@ const dispatch = useAppDispatch()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const playAnimationRef:any  = useRef();
   
-  // const repeat = useCallback(() => {
-  //   const currentTime = audioRef.current.currentTime
-  //   setTimeProgress(currentTime)
-  //   progressBarRef.current.value=currentTime
-  //   progressBarRef.current.style.setProperty(
-  //       '--range-progress',
-  //       `${(progressBarRef.current.value / duration) * 100}%`
-  //     );
-  //   playAnimationRef.current = requestAnimationFrame(repeat);
-  // }, [audioRef, duration, progressBarRef, setTimeProgress])
+
   
   useEffect(() => {
     if (isplaying) {

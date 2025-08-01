@@ -73,7 +73,7 @@ interface FormValues {
   });
 
   
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   const handGoogleLogin = async (credentialResponse: CredentialResponse) => {
     const { credential } = credentialResponse;
 
@@ -125,7 +125,7 @@ interface FormValues {
       
 
         <div style={{ transform: 'scale(1.)', transformOrigin: 'top left' , paddingTop:"2rem", paddingBottom:"2rem"}}>
-          <GoogleLogin   size='large' className='bg-danger'   onSuccess={handGoogleLogin} onError={() => alert('Login Failed')} />
+          <GoogleLogin   size='large'    onSuccess={handGoogleLogin} onError={() => alert('Login Failed')} />
             
 </div>
           <br />
